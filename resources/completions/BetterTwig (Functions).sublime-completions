@@ -1,0 +1,21 @@
+{
+	"scope": "text.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+	"completions": [
+		{ "trigger": "attribute\tTwig Function", "contents": "attribute()", },
+		{ "trigger": "block\tTwig Function", "contents": "block('${1:title}', '${2:template_name}')", },
+		{ "trigger": "constant\tTwig Function", "contents": "constant()", },
+		{ "trigger": "cycle\tTwig Function", "contents": "cycle()", },
+		{ "trigger": "date\tTwig Function", "contents": "date()", },
+		{ "trigger": "dump\tTwig Function", "contents": "dump()", },
+		{ "trigger": "html_classes\tTwig Function", "contents": "html_classes()", },
+		{ "trigger": "include\tTwig Function", "contents": "include()", },
+		{ "trigger": "max\tTwig Function", "contents": "max()", },
+		{ "trigger": "min\tTwig Function", "contents": "min()", },
+		{ "trigger": "parent\tTwig Function", "contents": "parent()", },
+		{ "trigger": "random\tTwig Function", "contents": "random()", },
+		{ "trigger": "range\tTwig Function", "contents": "range()", },
+		{ "trigger": "source\tTwig Function", "contents": "source()", },
+		{ "trigger": "country_timezones\tTwig Function", "contents": "country_timezones()", },
+		{ "trigger": "template_from_string\tTwig Function", "contents": "template_from_string()", },
+	],
+}

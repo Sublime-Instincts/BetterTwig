@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+{% set ${1:variable} = ${2:value} %}${0}
+]]></content>
+	<tabTrigger>tset</tabTrigger>
+	<scope>text.twig</scope>
+	<description>Twig set tag</description>
+</snippet>

@@ -1,0 +1,104 @@
+## SYNTAX TEST "Packages/BetterTwig/resources/syntax/Twig.sublime-syntax"
+
+    {%  %}
+##  ^^ meta.statement.twig punctuation.definition.statement.begin.jinja
+##      ^^ meta.statement.twig punctuation.definition.statement.end.twig
+##  ^^^^^^ meta.statement.twig
+
+    {%-  -%}
+##  ^^^ punctuation.definition.statement.begin.jinja
+##       ^^^ punctuation.definition.statement.end.twig
+##  ^^^^^^^^ meta.statement.twig
+
+    {%~  ~%}
+##  ^^^ punctuation.definition.statement.begin.jinja
+##       ^^^ punctuation.definition.statement.end.twig
+##  ^^^^^^^^ meta.statement.twig
+
+    {% for item in items %} {% endfor %}
+##     ^^^ keyword.control.loop.for.twig
+##              ^^ keyword.operator.logical.twig
+##         ^^^^ variable.other.twig
+##                             ^^^^^^ keyword.other.endtag.twig
+
+    {% block %} {% endblock %}
+##     ^^^^^ keyword.other.tag.twig
+##                 ^^^^^^^^ keyword.other.endtag.twig
+
+    {% autoescape  %} {% endautoescape %}
+##     ^^^^^^^^^^ keyword.other.tag.twig
+##                       ^^^^^^^^^^^^^ keyword.other.endtag.twig
+
+    {% apply %} {% endapply %}
+##     ^^^^^ keyword.other.tag.twig
+##                 ^^^^^^^^ keyword.other.endtag.twig
+
+    {% verbatim %} {% endverbatim %}
+##     ^^^^^^^^ keyword.other.tag.twig
+##                    ^^^^^^^^^^^ keyword.other.endtag.twig
+
+    {% with %} {% endwith %}
+##     ^^^^ keyword.other.tag.twig
+##                ^^^^^^^ keyword.other.endtag.twig
+
+    {% sandbox %}{% endsandbox %}
+##     ^^^^^^^ keyword.other.tag.twig
+##                  ^^^^^^^^^^ keyword.other.endtag.twig
+
+    {% macro %}{% endmacro %}
+##     ^^^^^ keyword.other.tag.twig
+##                ^^^^^^^^ keyword.other.endtag.twig
+
+    {% embed %} {% endembed %}
+##     ^^^^^ keyword.other.tag.twig
+##                 ^^^^^^^^ keyword.other.endtag.twig
+
+    {% set variable = "Hello, World" %}
+##     ^^^ keyword.other.tag.twig
+##         ^^^^^^^^ variable.other.twig
+##                  ^ keyword.operator.assignment.twig
+##                    ^ string.quoted.double.twig punctuation.definition.string.begin.twig
+##                                 ^ string.quoted.double.twig punctuation.definition.string.end.twig
+##                    ^^^^^^^^^^^^^^  string.quoted.double.twig
+
+    {% extends "template.twig" %}
+##     ^^^^^^^ keyword.other.tag.twig
+
+    {% extends ["first.twig", "second.twig"] %}
+##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
+##              ^meta.sequence.array.twig string.quoted.double.twig punctuation.definition.string.begin.twig
+##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig meta.sequence.array.twig
+##                         ^ meta.sequence.array.twig string.quoted.double.twig punctuation.definition.string.end.twig
+##                          ^ punctuation.separator.sequence.twig
+
+    {% false true none null %}
+##     ^^^^^ constant.language.twig
+##           ^^^^ constant.language.twig
+##                ^^^^ constant.language.twig
+##                     ^^^^ constant.language.twig
+
+    {% flush %}
+##     ^^^^^ keyword.other.tag.twig
+
+    {% set content = include('template.html') %}
+##                   ^^^^^^^ variable.function.twig
+##                          ^ punctuation.section.arguments.begin.twig
+##                           ^^^^^^^^^^^^^^^ meta.function-call.arguments.twig string.quoted.single.twig
+
+    {% if %} {% else %} {% endif %}
+##     ^^ keyword.control.conditional.if.twig
+##              ^^^^ keyword.control.conditional.else.twig
+##                         ^^^^^ keyword.other.endtag.twig
+
+    {% | %}
+##     ^ keyword.operator.logical.pipe.twig
+
+    {% function(arg1 = value1, arg2 = value2) %}
+##     ^^^^^^^^ variable.function.twig
+##              ^^^^ meta.function-call.arguments.twig variable.parameter.twig
+##                   ^ keyword.operator.assignment.twig
+##                           ^ punctuation.separator.parameters.twig
+
+    {% '/^[\\d\\.]+$/' "/^[\\d\\.]+$/" %}
+##       ^^^^^^^^^^^ source.regexp
+##                       ^^^^^^^^^^^ source.regexp

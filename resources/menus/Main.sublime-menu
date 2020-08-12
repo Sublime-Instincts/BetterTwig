@@ -1,0 +1,48 @@
+[
+	{
+		"caption": "Preferences",
+        "mnemonic": "n",
+        "id": "preferences",
+        "children":
+        [
+            {
+                "caption": "Package Settings",
+                "mnemonic": "P",
+                "id": "package-settings",
+                "children":
+                [
+                	{
+                		"caption": "BetterTwig",
+                		"children": [
+                			{
+                				"caption": "Documentation",
+                				"command": "open_url",
+                				"args": {
+                					"url": "https://github.com/Sublime-Instincts/BetterTwig/blob/master/README.md"
+                				},
+                			},
+                			{ "caption": "-", },
+                			{
+                				"caption": "Settings",
+                				"command": "edit_settings",
+                				"args": {
+                					"base_file": "${packages}/BetterTwig/resources/settings/BetterTwig.sublime-settings",
+                					"default": "{\n\t${0}\n}\n",
+                				},
+                			},
+                			{ "caption": "-", },
+                			{
+                				"caption": "Key Bindings",
+                				"command": "edit_settings",
+                				"args": {
+                					"base_file": "${packages}/BetterTwig/resources/keymaps/Default.sublime-keymap",
+                					"default": "[\n\t${0}\n]\n",
+                				},
+                			}
+                		],
+                	}
+                ]
+            }
+        ]
+	}
+]

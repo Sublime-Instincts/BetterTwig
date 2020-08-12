@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<string>text.twig text.html.basic</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>^\s*\{\%[-]?\s*(endblock|endmacro|endif|endfor|endautoescape|endverbatim|endwith|endapply|endembed)\b.*\s*\%\}\s*$</string>
+		<key>increaseIndentPattern</key>
+		<string>^\s*\{\%-?\s*\b(block|macro|if|for|autoescape|verbatim|with|apply|embed|else)\b.*%}\s*$</string>
+		<key>disableIndentNextLinePattern</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

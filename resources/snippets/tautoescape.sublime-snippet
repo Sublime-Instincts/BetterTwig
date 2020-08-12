@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% autoescape ${1} %}
+	${0}
+{% endautoescape %}
+]]></content>
+	<tabTrigger>tautoescape</tabTrigger>
+	<scope>text.twig</scope>
+	<description>Twig autoescape tag</description>
+</snippet>

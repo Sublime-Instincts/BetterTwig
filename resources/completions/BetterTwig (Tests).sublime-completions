@@ -1,0 +1,14 @@
+{
+	"scope": "text.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+	"completions": [
+		{ "trigger": "constant\tTwig Test", "contents": "constant()", },
+		{ "trigger": "defined\tTwig Test", "contents": "defined", },
+		{ "trigger": "divisible by\tTwig Test", "contents": "divisible by()", },
+		{ "trigger": "empty\tTwig Test", "contents": "empty", },
+		{ "trigger": "even\tTwig Test", "contents": "even", },
+		{ "trigger": "odd\tTwig Test", "contents": "odd", },
+		{ "trigger": "iterable\tTwig Test", "contents": "iterable", },
+		{ "trigger": "null\tTwig Test", "contents": "null", },
+		{ "trigger": "same as\tTwig Test", "contents": "same as()", },
+	],
+}
