@@ -132,16 +132,7 @@ contexts:
   ###[ Comments ]##################################################################
 
   comments:
-    - include: single_line_comments
     - include: multi_line_comments
-
-  single_line_comments:
-    - match: \#\#
-      scope: punctuation.definition.comment.twig
-      push:
-        - meta_scope: comment.line.twig
-        - match: $\n?
-          pop: true
 
   multi_line_comments:
     - match: \{\#
@@ -410,7 +401,7 @@ contexts:
 
   operators: [
     {match: '\.{2}', scope: keyword.operator.range.twig},
-    {match: '\?{2}', scope: keyword.operator.ternarytwig},
+    {match: '\?{2}', scope: keyword.operator.ternary.twig},
     {match: '\?:'  , scope: keyword.operator.ternary.twig},
     {match: \|     , scope: keyword.operator.logical.pipe.twig},
     {match: \>=    , scope: keyword.operator.comparison.twig},
