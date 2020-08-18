@@ -11,6 +11,7 @@ variables:
   integers: '(?:{{digit}}*_)?{{digit}}+'
   floats: '(?:(?:{{digit}}*_?)*)?(\.){{digit}}+(?:[eE]{{digit}}*)?'
   identifiers: '[a-zA-Z_]+(?:{{digit}}*)?'
+  regex_modifiers: '[eimsuxADJSUX]*'
 
   modifiers: '(?:[-~])'
   logical_operators: \b(?:and|or|not|in|is)\b
@@ -337,7 +338,7 @@ contexts:
         1: punctuation.definition.string.begin.twig
       embed: scope:source.regexp
       embed_scope: string.quoted.single.twig
-      escape: (?:/)(')
+      escape: (?:/{{regex_modifiers}})(')
       escape_captures:
         1: punctuation.definition.string.end.twig
 
@@ -347,7 +348,7 @@ contexts:
         1: punctuation.definition.string.begin.twig
       embed: scope:source.regexp
       embed_scope: string.quoted.double.twig
-      escape: (?:/)(")
+      escape: (?:/{{regex_modifiers}})(")
       escape_captures:
         1: punctuation.definition.string.end.twig
 
