@@ -102,3 +102,40 @@
     {% '/^[\\d\\.]+$/' "/^[\\d\\.]+$/" %}
 ##       ^^^^^^^^^^^ source.regexp
 ##                       ^^^^^^^^^^^ source.regexp
+
+    {% '/^[\\d\\.]+$/iu' "/^[\\d\\.]+$/iu" %}
+##       ^^^^^^^^^^^ source.regexp
+##                         ^^^^^^^^^^^ source.regexp
+
+    {% [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] %}
+##        ^ keyword.operator.arithmetic.twig
+##            ^ keyword.operator.arithmetic.twig
+##                ^ keyword.operator.arithmetic.twig
+##                    ^ keyword.operator.arithmetic.twig
+##                        ^^ keyword.operator.arithmetic.twig
+##                             ^ keyword.operator.arithmetic.twig
+##                                 ^^ keyword.operator.arithmetic.twig
+
+    {% { + - * / // % } %}
+##       ^ keyword.operator.arithmetic.twig
+##         ^ keyword.operator.arithmetic.twig
+##           ^ keyword.operator.arithmetic.twig
+##             ^ keyword.operator.arithmetic.twig
+##               ^^ keyword.operator.arithmetic.twig
+##                  ^ keyword.operator.arithmetic.twig
+
+    {% [ == >= <= != > < ] %}
+##       ^^ keyword.operator.comparison.twig
+##          ^^ keyword.operator.comparison.twig
+##             ^^ keyword.operator.comparison.twig
+##                ^^ keyword.operator.comparison.twig
+##                   ^ keyword.operator.comparison.twig
+##                     ^ keyword.operator.comparison.twig
+
+    {% { == >= <= != > < } %}
+##       ^^ keyword.operator.comparison.twig
+##          ^^ keyword.operator.comparison.twig
+##             ^^ keyword.operator.comparison.twig
+##                ^^ keyword.operator.comparison.twig
+##                   ^ keyword.operator.comparison.twig
+##                     ^ keyword.operator.comparison.twig

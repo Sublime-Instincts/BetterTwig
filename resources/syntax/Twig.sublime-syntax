@@ -271,6 +271,7 @@ contexts:
         - include: common_expressions
         - include: logical_and_bitwise
         - include: data_structures
+        - include: operators
 
   ###[ Dictionaries ]##################################################################
 
@@ -284,6 +285,8 @@ contexts:
           pop: true
         - include: common_expressions
         - include: data_structures
+        - include: logical_and_bitwise
+        - include: operators
         - match: ':'
           scope: punctuation.separator.mapping.key-value.twig
         - match: \,
@@ -402,7 +405,7 @@ contexts:
 
   operators: [
     {match: '\.{2}', scope: keyword.operator.range.twig},
-    {match: '\?{2}', scope: keyword.operator.ternary.twig},
+    {match: '\?{2}', scope: keyword.operator.null-coalescing.twig},
     {match: '\?:'  , scope: keyword.operator.ternary.twig},
     {match: \|     , scope: keyword.operator.logical.pipe.twig},
     {match: \>=    , scope: keyword.operator.comparison.twig},

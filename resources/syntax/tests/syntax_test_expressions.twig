@@ -64,6 +64,39 @@
 ##      ^^^ string.quoted.double.twig
 ##           ^^^ string.quoted.single.twig
 
+    {{ [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] }}
+##        ^ keyword.operator.arithmetic.twig
+##            ^ keyword.operator.arithmetic.twig
+##                ^ keyword.operator.arithmetic.twig
+##                    ^ keyword.operator.arithmetic.twig
+##                        ^^ keyword.operator.arithmetic.twig
+##                             ^ keyword.operator.arithmetic.twig
+##                                 ^^ keyword.operator.arithmetic.twig
+
+    {{ [ == >= <= != > < ] }}
+##       ^^ keyword.operator.comparison.twig
+##          ^^ keyword.operator.comparison.twig
+##             ^^ keyword.operator.comparison.twig
+##                ^^ keyword.operator.comparison.twig
+##                   ^ keyword.operator.comparison.twig
+##                     ^ keyword.operator.comparison.twig
+
+    {{ { + - * / // % } }}
+##       ^ keyword.operator.arithmetic.twig
+##         ^ keyword.operator.arithmetic.twig
+##           ^ keyword.operator.arithmetic.twig
+##             ^ keyword.operator.arithmetic.twig
+##               ^^ keyword.operator.arithmetic.twig
+##                  ^ keyword.operator.arithmetic.twig
+
+    {{ { == >= <= != > < } }}
+##       ^^ keyword.operator.comparison.twig
+##          ^^ keyword.operator.comparison.twig
+##             ^^ keyword.operator.comparison.twig
+##                ^^ keyword.operator.comparison.twig
+##                   ^ keyword.operator.comparison.twig
+##                     ^ keyword.operator.comparison.twig
+
     {{ (1, 0.5, 'a', "b") }}
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
 ##      ^ constant.numeric.integer.twig
