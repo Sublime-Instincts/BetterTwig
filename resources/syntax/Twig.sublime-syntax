@@ -4,7 +4,7 @@ file_extensions:
   - twig
   - htm.twig
   - html.twig
-scope: text.twig
+scope: text.html.twig
 
 variables:
   digit: '[0-9]'

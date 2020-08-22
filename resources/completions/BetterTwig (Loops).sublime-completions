@@ -1,5 +1,5 @@
 {
-	"scope": "text.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+	"scope": "text.html.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
 	"completions": [
 		{ "trigger": "loop.index\tTwig Loop Variable", "contents": "loop.index", },
 		{ "trigger": "loop.index0\tTwig Loop Variable", "contents": "loop.index0", },

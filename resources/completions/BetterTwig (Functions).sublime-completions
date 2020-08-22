@@ -1,5 +1,5 @@
 {
-	"scope": "text.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+	"scope": "text.html.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
 	"completions": [
 		{ "trigger": "attribute\tTwig Function", "contents": "attribute()", },
 		{ "trigger": "block\tTwig Function", "contents": "block('${1:title}', '${2:template_name}')", },

@@ -1,5 +1,5 @@
 {
-	"scope": "text.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+	"scope": "text.html.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
 	"completions": [
 		{ "trigger": "constant\tTwig Test", "contents": "constant()", },
 		{ "trigger": "defined\tTwig Test", "contents": "defined", },

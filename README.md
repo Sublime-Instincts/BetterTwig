@@ -30,11 +30,11 @@ You can also use `Package Control: Add Repository`. Copy the github url (without
 In order to get the auto completions, go to `Preferences: Settings` from the command palette and paste the following in the `Preferences.sublime-settings -- User` (the right hand window)
 
 ```json
-"auto_complete_selector": "text.twig, meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
+"auto_complete_selector": "text.html.twig, meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
 "auto_complete_triggers":
 [
 	{"characters": "<", "selector": "text.html"},
-	{"selector": "text.twig, text.html.basic"},
+	{"selector": "text.html.twig, text.html.basic"},
 ]
 ```
 
@@ -63,6 +63,8 @@ If you already have these in your user settings, then just copy the Twig related
 There is always scope for improvements so please do report any bug(s) that you encounter or request for feature(s) that this package should support.
 
 Please follow the issue & feature request templates that have been setup while reporting any bug(s) or requesting for feature(s) (So as to stay as organised as possible).
+
+Use the [Twig playground](https://twigfiddle.com/) if you want to share a particular snippet of template while creating a specific issue.
 
 ## License
 The MIT License (MIT)

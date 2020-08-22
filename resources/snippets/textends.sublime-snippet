@@ -3,6 +3,6 @@
 {% extends ${1} %}
 ]]></content>
 	<tabTrigger>textends</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 	<description>Twig extends tag</description>
 </snippet>

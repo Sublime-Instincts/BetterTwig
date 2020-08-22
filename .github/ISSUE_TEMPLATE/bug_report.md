@@ -30,6 +30,8 @@ assignees: Ultra-Instinct-05
 
 [Please paste the problematic Twig template wrapped in ``` (for GitHub flavored Markdown to recognise it as a code block). Please don't paste an Image !]
 
+[If you want to share a snippet of twig, use the Twig playground. The link is given in the README.md]
+
 ### Environment
 
 [The environment you experienced this bug in.]

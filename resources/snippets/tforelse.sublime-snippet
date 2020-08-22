@@ -7,6 +7,6 @@
 {% endfor %}${0}
 ]]></content>
 	<tabTrigger>tforelse</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 	<description>Twig for else tag</description>
 </snippet>

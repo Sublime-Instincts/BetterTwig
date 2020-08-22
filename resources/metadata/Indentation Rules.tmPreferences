@@ -2,7 +2,7 @@
 <plist version="1.0">
 <dict>
 	<key>scope</key>
-	<string>text.twig text.html.basic</string>
+	<string>text.html.twig text.html.basic</string>
 	<key>settings</key>
 	<dict>
 		<key>decreaseIndentPattern</key>

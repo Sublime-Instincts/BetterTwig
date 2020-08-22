@@ -18,3 +18,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Removed
 - <kbd>ctrl + /</kbd> no longer adds `##` to the beginning of a line.
+
+## [1.0.2] - 2020-08-22
+### Fixed
+- The base scope is now changed from `text.twig` to `text.html.twig`.
+- Fixed regex modifiers breaking the syntax highlighting.
+- Fixed operators & language constants not being scoped in data structures.

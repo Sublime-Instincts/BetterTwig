@@ -5,6 +5,6 @@
 {% endapply %}
 ]]></content>
 	<tabTrigger>tapply</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 	<description>Twig apply tag</description>
 </snippet>

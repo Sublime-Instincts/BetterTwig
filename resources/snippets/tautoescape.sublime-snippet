@@ -5,6 +5,6 @@
 {% endautoescape %}
 ]]></content>
 	<tabTrigger>tautoescape</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 	<description>Twig autoescape tag</description>
 </snippet>

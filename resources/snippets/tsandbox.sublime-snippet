@@ -5,5 +5,5 @@
 {% endsandbox %}${0}
 ]]></content>
 	<tabTrigger>tsandbox</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 </snippet>

@@ -5,6 +5,6 @@
 {% endmacro %}${0}
 ]]></content>
 	<tabTrigger>tmacro</tabTrigger>
-	<scope>text.twig</scope>
+	<scope>text.html.twig</scope>
 	<description>Twig macro tag</description>
 </snippet>
