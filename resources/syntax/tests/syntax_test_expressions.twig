@@ -35,7 +35,7 @@
     {{ = ~ ?? ?: .. }}
 ##     ^ keyword.operator.assignment.twig
 ##       ^ keyword.operator.concatenation.twig
-##         ^^ keyword.operator.ternary.twig
+##         ^^ keyword.operator.null-coalescing.twig
 ##            ^^ keyword.operator.ternary.twig
 ##               ^^ keyword.operator.range.twig
 
@@ -63,6 +63,12 @@
     {{ ["a", 'c'] }}
 ##      ^^^ string.quoted.double.twig
 ##           ^^^ string.quoted.single.twig
+
+    {{ [none null true false] }}
+##      ^^^^ constant.language.twig
+##           ^^^^ constant.language.twig
+##                ^^^^ constant.language.twig
+##                     ^^^^^ constant.language.twig
 
     {{ [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] }}
 ##        ^ keyword.operator.arithmetic.twig
@@ -97,14 +103,24 @@
 ##                   ^ keyword.operator.comparison.twig
 ##                     ^ keyword.operator.comparison.twig
 
-    {{ (1, 0.5, 'a', "b") }}
+    {{ { null none false true } }}
+##       ^^^^ constant.language.twig
+##            ^^^^ constant.language.twig
+##                 ^^^^^ constant.language.twig
+##                       ^^^^ constant.language.twig
+
+    {{ (1, 0.5, 'a', "b", none, null, true, false) }}
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
 ##      ^ constant.numeric.integer.twig
 ##         ^^^ constant.numeric.float.twig
 ##              ^^^ string.quoted.single.twig
 ##                   ^^^ string.quoted.double.twig
 ##     ^ punctuation.section.sequence.begin.twig
-##                      ^ punctuation.section.sequence.end.twig
+##                                               ^ punctuation.section.sequence.end.twig
+##                        ^^^^ constant.language.twig
+##                              ^^^^ constant.language.twig
+##                                    ^^^^ constant.language.twig
+##                                          ^^^^^ constant.language.twig
 
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
 ##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig

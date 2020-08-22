@@ -132,6 +132,24 @@
 ##                   ^ keyword.operator.comparison.twig
 ##                     ^ keyword.operator.comparison.twig
 
+    {% [null none true false] %}
+##      ^^^^ constant.language.twig
+##           ^^^^ constant.language.twig
+##                ^^^^ constant.language.twig
+##                     ^^^^^ constant.language.twig
+
+    {% {null none true false} %}
+##      ^^^^ constant.language.twig
+##           ^^^^ constant.language.twig
+##                ^^^^ constant.language.twig
+##                     ^^^^^ constant.language.twig
+
+    {% (null, none, true, false) %}
+##      ^^^^ constant.language.twig
+##            ^^^^ constant.language.twig
+##                  ^^^^ constant.language.twig
+##                        ^^^^^ constant.language.twig
+
     {% { == >= <= != > < } %}
 ##       ^^ keyword.operator.comparison.twig
 ##          ^^ keyword.operator.comparison.twig

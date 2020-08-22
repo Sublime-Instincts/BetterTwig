@@ -67,6 +67,7 @@ contexts:
         - include: match_keywords
         - include: match_identifiers
         - include: common_expressions
+        - include: ternary_operator
 
   ###[ Keywords ]##################################################################
 
@@ -163,8 +164,8 @@ contexts:
         - include: constants
         - include: match_identifiers
         - include: common_expressions
-        - include: ternary_operator
         - include: operators
+        - include: ternary_operator
         - include: dot_accessor
 
   import_statements:
@@ -233,6 +234,7 @@ contexts:
         - include: functions
         - match: \,
           scope: punctuation.separator.parameters.twig
+        - include: ternary_operator
 
   parameters:
     - match: '{{identifiers}}'
@@ -272,6 +274,7 @@ contexts:
         - include: logical_and_bitwise
         - include: data_structures
         - include: operators
+        - include: ternary_operator
 
   ###[ Dictionaries ]##################################################################
 
@@ -287,10 +290,12 @@ contexts:
         - include: data_structures
         - include: logical_and_bitwise
         - include: operators
+        - include: constants
         - match: ':'
           scope: punctuation.separator.mapping.key-value.twig
         - match: \,
           scope: punctuation.separator.mapping.twig
+        - include: ternary_operator
 
   ###[ Tuples ]##################################################################
 
@@ -308,6 +313,8 @@ contexts:
         - include: functions
         - include: logical_and_bitwise
         - include: operators
+        - include: constants
+        - include: ternary_operator
 
   logical_and_bitwise:
     - include: logical_operators
