@@ -107,7 +107,7 @@ contexts:
 
   match_keyword_endif:
     - match: \b(endif)\b
-      scope: keyword.control.conditional.endif.twig
+      scope: keyword.control.conditional.end.twig
 
   match_keyword_else:
     - match: \b(else)\b
@@ -123,7 +123,7 @@ contexts:
 
   match_keyword_endfor:
     - match: \b(endfor)\b
-      scope: keyword.control.loop.endfor.twig
+      scope: keyword.control.loop.end.twig
 
   match_keyword_continue:
     - match: \b(continue)\b
