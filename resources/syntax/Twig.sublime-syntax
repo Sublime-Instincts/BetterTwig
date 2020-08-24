@@ -74,9 +74,11 @@ contexts:
   match_keywords:
     - include: match_keyword_for
     - include: match_keyword_if
+    - include: match_keyword_endif
     - include: match_keyword_else
     - include: match_keyword_elseif
     - include: match_keyword_for
+    - include: match_keyword_endfor
     - include: match_builtin_tags
     - include: match_builtin_endtags
     - include: match_keyword_continue
@@ -103,6 +105,10 @@ contexts:
     - match: \b(if)\b
       scope: keyword.control.conditional.if.twig
 
+  match_keyword_endif:
+    - match: \b(endif)\b
+      scope: keyword.control.conditional.end.twig
+
   match_keyword_else:
     - match: \b(else)\b
       scope: keyword.control.conditional.else.twig
@@ -114,6 +120,10 @@ contexts:
   match_keyword_for:
     - match: \b(for)\b
       scope: keyword.control.loop.for.twig
+
+  match_keyword_endfor:
+    - match: \b(endfor)\b
+      scope: keyword.control.loop.end.twig
 
   match_keyword_continue:
     - match: \b(continue)\b
