@@ -47,7 +47,7 @@ contexts:
 
   statement_blocks:
     - match: \{\%{{modifiers}}?
-      scope: punctuation.definition.statement.begin.jinja
+      scope: punctuation.definition.statement.begin.twig
       push:
         - meta_scope: meta.statement.twig
         - match: (\s+\-(?!\%))|(\-\s+(?=\%))
@@ -456,10 +456,13 @@ contexts:
 
   integers:
     - match: '{{integers}}'
-      scope: constant.numeric.integer.twig
+      scope: meta.number.integer.decimal.twig
+      captures:
+        0: constant.numeric.value.twig
 
   floats:
     - match: '{{floats}}'
+      scope: meta.number.float.decimal.twig
       captures:
-        0: constant.numeric.float.twig
+        0: constant.numeric.value.twig
         1: punctuation.separator.decimal.twig

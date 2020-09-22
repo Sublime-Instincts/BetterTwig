@@ -40,10 +40,8 @@
 ##               ^^ keyword.operator.range.twig
 
     {{ 1234567890 123.456789 123.456e789 }}
-##     ^^^^^^^^^^ constant.numeric.integer.twig
-##                ^^^^^^^^^^ constant.numeric.float.twig
-##                   ^ punctuation.separator.decimal.twig
-##                           ^^^^^^^^^^^ constant.numeric.float.twig
+##     ^^^^^^^^^^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##           
 
     {{ "Hello, World" 'Hello, World' }}
 ##     ^^^^^^^^^^^^^^ string.quoted.double.twig
@@ -57,8 +55,8 @@
 ##     ^ punctuation.section.sequence.begin.twig
 ##                       ^ punctuation.section.sequence.end.twig
 ##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
-##      ^ constant.numeric.integer.twig
-##                  ^^^^^ constant.numeric.float.twig
+##      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##                  ^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 
     {{ ["a", 'c'] }}
 ##      ^^^ string.quoted.double.twig
@@ -111,8 +109,8 @@
 
     {{ (1, 0.5, 'a', "b", none, null, true, false) }}
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
-##      ^ constant.numeric.integer.twig
-##         ^^^ constant.numeric.float.twig
+##      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##         ^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 ##              ^^^ string.quoted.single.twig
 ##                   ^^^ string.quoted.double.twig
 ##     ^ punctuation.section.sequence.begin.twig
@@ -131,8 +129,8 @@
 ##          ^ punctuation.separator.mapping.key-value.twig
 ##               ^ punctuation.separator.mapping.twig
 ##                 ^^^ string.quoted.single.twig
-##                                ^^^ constant.numeric.integer.twig
-##                                          ^^^^^^^ constant.numeric.float.twig
+##                                ^^^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##                                          ^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 
     {{ not in is and or b-xor b-or b-or }}
 ##     ^^^ keyword.operator.logical.twig
@@ -151,8 +149,8 @@
 ##            ^^^ variable.other.twig
    
     {{ "foo #{1 + 2.3} baz" }}
-##            ^ constant.numeric.integer.twig
-##                ^^^ constant.numeric.float.twig
+##            ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##                ^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 ##              ^ keyword.operator.arithmetic.twig
 
     {# #}

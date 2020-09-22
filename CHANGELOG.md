@@ -24,3 +24,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - The base scope is now changed from `text.twig` to `text.html.twig`.
 - Fixed regex modifiers breaking the syntax highlighting.
 - Fixed operators & language constants not being scoped in data structures.
+
+## [1.0.3] - 2020-09-22
+### Fixed
+- Updated numeric literals to having the `meta.number` scopes.
+- Fixed scoping for the `endif` & `endfor` tags
+- Removed the non needed settings file.
