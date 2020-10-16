@@ -63,10 +63,10 @@
 ##           ^^^ string.quoted.single.twig
 
     {{ [none null true false] }}
-##      ^^^^ constant.language.twig
-##           ^^^^ constant.language.twig
-##                ^^^^ constant.language.twig
-##                     ^^^^^ constant.language.twig
+##      ^^^^ constant.language.null.twig
+##           ^^^^ constant.language.null.twig
+##                ^^^^ constant.language.boolean.twig
+##                     ^^^^^ constant.language.boolean.twig
 
     {{ [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] }}
 ##        ^ keyword.operator.arithmetic.twig
@@ -102,10 +102,10 @@
 ##                     ^ keyword.operator.comparison.twig
 
     {{ { null none false true } }}
-##       ^^^^ constant.language.twig
-##            ^^^^ constant.language.twig
-##                 ^^^^^ constant.language.twig
-##                       ^^^^ constant.language.twig
+##       ^^^^ constant.language.null.twig
+##            ^^^^ constant.language.null.twig
+##                 ^^^^^ constant.language.boolean.twig
+##                       ^^^^ constant.language.boolean.twig
 
     {{ (1, 0.5, 'a', "b", none, null, true, false) }}
 ##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
@@ -115,10 +115,10 @@
 ##                   ^^^ string.quoted.double.twig
 ##     ^ punctuation.section.sequence.begin.twig
 ##                                               ^ punctuation.section.sequence.end.twig
-##                        ^^^^ constant.language.twig
-##                              ^^^^ constant.language.twig
-##                                    ^^^^ constant.language.twig
-##                                          ^^^^^ constant.language.twig
+##                        ^^^^ constant.language.null.twig
+##                              ^^^^ constant.language.null.twig
+##                                    ^^^^ constant.language.boolean.twig
+##                                          ^^^^^ constant.language.boolean.twig
 
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
 ##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig

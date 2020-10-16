@@ -43,8 +43,6 @@ contexts:
         - include: expression_blocks
         - include: comments
 
-  ###[ Statement Blocks ]##################################################################
-
   statement_blocks:
     - match: \{\%{{modifiers}}?
       scope: punctuation.definition.statement.begin.twig
@@ -68,8 +66,6 @@ contexts:
         - include: match_identifiers
         - include: common_expressions
         - include: ternary_operator
-
-  ###[ Keywords ]##################################################################
 
   match_keywords:
     - include: match_keyword_for
@@ -141,8 +137,6 @@ contexts:
     - match: '{{end_tags}}'
       scope: keyword.other.endtag.twig
 
-  ###[ Comments ]##################################################################
-
   comments:
     - include: multi_line_comments
 
@@ -154,8 +148,6 @@ contexts:
         - match: \#\}
           scope: punctuation.definition.comment.end.twig
           pop: true
-
-  ###[ Expression Blocks ]##################################################################
 
   expression_blocks:
     - match: \{{2}{{modifiers}}?
@@ -268,8 +260,6 @@ contexts:
     - include: tuples
     - include: dictionaries
 
-  ###[ Arrays ]##################################################################
-
   arrays:
     - match: \[
       scope: punctuation.section.sequence.begin.twig
@@ -285,8 +275,6 @@ contexts:
         - include: data_structures
         - include: operators
         - include: ternary_operator
-
-  ###[ Dictionaries ]##################################################################
 
   dictionaries:
     - match: \{
@@ -306,8 +294,6 @@ contexts:
         - match: \,
           scope: punctuation.separator.mapping.twig
         - include: ternary_operator
-
-  ###[ Tuples ]##################################################################
 
   tuples:
     - match: \(
@@ -338,13 +324,9 @@ contexts:
     - match: '{{bitwise_operators}}'
       scope: keyword.operator.bitwise.twig
 
-  ###[ Common Expressions ]##################################################################
-
   common_expressions:
     - include: match_strings
     - include: match_numbers
-
-  ###[ Strings ]##################################################################
 
   match_strings:
     - include: single_string_regex_match
@@ -418,37 +400,35 @@ contexts:
     - match: \{[\{\#]
       scope: constant.character.escape.twig
 
-  ###[ Operators ]##################################################################
-
-  operators: [
-    {match: '\.{2}', scope: keyword.operator.range.twig},
-    {match: '\?{2}', scope: keyword.operator.null-coalescing.twig},
-    {match: '\?:'  , scope: keyword.operator.ternary.twig},
-    {match: \|     , scope: keyword.operator.logical.pipe.twig},
-    {match: \>=    , scope: keyword.operator.comparison.twig},
-    {match: \~     , scope: keyword.operator.concatenation.twig},
-    {match: \<=    , scope: keyword.operator.comparison.twig},
-    {match: \==    , scope: keyword.operator.comparison.twig},
-    {match: \=     , scope: keyword.operator.assignment.twig},
-    {match: \+     , scope: keyword.operator.arithmetic.twig},
-    {match: \-     , scope: keyword.operator.arithmetic.twig},
-    {match: \**    , scope: keyword.operator.arithmetic.twig},
-    {match: \*     , scope: keyword.operator.arithmetic.twig},
-    {match: \/\/   , scope: keyword.operator.arithmetic.twig},
-    {match: \/     , scope: keyword.operator.arithmetic.twig},
-    {match: \%     , scope: keyword.operator.arithmetic.twig},
-    {match: \!=    , scope: keyword.operator.comparison.twig},
-    {match: \>     , scope: keyword.operator.comparison.twig},
-    {match: \<     , scope: keyword.operator.comparison.twig},
-  ]
-
-  ###[ Constants ]##################################################################
+  operators:
+    - match: '\.{2}'
+      scope: keyword.operator.range.twig
+    - match: '\?{2}'
+      scope: keyword.operator.null-coalescing.twig
+    - match: '\?:'
+      scope: keyword.operator.ternary.twig
+    - match: \|
+      scope: keyword.operator.logical.pipe.twig
+    - match: \~
+      scope: keyword.operator.concatenation.twig
+    - match: \={2}
+      scope: keyword.operator.comparison.twig
+    - match: \=
+      scope: keyword.operator.assignment.twig
+    - match: '[><!]='
+      scope: keyword.operator.comparison.twig
+    - match: '[><]'
+      scope: keyword.operator.comparison.twig
+    - match: '[\*\/]{2}'
+      scope: keyword.operator.arithmetic.twig
+    - match: '[\+\-\*\/\%]'
+      scope: keyword.operator.arithmetic.twig
 
   constants:
-    - match: \b(true|false|none|null)\b
-      scope: constant.language.twig
-
-  ###[ Numbers ]##################################################################
+    - match: \b(true|false)\b
+      scope: constant.language.boolean.twig
+    - match: \b(none|null)\b
+      scope: constant.language.null.twig
 
   match_numbers:
     - include: floats
