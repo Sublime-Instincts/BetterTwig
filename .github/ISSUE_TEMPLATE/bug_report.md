@@ -1,9 +1,6 @@
 ---
 name: Bug report
 about: Create a bug report to improve BetterTwig
-title: "[BUG]"
-labels: bug
-assignees: Ultra-Instinct-05
 
 ---
 
