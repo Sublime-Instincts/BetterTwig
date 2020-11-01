@@ -46,7 +46,7 @@
 			"contents": "#{${0}}"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "text.html.twig, string" },
+			{ "key": "selector", "operator": "equal", "operand": "text.html.twig & meta.string" },
 		],
 	}
 ]

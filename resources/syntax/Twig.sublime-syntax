@@ -291,7 +291,7 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.begin.twig
       push:
-        - meta_scope: string.quoted.single.twig
+        - meta_scope: meta.string.twig string.quoted.single.twig
         - match: \'
           scope: punctuation.definition.string.end.twig
           pop: true
@@ -301,7 +301,7 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.begin.twig
       push:
-        - meta_scope: string.quoted.double.twig
+        - meta_scope: meta.string.twig string.quoted.double.twig
         - match: \"
           scope: punctuation.definition.string.end.twig
           pop: true
