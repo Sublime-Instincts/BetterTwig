@@ -53,32 +53,54 @@ contexts:
         - match: '{{modifiers}}?\%\}'
           scope: punctuation.definition.statement.end.twig
           pop: true
-        # - include: import_statements
-        - include: get_item
-        - include: data_structures
-        - include: operators
-        - include: logical_and_bitwise
-        - include: constants
-        - include: others
-        - include: functions
-        - include: dot_accessor
-        - include: match_keywords
-        - include: match_identifiers
-        - include: common_expressions
-        - include: ternary_operator
+        - include: expressions
+
+  expression_blocks:
+    - match: \{{2}{{modifiers}}?
+      scope: punctuation.definition.placeholder.begin.twig
+      push:
+        - meta_scope: meta.placeholder.twig
+        - match: '{{modifiers}}?\}{2}'
+          scope: punctuation.definition.placeholder.end.twig
+          pop: true
+        - include: expressions
+
+  expressions:
+    - include: get_item
+    - include: data_structures
+    - include: operators
+    - include: logical_and_bitwise
+    - include: functions
+    - include: constants
+    - include: others
+    - include: match_keywords
+    - include: match_identifiers
+    - include: match_strings
+    - include: match_numbers
+    - include: dot_accessor
+    - include: parameters
 
   match_keywords:
-    - include: match_keyword_for
-    - include: match_keyword_if
-    - include: match_keyword_endif
-    - include: match_keyword_else
-    - include: match_keyword_elseif
-    - include: match_keyword_for
-    - include: match_keyword_endfor
-    - include: match_builtin_tags
-    - include: match_builtin_endtags
-    - include: match_keyword_continue
-    - include: match_keyword_break
+    - match: \b(if)\b
+      scope: keyword.control.conditional.if.twig
+    - match: \b(endif)\b
+      scope: keyword.control.conditional.end.twig
+    - match: \b(else)\b
+      scope: keyword.control.conditional.else.twig
+    - match: \b(elseif)\b
+      scope: keyword.control.conditional.elseif.twig
+    - match: \b(for)\b
+      scope: keyword.control.loop.for.twig
+    - match: \b(endfor)\b
+      scope: keyword.control.loop.end.twig
+    - match: \b(continue)\b
+      scope: keyword.control.flow.continue.twig
+    - match: \b(break)\b
+      scope: keyword.control.flow.break.twig
+    - match: '{{builtin_tags}}'
+      scope: keyword.other.tag.twig
+    - match: '{{end_tags}}'
+      scope: keyword.other.endtag.twig
 
   others:
     - match: (\bignore\b)\s{1}(?=\bmissing\b)
@@ -97,46 +119,6 @@ contexts:
       captures:
         1: keyword.other.twig
 
-  match_keyword_if:
-    - match: \b(if)\b
-      scope: keyword.control.conditional.if.twig
-
-  match_keyword_endif:
-    - match: \b(endif)\b
-      scope: keyword.control.conditional.end.twig
-
-  match_keyword_else:
-    - match: \b(else)\b
-      scope: keyword.control.conditional.else.twig
-
-  match_keyword_elseif:
-    - match: \b(elseif)\b
-      scope: keyword.control.conditional.elseif.twig
-
-  match_keyword_for:
-    - match: \b(for)\b
-      scope: keyword.control.loop.for.twig
-
-  match_keyword_endfor:
-    - match: \b(endfor)\b
-      scope: keyword.control.loop.end.twig
-
-  match_keyword_continue:
-    - match: \b(continue)\b
-      scope: keyword.control.flow.continue.twig
-
-  match_keyword_break:
-    - match: \b(break)\b
-      scope: keyword.control.flow.break.twig
-
-  match_builtin_tags:
-    - match: '{{builtin_tags}}'
-      scope: keyword.other.tag.twig
-
-  match_builtin_endtags:
-    - match: '{{end_tags}}'
-      scope: keyword.other.endtag.twig
-
   comments:
     - include: multi_line_comments
 
@@ -148,27 +130,6 @@ contexts:
         - match: \#\}
           scope: punctuation.definition.comment.end.twig
           pop: true
-
-  expression_blocks:
-    - match: \{{2}{{modifiers}}?
-      scope: punctuation.definition.placeholder.begin.twig
-      push:
-        - meta_scope: meta.placeholder.twig
-        - match: '{{modifiers}}?\}{2}'
-          scope: punctuation.definition.placeholder.end.twig
-          pop: true
-        - include: get_item
-        - include: data_structures
-        - include: match_keyword_if
-        - include: match_keyword_else
-        - include: logical_and_bitwise
-        - include: functions
-        - include: constants
-        - include: match_identifiers
-        - include: common_expressions
-        - include: operators
-        - include: ternary_operator
-        - include: dot_accessor
 
   import_statements:
     - match: \b(import)\b
@@ -226,14 +187,7 @@ contexts:
         - match: \)
           scope: punctuation.section.arguments.end.twig
           pop: true
-        - include: get_item
-        - include: data_structures
-        - include: constants
-        - include: common_expressions
-        - include: parameters
-        - include: operators
-        - include: dot_accessor
-        - include: functions
+        - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
         - include: ternary_operator
@@ -268,13 +222,9 @@ contexts:
         - match: \]
           scope: punctuation.section.sequence.end.twig
           pop: true
-        - include: item_seperator
-        - include: constants
-        - include: common_expressions
-        - include: logical_and_bitwise
-        - include: data_structures
-        - include: operators
-        - include: ternary_operator
+        - include: expressions
+        - match: \,
+          scope: punctuation.separator.sequence.twig
 
   dictionaries:
     - match: \{
@@ -284,11 +234,7 @@ contexts:
         - match: \}
           scope: punctuation.section.mapping.end.twig
           pop: true
-        - include: common_expressions
-        - include: data_structures
-        - include: logical_and_bitwise
-        - include: operators
-        - include: constants
+        - include: expressions
         - match: ':'
           scope: punctuation.separator.mapping.key-value.twig
         - match: \,
@@ -303,24 +249,11 @@ contexts:
         - match: \)
           scope: punctuation.section.sequence.end.twig
           pop: true
-        - include: common_expressions
-        - include: item_seperator
-        - include: data_structures
-        - include: functions
-        - include: logical_and_bitwise
-        - include: operators
-        - include: constants
-        - include: ternary_operator
+        - include: expressions
 
   logical_and_bitwise:
-    - include: logical_operators
-    - include: bitwise_operators
-
-  logical_operators:
     - match: '{{logical_operators}}'
       scope: keyword.operator.logical.twig
-
-  bitwise_operators:
     - match: '{{bitwise_operators}}'
       scope: keyword.operator.bitwise.twig
 

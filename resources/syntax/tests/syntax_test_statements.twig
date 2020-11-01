@@ -72,10 +72,10 @@
 ##                          ^ punctuation.separator.sequence.twig
 
     {% false true none null %}
-##     ^^^^^ constant.language.twig
-##           ^^^^ constant.language.twig
-##                ^^^^ constant.language.twig
-##                     ^^^^ constant.language.twig
+##     ^^^^^ constant.language.boolean.twig
+##           ^^^^ constant.language.boolean.twig
+##                ^^^^ constant.language.null.twig
+##                     ^^^^ constant.language.null.twig
 
     {% flush %}
 ##     ^^^^^ keyword.other.tag.twig
@@ -133,22 +133,22 @@
 ##                     ^ keyword.operator.comparison.twig
 
     {% [null none true false] %}
-##      ^^^^ constant.language.twig
-##           ^^^^ constant.language.twig
-##                ^^^^ constant.language.twig
-##                     ^^^^^ constant.language.twig
+##      ^^^^ constant.language.null.twig
+##           ^^^^ constant.language.null.twig
+##                ^^^^ constant.language.boolean.twig
+##                     ^^^^^ constant.language.boolean.twig
 
     {% {null none true false} %}
-##      ^^^^ constant.language.twig
-##           ^^^^ constant.language.twig
-##                ^^^^ constant.language.twig
-##                     ^^^^^ constant.language.twig
+##      ^^^^ constant.language.null.twig
+##           ^^^^ constant.language.null.twig
+##                ^^^^ constant.language.boolean.twig
+##                     ^^^^^ constant.language.boolean.twig
 
     {% (null, none, true, false) %}
-##      ^^^^ constant.language.twig
-##            ^^^^ constant.language.twig
-##                  ^^^^ constant.language.twig
-##                        ^^^^^ constant.language.twig
+##      ^^^^ constant.language.null.twig
+##            ^^^^ constant.language.null.twig
+##                  ^^^^ constant.language.boolean.twig
+##                        ^^^^^ constant.language.boolean.twig
 
     {% { == >= <= != > < } %}
 ##       ^^ keyword.operator.comparison.twig
