@@ -14,7 +14,7 @@ variables:
   regex_modifiers: '[eimsuxADJSUX]*'
 
   modifiers: '(?:[-~])'
-  logical_operators: \b(?:and|or|not|in|is)\b
+  logical_operators: \b(?:and|or|not|is)\b
   bitwise_operators: \b(?:b-and|b-or|b-xor)\b
   builtin_tags: |-
     (?x:
@@ -101,6 +101,8 @@ contexts:
       scope: keyword.other.tag.twig
     - match: '{{end_tags}}'
       scope: keyword.other.endtag.twig
+    - match: \b(in)\b
+      scope: keyword.control.loop.for.in.twig
 
   others:
     - match: (\bignore\b)\s{1}(?=\bmissing\b)
@@ -250,16 +252,14 @@ contexts:
           scope: punctuation.section.sequence.end.twig
           pop: true
         - include: expressions
+        - match: \,
+          scope: punctuation.separator.sequence.twig
 
   logical_and_bitwise:
     - match: '{{logical_operators}}'
       scope: keyword.operator.logical.twig
     - match: '{{bitwise_operators}}'
       scope: keyword.operator.bitwise.twig
-
-  common_expressions:
-    - include: match_strings
-    - include: match_numbers
 
   match_strings:
     - include: single_string_regex_match
@@ -291,6 +291,7 @@ contexts:
     - match: \'
       scope: punctuation.definition.string.begin.twig
       push:
+        - meta_include_prototype: false
         - meta_scope: meta.string.twig string.quoted.single.twig
         - match: \'
           scope: punctuation.definition.string.end.twig
@@ -301,6 +302,7 @@ contexts:
     - match: \"
       scope: punctuation.definition.string.begin.twig
       push:
+        - meta_include_prototype: false
         - meta_scope: meta.string.twig string.quoted.double.twig
         - match: \"
           scope: punctuation.definition.string.end.twig

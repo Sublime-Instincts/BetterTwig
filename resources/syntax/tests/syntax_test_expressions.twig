@@ -1,21 +1,24 @@
 ## SYNTAX TEST "Packages/BetterTwig/resources/syntax/Twig.sublime-syntax"
 
     {{  }}
-##  ^^meta.placeholder.twig punctuation.definition.placeholder.begin.twig
-##      ^^ meta.placeholder.twig punctuation.definition.placeholder.end.twig
 ##  ^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##      ^^ punctuation.definition.placeholder.end.twig
 
     {{~  ~}}
+##  ^^^^^^^^ meta.placeholder.twig
 ##  ^^^ punctuation.definition.placeholder.begin.twig
 ##       ^^^ punctuation.definition.placeholder.end.twig
-##  ^^^^^^^^ meta.placeholder.twig
 
     {{-  -}}
-##  ^^^^^^^^  meta.placeholder.twig
+##  ^^^^^^^^ meta.placeholder.twig
 ##  ^^^ punctuation.definition.placeholder.begin.twig
 ##       ^^^ punctuation.definition.placeholder.end.twig
 
     {{ + - * / ** // % }}
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                     ^^ punctuation.definition.placeholder.end.twig
 ##     ^ keyword.operator.arithmetic.twig
 ##       ^ keyword.operator.arithmetic.twig
 ##         ^ keyword.operator.arithmetic.twig
@@ -25,6 +28,9 @@
 ##                   ^ keyword.operator.arithmetic.twig
 
     {{ >= <= == != < > }}
+##  ^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                     ^^ punctuation.definition.placeholder.end.twig
 ##     ^^ keyword.operator.comparison.twig
 ##        ^^ keyword.operator.comparison.twig
 ##           ^^ keyword.operator.comparison.twig
@@ -33,6 +39,9 @@
 ##                   ^ keyword.operator.comparison.twig
 
     {{ = ~ ?? ?: .. }}
+##  ^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                  ^^ punctuation.definition.placeholder.end.twig
 ##     ^ keyword.operator.assignment.twig
 ##       ^ keyword.operator.concatenation.twig
 ##         ^^ keyword.operator.null-coalescing.twig
@@ -40,8 +49,14 @@
 ##               ^^ keyword.operator.range.twig
 
     {{ 1234567890 123.456789 123.456e789 }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                                       ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^^^^^^^^ meta.number.integer.decimal.twig constant.numeric.value.twig
-##           
+##                ^^^^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
+##                   ^ punctuation.separator.decimal.twig
+##                           ^^^^^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
+##                              ^ punctuation.separator.decimal.twig
 
     {{ "Hello, World" 'Hello, World' }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
@@ -55,23 +70,40 @@
 ##                                 ^ punctuation.definition.string.end.twig
 
     {{ [1, 2, 3, 4, 12.34] }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                         ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##     ^ punctuation.section.sequence.begin.twig
 ##                       ^ punctuation.section.sequence.end.twig
-##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 ##                  ^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
+##       ^ punctuation.separator.sequence.twig
+##                    ^ punctuation.separator.decimal.twig
 
     {{ ["a", 'c'] }}
-##      ^^^ string.quoted.double.twig
-##           ^^^ string.quoted.single.twig
+##  ^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^ meta.sequence.array.twig
+##      ^^^ meta.string.twig string.quoted.double.twig
+##           ^^^ meta.string.twig string.quoted.single.twig
 
     {{ [none null true false] }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                            ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##      ^^^^ constant.language.null.twig
 ##           ^^^^ constant.language.null.twig
 ##                ^^^^ constant.language.boolean.twig
 ##                     ^^^^^ constant.language.boolean.twig
 
     {{ [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                                       ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##        ^ keyword.operator.arithmetic.twig
 ##            ^ keyword.operator.arithmetic.twig
 ##                ^ keyword.operator.arithmetic.twig
@@ -81,6 +113,10 @@
 ##                                 ^^ keyword.operator.arithmetic.twig
 
     {{ [ == >= <= != > < ] }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                         ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##       ^^ keyword.operator.comparison.twig
 ##          ^^ keyword.operator.comparison.twig
 ##             ^^ keyword.operator.comparison.twig
@@ -89,6 +125,12 @@
 ##                     ^ keyword.operator.comparison.twig
 
     {{ { + - * / // % } }}
+##  ^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                      ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^ meta.mapping.twig
+##     ^ punctuation.section.mapping.begin.twig
+##                    ^ punctuation.section.mapping.end.twig
 ##       ^ keyword.operator.arithmetic.twig
 ##         ^ keyword.operator.arithmetic.twig
 ##           ^ keyword.operator.arithmetic.twig
@@ -97,6 +139,12 @@
 ##                  ^ keyword.operator.arithmetic.twig
 
     {{ { == >= <= != > < } }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                         ^^ punctuation.definition.placeholder.end.twig            
+##     ^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
+##     ^ punctuation.section.mapping.begin.twig
+##                       ^ punctuation.section.mapping.end.twig
 ##       ^^ keyword.operator.comparison.twig
 ##          ^^ keyword.operator.comparison.twig
 ##             ^^ keyword.operator.comparison.twig
@@ -105,39 +153,53 @@
 ##                     ^ keyword.operator.comparison.twig
 
     {{ { null none false true } }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                              ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
+##     ^ punctuation.section.mapping.begin.twig
+##                            ^ punctuation.section.mapping.end.twig
 ##       ^^^^ constant.language.null.twig
 ##            ^^^^ constant.language.null.twig
 ##                 ^^^^^ constant.language.boolean.twig
 ##                       ^^^^ constant.language.boolean.twig
 
     {{ (1, 0.5, 'a', "b", none, null, true, false) }}
-##     ^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
-##      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
-##         ^^^ meta.number.float.decimal.twig constant.numeric.value.twig
-##              ^^^ string.quoted.single.twig
-##                   ^^^ string.quoted.double.twig
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                                                 ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
 ##     ^ punctuation.section.sequence.begin.twig
 ##                                               ^ punctuation.section.sequence.end.twig
+##      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+##         ^^^ meta.number.float.decimal.twig constant.numeric.value.twig
+##              ^^^ meta.string.twig string.quoted.single.twig
+##                   ^^^ meta.string.twig  string.quoted.double.twig
 ##                        ^^^^ constant.language.null.twig
 ##                              ^^^^ constant.language.null.twig
 ##                                    ^^^^ constant.language.boolean.twig
 ##                                          ^^^^^ constant.language.boolean.twig
 
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
-##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                                                    ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
 ##     ^ punctuation.section.mapping.begin.twig
 ##                                                  ^ punctuation.section.mapping.end.twig
-##       ^^^ string.quoted.double.twig
-##                 ^^^ string.quoted.single.twig
+##       ^^^ meta.string.twig string.quoted.double.twig
+##                 ^^^ meta.string.twig string.quoted.single.twig
 ##          ^ punctuation.separator.mapping.key-value.twig
 ##               ^ punctuation.separator.mapping.twig
-##                 ^^^ string.quoted.single.twig
 ##                                ^^^ meta.number.integer.decimal.twig constant.numeric.value.twig
 ##                                          ^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
+##                                             ^ punctuation.separator.decimal.twig
 
     {{ not in is and or b-xor b-or b-or }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                                      ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^ keyword.operator.logical.twig
-##         ^^ keyword.operator.logical.twig
 ##            ^^ keyword.operator.logical.twig
 ##               ^^^ keyword.operator.logical.twig
 ##                   ^^ keyword.operator.logical.twig
@@ -156,12 +218,10 @@
 ##                ^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 ##              ^ keyword.operator.arithmetic.twig
 
-    {# #}
-##  ^^ punctuation.definition.comment.begin.twig
-##     ^^ punctuation.definition.comment.end.twig
-##  ^^^^^ comment.block.twig
-
     {{ foo.bar }}
+##  ^^^^^^^^^^^^^ meta.placeholder.twig
+##     ^^^ variable.other.twig
+##         ^^^ variable.other.twig
 ##        ^ punctuation.accessor.dot.twig
 
     {{ '/^[\\d\\.]+$/' "/^[\\d\\.]+$/" }}

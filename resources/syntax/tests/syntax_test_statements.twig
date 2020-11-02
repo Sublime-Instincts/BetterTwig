@@ -1,99 +1,185 @@
 ## SYNTAX TEST "Packages/BetterTwig/resources/syntax/Twig.sublime-syntax"
 
     {%  %}
-##  ^^ meta.statement.twig punctuation.definition.statement.begin.twig
-##      ^^ meta.statement.twig punctuation.definition.statement.end.twig
 ##  ^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##      ^^ punctuation.definition.statement.end.twig
 
     {%-  -%}
+##  ^^^^^^^^ meta.statement.twig
 ##  ^^^ punctuation.definition.statement.begin.twig
 ##       ^^^ punctuation.definition.statement.end.twig
-##  ^^^^^^^^ meta.statement.twig
 
     {%~  ~%}
+##  ^^^^^^^^ meta.statement.twig
 ##  ^^^ punctuation.definition.statement.begin.twig
 ##       ^^^ punctuation.definition.statement.end.twig
-##  ^^^^^^^^ meta.statement.twig
 
     {% for item in items %} {% endfor %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##                          ^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                       ^^ punctuation.definition.statement.end.twig
+##                          ^^ punctuation.definition.statement.begin.twig
+##                                    ^^ punctuation.definition.statement.end.twig
 ##     ^^^ keyword.control.loop.for.twig
-##              ^^ keyword.operator.logical.twig
+##              ^^ keyword.control.loop.for.in.twig
 ##         ^^^^ variable.other.twig
 ##                             ^^^^^^ keyword.control.loop.end.twig
 
-    {% block %} {% endblock %}
+    {% block block_1 %} {% endblock %}
+##  ^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##                      ^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                   ^^ punctuation.definition.statement.end.twig
+##                      ^^ punctuation.definition.statement.begin.twig
+##                                  ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
-##                 ^^^^^^^^ keyword.other.endtag.twig
+##                         ^^^^^^^^ keyword.other.endtag.twig
 
-    {% autoescape  %} {% endautoescape %}
+    {% autoescape "html" %} {% endautoescape %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##                          ^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                       ^^ punctuation.definition.statement.end.twig
+##                          ^^ punctuation.definition.statement.begin.twig
+##                                           ^^ punctuation.definition.statement.end.twig
+##                ^^^^^^ meta.string.twig string.quoted.double.twig
 ##     ^^^^^^^^^^ keyword.other.tag.twig
-##                       ^^^^^^^^^^^^^ keyword.other.endtag.twig
+##                             ^^^^^^^^^^^^^ keyword.other.endtag.twig
 
-    {% apply %} {% endapply %}
+    {% apply upper %} {% endapply %}
+##  ^^^^^^^^^^^^^^^^^ meta.statement.twig
+##                    ^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                 ^^ punctuation.definition.statement.end.twig
+##                    ^^ punctuation.definition.statement.begin.twig
+##                                ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
-##                 ^^^^^^^^ keyword.other.endtag.twig
+##                       ^^^^^^^^ keyword.other.endtag.twig
 
     {% verbatim %} {% endverbatim %}
+##  ^^^^^^^^^^^^^^ meta.statement.twig
+##                 ^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##              ^^ punctuation.definition.statement.end.twig
+##                 ^^ punctuation.definition.statement.begin.twig
+##                                ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^^^^ keyword.other.tag.twig
 ##                    ^^^^^^^^^^^ keyword.other.endtag.twig
 
     {% with %} {% endwith %}
+##  ^^^^^^^^^^ meta.statement.twig
+##             ^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##          ^^ punctuation.definition.statement.end.twig
+##             ^^ punctuation.definition.statement.begin.twig
+##                        ^^ punctuation.definition.statement.end.twig
 ##     ^^^^ keyword.other.tag.twig
 ##                ^^^^^^^ keyword.other.endtag.twig
 
-    {% sandbox %}{% endsandbox %}
+    {% sandbox %} {% endsandbox %}
+##  ^^^^^^^^^^^^^ meta.statement.twig
+##                ^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##             ^^ punctuation.definition.statement.end.twig
+##                ^^ punctuation.definition.statement.begin.twig
+##                              ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^^^ keyword.other.tag.twig
-##                  ^^^^^^^^^^ keyword.other.endtag.twig
+##                   ^^^^^^^^^^ keyword.other.endtag.twig
 
-    {% macro %}{% endmacro %}
+    {% macro %} {% endmacro %}
+##  ^^^^^^^^^^^ meta.statement.twig
+##              ^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##           ^^ punctuation.definition.statement.end.twig
+##              ^^ punctuation.definition.statement.begin.twig
+##                          ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
-##                ^^^^^^^^ keyword.other.endtag.twig
+##                 ^^^^^^^^ keyword.other.endtag.twig
 
     {% embed %} {% endembed %}
+##  ^^^^^^^^^^^ meta.statement.twig
+##              ^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##           ^^ punctuation.definition.statement.end.twig
+##              ^^ punctuation.definition.statement.begin.twig
+##                          ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
 ##                 ^^^^^^^^ keyword.other.endtag.twig
 
     {% set variable = "Hello, World" %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                   ^^ punctuation.definition.statement.end.twig
 ##     ^^^ keyword.other.tag.twig
 ##         ^^^^^^^^ variable.other.twig
 ##                  ^ keyword.operator.assignment.twig
-##                    ^ string.quoted.double.twig punctuation.definition.string.begin.twig
-##                                 ^ string.quoted.double.twig punctuation.definition.string.end.twig
-##                    ^^^^^^^^^^^^^^  string.quoted.double.twig
+##                    ^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 
     {% extends "template.twig" %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                             ^^ punctuation.definition.statement.end.twig
+##             ^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 ##     ^^^^^^^ keyword.other.tag.twig
 
     {% extends ["first.twig", "second.twig"] %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                           ^^ punctuation.definition.statement.end.twig
 ##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
-##              ^meta.sequence.array.twig string.quoted.double.twig punctuation.definition.string.begin.twig
-##             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig meta.sequence.array.twig
-##                         ^ meta.sequence.array.twig string.quoted.double.twig punctuation.definition.string.end.twig
+##              ^ meta.string.twig string.quoted.double.twig 
+##                         ^ meta.string.twig string.quoted.double.twig 
 ##                          ^ punctuation.separator.sequence.twig
 
     {% false true none null %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                          ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ constant.language.boolean.twig
 ##           ^^^^ constant.language.boolean.twig
 ##                ^^^^ constant.language.null.twig
 ##                     ^^^^ constant.language.null.twig
 
     {% flush %}
+##  ^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##           ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
 
     {% set content = include('template.html') %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                            ^^ punctuation.definition.statement.end.twig
 ##                   ^^^^^^^ variable.function.twig
 ##                          ^ punctuation.section.arguments.begin.twig
 ##                           ^^^^^^^^^^^^^^^ meta.function-call.arguments.twig string.quoted.single.twig
 
     {% if %} {% else %} {% endif %}
+##  ^^^^^^^^ meta.statement.twig
+##           ^^^^^^^^^^ meta.statement.twig
+##                      ^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##        ^^ punctuation.definition.statement.end.twig
+##           ^^ punctuation.definition.statement.begin.twig
+##                   ^^ punctuation.definition.statement.end.twig
+##                      ^^ punctuation.definition.statement.begin.twig
+##                               ^^ punctuation.definition.statement.end.twig
 ##     ^^ keyword.control.conditional.if.twig
 ##              ^^^^ keyword.control.conditional.else.twig
 ##                         ^^^^^ keyword.control.conditional.end.twig
 
     {% | %}
+##  ^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##       ^^ punctuation.definition.statement.end.twig
 ##     ^ keyword.operator.logical.pipe.twig
 
     {% function(arg1 = value1, arg2 = value2) %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                            ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^^^^ variable.function.twig
 ##              ^^^^ meta.function-call.arguments.twig variable.parameter.twig
 ##                   ^ keyword.operator.assignment.twig
@@ -108,6 +194,12 @@
 ##                         ^^^^^^^^^^^ source.regexp
 
     {% [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                       ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
+##     ^ punctuation.section.sequence.begin.twig
+##                                     ^ punctuation.section.sequence.end.twig
 ##        ^ keyword.operator.arithmetic.twig
 ##            ^ keyword.operator.arithmetic.twig
 ##                ^ keyword.operator.arithmetic.twig
@@ -117,6 +209,9 @@
 ##                                 ^^ keyword.operator.arithmetic.twig
 
     {% { + - * / // % } %}
+##  ^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                      ^^ punctuation.definition.statement.end.twig
 ##       ^ keyword.operator.arithmetic.twig
 ##         ^ keyword.operator.arithmetic.twig
 ##           ^ keyword.operator.arithmetic.twig
@@ -125,6 +220,10 @@
 ##                  ^ keyword.operator.arithmetic.twig
 
     {% [ == >= <= != > < ] %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                         ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
 ##       ^^ keyword.operator.comparison.twig
 ##          ^^ keyword.operator.comparison.twig
 ##             ^^ keyword.operator.comparison.twig
@@ -132,25 +231,51 @@
 ##                   ^ keyword.operator.comparison.twig
 ##                     ^ keyword.operator.comparison.twig
 
-    {% [null none true false] %}
+    {% [null, none, true, false] %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                               ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
+##     ^ punctuation.section.sequence.begin.twig
+##                             ^ punctuation.section.sequence.end.twig
+##          ^ punctuation.separator.sequence.twig
 ##      ^^^^ constant.language.null.twig
-##           ^^^^ constant.language.null.twig
-##                ^^^^ constant.language.boolean.twig
-##                     ^^^^^ constant.language.boolean.twig
+##            ^^^^ constant.language.null.twig
+##                  ^^^^ constant.language.boolean.twig
+##                        ^^^^^ constant.language.boolean.twig
 
     {% {null none true false} %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                            ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
+##     ^ punctuation.section.mapping.begin.twig
+##                          ^ punctuation.section.mapping.end.twig
 ##      ^^^^ constant.language.null.twig
 ##           ^^^^ constant.language.null.twig
 ##                ^^^^ constant.language.boolean.twig
 ##                     ^^^^^ constant.language.boolean.twig
 
     {% (null, none, true, false) %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                               ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig
+##     ^ punctuation.section.sequence.begin.twig
+##                             ^ punctuation.section.sequence.end.twig
+##          ^ punctuation.separator.sequence.twig
 ##      ^^^^ constant.language.null.twig
 ##            ^^^^ constant.language.null.twig
 ##                  ^^^^ constant.language.boolean.twig
 ##                        ^^^^^ constant.language.boolean.twig
 
     {% { == >= <= != > < } %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                         ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
+##     ^ punctuation.section.mapping.begin.twig
+##                       ^ punctuation.section.mapping.end.twig
 ##       ^^ keyword.operator.comparison.twig
 ##          ^^ keyword.operator.comparison.twig
 ##             ^^ keyword.operator.comparison.twig
