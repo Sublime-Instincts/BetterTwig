@@ -66,6 +66,7 @@ contexts:
         - include: expressions
 
   expressions:
+    - include: import_statements
     - include: get_item
     - include: data_structures
     - include: operators
@@ -138,17 +139,43 @@ contexts:
     - match: \b(import)\b
       scope: keyword.control.import.twig
       push:
-        - meta_scope: meta.statement.import.twig
-        - match: (?=\S)
-          pop: true
-        - include: match_strings
+        - meta_import
+        - identifier_else_pop
+        - import_alias
+        - string_else_pop
     - match: \b(from)\b
       scope: keyword.control.import.from.twig
       push:
-        - meta_scope: meta.statement.import.twig
-        - match: (?=\S)
-          pop: true
-        - include: match_strings
+        - meta_import
+        - identifier_else_pop
+        - import_alias
+        - identifier_else_pop
+        - match_import
+        - string_else_pop
+
+  match_import:
+    - match: \b(import)\b
+      scope: keyword.control.import.twig
+    - include: else_pop
+
+  string_else_pop:
+    - include: match_strings
+    - include: else_pop
+
+  import_alias:
+    - match: \b(as)\b
+      scope: keyword.control.import.twig
+    - include: else_pop
+
+  identifier_else_pop:
+    - include: match_identifiers
+    - match: \,
+      scope: punctuation.separator.comma.twig
+    - include: immediately_pop
+
+  meta_import:
+    - meta_scope: meta.import.twig
+    - include: immediately_pop
 
   match_identifiers:
     - match: \b_\b
@@ -180,6 +207,10 @@ contexts:
 
   else_pop:
     - match: (?=\S)
+      pop: true
+
+  immediately_pop:
+    - match: ""
       pop: true
 
   functions:
@@ -320,6 +351,8 @@ contexts:
     - match: \#\{
       scope: punctuation.section.interpolation.begin.twig
       push:
+        - clear_scopes: 1
+        - meta_content_scope: text.embedded.twig
         - meta_scope: meta.interpolation.twig
         - match: \}
           scope: punctuation.section.interpolation.end.twig
