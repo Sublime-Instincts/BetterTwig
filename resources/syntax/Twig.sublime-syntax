@@ -153,6 +153,8 @@ contexts:
   match_identifiers:
     - match: \b_\b
       scope: variable.language.blank.twig
+    - match: \b_self\b
+      scope: variable.language.twig
     - match: '{{identifiers}}'
       scope: variable.other.twig
 
