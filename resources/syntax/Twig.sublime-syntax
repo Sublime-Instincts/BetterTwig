@@ -79,6 +79,7 @@ contexts:
     - include: match_numbers
     - include: dot_accessor
     - include: parameters
+    - include: ternary_operator
 
   match_keywords:
     - match: \b(if)\b
@@ -159,13 +160,17 @@ contexts:
     - match: '\?'
       scope: keyword.operator.ternary.twig
       push:
-        - match_ternary_colon
-        - else_pop
+        - include: ternary_colon
+        - include: expressions_else_pop
 
-  match_ternary_colon:
-    - match: '\:'
-      scope: keyword.operator.ternary.twig
+  expressions_else_pop:
+    - include: expressions
     - include: else_pop
+
+  ternary_colon:
+    - match: ':'
+      scope: keyword.operator.ternary.twig
+      pop: true
 
   dot_accessor:
     - match: \.
@@ -174,10 +179,6 @@ contexts:
   else_pop:
     - match: (?=\S)
       pop: true
-
-  item_seperator:
-    - match: \,
-      scope: punctuation.separator.sequence.twig
 
   functions:
     - match: (\w+)(\()
@@ -192,7 +193,6 @@ contexts:
         - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
-        - include: ternary_operator
 
   parameters:
     - match: '{{identifiers}}'
@@ -241,7 +241,6 @@ contexts:
           scope: punctuation.separator.mapping.key-value.twig
         - match: \,
           scope: punctuation.separator.mapping.twig
-        - include: ternary_operator
 
   tuples:
     - match: \(

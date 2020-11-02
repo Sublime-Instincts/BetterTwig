@@ -231,3 +231,37 @@
     {{ '/^[\\d\\.]+$/iu' "/^[\\d\\.]+$/iu" }}
 ##       ^^^^^^^^^^^ source.regexp
 ##                         ^^^^^^^^^^^ source.regexp
+
+    {{ foo ? 'yes' : 'no' }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                        ^^ punctuation.definition.placeholder.end.twig
+##     ^^^ variable.other.twig
+##         ^ keyword.operator.ternary.twig
+##           ^^^^^ meta.string.twig string.quoted.single.twig
+##                 ^ keyword.operator.ternary.twig
+##                   ^^^^ meta.string.twig string.quoted.single.twig
+
+    {{ foo ?: 'no' }}
+##  ^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##     ^^^ variable.other.twig
+##                 ^^ punctuation.definition.placeholder.end.twig
+##         ^^ keyword.operator.ternary.twig
+##            ^^^^ meta.string.twig string.quoted.single.twig
+
+    {{ foo ?? 'no' }}
+##  ^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                 ^^ punctuation.definition.placeholder.end.twig
+##     ^^^ variable.other.twig
+##         ^^ keyword.operator.null-coalescing.twig
+##            ^^^^ meta.string.twig string.quoted.single.twig
+
+    {{ foo ? 'yes' }}
+##  ^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##     ^^^ variable.other.twig
+##                 ^^ punctuation.definition.placeholder.end.twig
+##         ^ keyword.operator.ternary.twig
+##           ^^^^^ meta.string.twig string.quoted.single.twig
