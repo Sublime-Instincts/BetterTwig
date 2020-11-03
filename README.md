@@ -8,6 +8,7 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 
 - Indentation for code blocks.
 - Snippets for common code blocks.
+- Key bindings to make your life easier.
 - Enhanced syntax highlighting for Twig templates.
 - Autocompletions for built in tags, filters, functions, tests & loop variables.
 
@@ -20,11 +21,32 @@ You can also use `Package Control: Add Repository`. Copy the github url (without
 
 ## Documentation
 
+### How to use this package ?
+
+By default, this package supports the following Twig extensions,
+
+1. `.twig`
+2. `.htm.twig`
+3. `.html.twig`
+
+Since a user can have more than one templating language package installed, this package doesn't support `.html` directly. To get highlighting for `.html` files with Twig code and all the other features this package provides, you can follow any of the two approaches given below 
+
+1. Go to the bottom right status bar item that displays information on current syntax and click on that when the currently open file is any `.html` file. From there go to `Open all with current extensions as ...` and scroll to select `Twig`. You should now be good to go.
+
+2. When the currently open file is a `.twig` file, from the main menu, go to `Preferences -> Settings -- Syntax Specific`. This should open a 2 column new window, with the default settings on the right and a user settings on the left. In the user settings, add the following, save & close.
+
+```json
+extensions: [
+    ".html"
+]
+``` 
+
 ### Key bindings
 
 - The key bindings are configured so that pressing <kbd>shift + {</kbd> **twice** will automatically add spaces on both sides for the inner brace expression block & place the cursor in the center, like so `{{ | }}`.
 - |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
+- Use <kbd>shift + #</kbd> within strings, to get the interpolation expression, like so `#{|}`.
 
 ### Auto completions
 In order to get the auto completions, go to `Preferences: Settings` from the command palette and paste the following in the `Preferences.sublime-settings -- User` (the right hand window)
