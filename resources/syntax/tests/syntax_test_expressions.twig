@@ -286,3 +286,23 @@
 ##  ^^ punctuation.definition.placeholder.begin.twig
 ##                                             ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^^^ variable.language.twig
+
+    {{ "Escapes \' \" {{ {#" }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                           ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
+##              ^^ constant.character.escape.twig
+##                 ^^ constant.character.escape.twig
+##                    ^^ constant.character.escape.twig
+##                       ^^ constant.character.escape.twig
+
+    {{ 'Escapes \' \" {{ {#' }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                           ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+##              ^^ constant.character.escape.twig
+##                 ^^ constant.character.escape.twig
+##                    ^^ constant.character.escape.twig
+##                       ^^ constant.character.escape.twig

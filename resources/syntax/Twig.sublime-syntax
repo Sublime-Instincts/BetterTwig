@@ -389,6 +389,8 @@ contexts:
   escape_characters:
     - match: \{[\{\#]
       scope: constant.character.escape.twig
+    - match: \\['"]
+      scope: constant.character.escape.twig
 
   operators:
     - match: '\.{2}'
