@@ -195,17 +195,17 @@
 ##                                          ^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig
 ##                                             ^ punctuation.separator.decimal.twig
 
-    {{ not in is and or b-xor b-or b-or }}
-##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+    {{ not is and or b-xor b-or b-or }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
 ##  ^^ punctuation.definition.placeholder.begin.twig
-##                                      ^^ punctuation.definition.placeholder.end.twig
-##     ^^^ keyword.operator.logical.twig
-##            ^^ keyword.operator.logical.twig
-##               ^^^ keyword.operator.logical.twig
-##                   ^^ keyword.operator.logical.twig
-##                      ^^^^^ keyword.operator.bitwise.twig
-##                            ^^^^ keyword.operator.bitwise.twig
-##                                 ^^^^ keyword.operator.bitwise.twig
+##                                   ^^ punctuation.definition.placeholder.end.twig
+##     ^^^ keyword.operator.word.logical.twig
+##         ^^ keyword.operator.word.logical.twig
+##            ^^^ keyword.operator.word.logical.twig
+##                ^^ keyword.operator.word.logical.twig
+##                   ^^^^^ keyword.operator.word.bitwise.twig
+##                         ^^^^ keyword.operator.word.bitwise.twig
+##                              ^^^^ keyword.operator.word.bitwise.twig
 
     {{ "foo #{bar} baz" }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig

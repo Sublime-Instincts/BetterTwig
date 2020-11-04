@@ -310,9 +310,9 @@ contexts:
 
   logical_and_bitwise:
     - match: '{{logical_operators}}'
-      scope: keyword.operator.logical.twig
+      scope: keyword.operator.word.logical.twig
     - match: '{{bitwise_operators}}'
-      scope: keyword.operator.bitwise.twig
+      scope: keyword.operator.word.bitwise.twig
 
   match_strings:
     - include: single_string_regex_match
