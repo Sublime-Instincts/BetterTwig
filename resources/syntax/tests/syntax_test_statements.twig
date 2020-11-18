@@ -148,6 +148,13 @@
 ##           ^^ punctuation.definition.statement.end.twig
 ##     ^^^^^ keyword.other.tag.twig
 
+    {% deprecated "This template is deprecated" %}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+##  ^^ punctuation.definition.statement.begin.twig
+##                                              ^^ punctuation.definition.statement.end.twig
+##     ^^^^^^^^^^ keyword.other.tag.twig
+##                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
+
     {% set content = include('template.html') %}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
 ##  ^^ punctuation.definition.statement.begin.twig

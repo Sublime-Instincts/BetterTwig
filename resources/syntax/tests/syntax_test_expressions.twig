@@ -235,6 +235,8 @@
 
     {{ foo.bar }}
 ##  ^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##             ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^ variable.other.twig
 ##         ^^^ variable.other.twig
 ##        ^ punctuation.accessor.dot.twig
@@ -285,6 +287,7 @@
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
 ##  ^^ punctuation.definition.placeholder.begin.twig
 ##                                             ^^ punctuation.definition.placeholder.end.twig
+##          ^ punctuation.accessor.dot.twig
 ##     ^^^^^ variable.language.twig
 
     {{ "Escapes \' \" {{ {#" }}

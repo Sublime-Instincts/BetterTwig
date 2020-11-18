@@ -34,6 +34,14 @@ variables:
       )\b
     )
 
+  builtin_tests: |-
+    (?x:
+      \b(?:
+        constant|defined|divisible\s{1}by|empty|even|odd|iterable
+        |odd|same\s{1}as
+      )\b
+    )
+
 contexts:
   main:
     - match: ""
@@ -72,6 +80,7 @@ contexts:
     - include: operators
     - include: logical_and_bitwise
     - include: builtin_functions
+    - include: builtin_tests
     - include: functions
     - include: constants
     - include: others
@@ -233,6 +242,25 @@ contexts:
         - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
+
+  builtin_tests:
+    - match: '{{builtin_tests}}'
+      scope: support.function.test.twig
+      push:
+        - parameters_else_pop
+
+  parameters_else_pop:
+    - match: \(
+      scope: punctuation.section.arguments.begin.twig
+      set:
+        - meta_scope: meta.function-call.arguments.twig
+        - match: \)
+          scope: punctuation.section.arguments.end.twig
+          pop: true
+        - include: expressions
+        - match: \,
+          scope: punctuation.separator.parameters.twig
+    - include: else_pop
 
   functions:
     - match: (\w+)(\()
