@@ -47,6 +47,7 @@ extensions: [
 - |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
 - Use <kbd>shift + #</kbd> within strings, to get the interpolation expression, like so `#{|}`.
+- Use <kbd>backspace</kbd> to come out of an empty expression/statement.
 
 ### Auto completions
 In order to get the auto completions, go to `Preferences: Settings` from the command palette and paste the following in the `Preferences.sublime-settings -- User` (the right hand window)
