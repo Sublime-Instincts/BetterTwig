@@ -47,31 +47,37 @@ contexts:
     - match: ""
       push: "Packages/HTML/HTML.sublime-syntax"
       with_prototype:
-        - include: statement_blocks
-        - include: expression_blocks
+        - include: statement_block
+        - include: expression_block
         - include: comments
 
-  statement_blocks:
+  statement_block:
     - match: \{\%{{modifiers}}?
       scope: punctuation.definition.statement.begin.twig
       push:
-        - meta_scope: meta.statement.twig
-        - match: (\s+\-(?!\%))|(\-\s+(?=\%))
-          scope: invalid.illegal.twig
-        - match: '{{modifiers}}?\%\}'
-          scope: punctuation.definition.statement.end.twig
-          pop: true
-        - include: expressions
+        - statement_block_body
 
-  expression_blocks:
+  statement_block_body:
+    - meta_scope: meta.statement.twig
+    - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+      scope: invalid.illegal.twig
+    - match: '{{modifiers}}?\%\}'
+      scope: punctuation.definition.statement.end.twig
+      pop: true
+    - include: expressions
+
+  expression_block:
     - match: \{{2}{{modifiers}}?
       scope: punctuation.definition.placeholder.begin.twig
       push:
-        - meta_scope: meta.placeholder.twig
-        - match: '{{modifiers}}?\}{2}'
-          scope: punctuation.definition.placeholder.end.twig
-          pop: true
-        - include: expressions
+        - expression_block_body
+
+  expression_block_body:
+    - meta_scope: meta.placeholder.twig
+    - match: '{{modifiers}}?\}{2}'
+      scope: punctuation.definition.placeholder.end.twig
+      pop: true
+    - include: expressions
 
   expressions:
     - include: import_statements
@@ -344,9 +350,9 @@ contexts:
 
   match_strings:
     - include: single_string_regex_match
-    - include: match_single_string
+    - include: single_quoted_string
     - include: double_string_regex_match
-    - include: match_double_string
+    - include: double_quoted_string
 
   single_string_regex_match:
     - match: (')(?:/)
@@ -368,28 +374,34 @@ contexts:
       escape_captures:
         1: punctuation.definition.string.end.twig
 
-  match_single_string:
+  single_quoted_string:
     - match: \'
       scope: punctuation.definition.string.begin.twig
       push:
-        - meta_include_prototype: false
-        - meta_scope: meta.string.twig string.quoted.single.twig
-        - match: \'
-          scope: punctuation.definition.string.end.twig
-          pop: true
-        - include: within_strings
+        - single_quoted_string_body
 
-  match_double_string:
+  single_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.twig string.quoted.single.twig
+    - match: \'
+      scope: punctuation.definition.string.end.twig
+      pop: true
+    - include: within_strings
+
+  double_quoted_string:
     - match: \"
       scope: punctuation.definition.string.begin.twig
       push:
-        - meta_include_prototype: false
-        - meta_scope: meta.string.twig string.quoted.double.twig
-        - match: \"
-          scope: punctuation.definition.string.end.twig
-          pop: true
-        - include: within_strings
-        - include: expression_blocks
+        - double_quoted_string_body
+
+  double_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.twig string.quoted.double.twig
+    - match: \"
+      scope: punctuation.definition.string.end.twig
+      pop: true
+    - include: within_strings
+    - include: expression_blocks
 
   within_strings:
     - include: escape_characters
