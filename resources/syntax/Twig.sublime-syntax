@@ -245,6 +245,7 @@ contexts:
         - match: \)
           scope: punctuation.section.arguments.end.twig
           pop: true
+        - include: parameters
         - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
@@ -277,6 +278,7 @@ contexts:
         - match: \)
           scope: punctuation.section.arguments.end.twig
           pop: true
+        - include: parameters
         - include: expressions
         - match: \,
           scope: punctuation.separator.parameters.twig
