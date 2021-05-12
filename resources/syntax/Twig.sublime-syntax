@@ -138,16 +138,18 @@ contexts:
         1: keyword.other.twig
 
   comments:
-    - include: multi_line_comments
+    - include: multi_line_comment
 
-  multi_line_comments:
+  multi_line_comment:
     - match: \{\#
       scope: punctuation.definition.comment.begin.twig
-      push:
-        - meta_scope: comment.block.twig
-        - match: \#\}
-          scope: punctuation.definition.comment.end.twig
-          pop: true
+      push: multi_line_comment_body
+
+  multi_line_comment_body:
+    - meta_scope: comment.block.twig
+    - match: \#\}
+      scope: punctuation.definition.comment.end.twig
+      pop: true
 
   import_statements:
     - match: \b(import)\b
@@ -297,47 +299,53 @@ contexts:
         - include: integers
 
   data_structures:
-    - include: arrays
-    - include: tuples
-    - include: dictionaries
+    - include: array
+    - include: tuple
+    - include: dictionary
 
-  arrays:
+  array:
     - match: \[
       scope: punctuation.section.sequence.begin.twig
-      push:
-        - meta_scope: meta.sequence.array.twig
-        - match: \]
-          scope: punctuation.section.sequence.end.twig
-          pop: true
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.sequence.twig
+      push: array_body
 
-  dictionaries:
+  array_body:
+    - meta_scope: meta.sequence.array.twig
+    - match: \]
+      scope: punctuation.section.sequence.end.twig
+      pop: true
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.sequence.twig
+
+  dictionary:
     - match: \{
       scope: punctuation.section.mapping.begin.twig
-      push:
-        - meta_scope: meta.mapping.twig
-        - match: \}
-          scope: punctuation.section.mapping.end.twig
-          pop: true
-        - include: expressions
-        - match: ':'
-          scope: punctuation.separator.mapping.key-value.twig
-        - match: \,
-          scope: punctuation.separator.mapping.pair.twig
+      push: dictionary_body
 
-  tuples:
+  dictionary_body:
+    - meta_scope: meta.mapping.twig
+    - match: \}
+      scope: punctuation.section.mapping.end.twig
+      pop: true
+    - include: expressions
+    - match: ':'
+      scope: punctuation.separator.mapping.key-value.twig
+    - match: \,
+      scope: punctuation.separator.mapping.pair.twig
+
+  tuple:
     - match: \(
       scope: punctuation.section.sequence.begin.twig
-      push:
-        - meta_scope: meta.sequence.tuple.twig
-        - match: \)
-          scope: punctuation.section.sequence.end.twig
-          pop: true
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.sequence.twig
+      push: tuple_body
+
+  tuple_body:
+    - meta_scope: meta.sequence.tuple.twig
+    - match: \)
+      scope: punctuation.section.sequence.end.twig
+      pop: true
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.sequence.twig
 
   logical_and_bitwise:
     - match: '{{logical_operators}}'
