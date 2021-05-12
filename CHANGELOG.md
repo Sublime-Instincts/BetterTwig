@@ -30,3 +30,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Updated numeric literals to having the `meta.number` scopes.
 - Fixed scoping for the `endif` & `endfor` tags
 - Removed the non needed settings file.
+
+## [1.0.4] - 2021-05-12
+### Fixed
+- Cleaned up the syntax definition a bit and added more tests.
+- Ternary operators not highlighting.
+- More specific language constant scopes.
+- Quoted string escapes not highlighting.
+- Better scoping of builtin tests.
+
+### Added
+- Additional keybindings for interpolation & to come out of empty statements/expression blocks.
