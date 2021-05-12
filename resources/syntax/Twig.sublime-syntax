@@ -54,8 +54,7 @@ contexts:
   statement_block:
     - match: \{\%{{modifiers}}?
       scope: punctuation.definition.statement.begin.twig
-      push:
-        - statement_block_body
+      push: statement_block_body
 
   statement_block_body:
     - meta_scope: meta.statement.twig
@@ -69,8 +68,7 @@ contexts:
   expression_block:
     - match: \{{2}{{modifiers}}?
       scope: punctuation.definition.placeholder.begin.twig
-      push:
-        - expression_block_body
+      push: expression_block_body
 
   expression_block_body:
     - meta_scope: meta.placeholder.twig
@@ -252,8 +250,7 @@ contexts:
   builtin_tests:
     - match: '{{builtin_tests}}'
       scope: support.function.test.twig
-      push:
-        - parameters_else_pop
+      push: parameters_else_pop
 
   parameters_else_pop:
     - match: \(
@@ -377,8 +374,7 @@ contexts:
   single_quoted_string:
     - match: \'
       scope: punctuation.definition.string.begin.twig
-      push:
-        - single_quoted_string_body
+      push: single_quoted_string_body
 
   single_quoted_string_body:
     - meta_include_prototype: false
@@ -391,8 +387,7 @@ contexts:
   double_quoted_string:
     - match: \"
       scope: punctuation.definition.string.begin.twig
-      push:
-        - double_quoted_string_body
+      push: double_quoted_string_body
 
   double_quoted_string_body:
     - meta_include_prototype: false
