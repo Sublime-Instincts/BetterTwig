@@ -1,13 +1,13 @@
 {
-	"scope": "text.html.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
-	"completions": [
-		{ "trigger": "loop.index\tTwig Loop Variable", "contents": "loop.index", },
-		{ "trigger": "loop.index0\tTwig Loop Variable", "contents": "loop.index0", },
-		{ "trigger": "loop.revindex\tTwig Loop Variable", "contents": "loop.revindex", },
-		{ "trigger": "loop.revindex0\tTwig Loop Variable", "contents": "loop.revindex0", },
-		{ "trigger": "loop.first\tTwig Loop Variable", "contents": "loop.first", },
-		{ "trigger": "loop.last\tTwig Loop Variable", "contents": "loop.last", },
-		{ "trigger": "loop.length\tTwig Loop Variable", "contents": "loop.length", },
-		{ "trigger": "loop.parent\tTwig Loop Variable", "contents": "loop.parent", },
-	],
+    "scope": "text.html.twig text.html.basic & (meta.placeholder.twig | meta.statement.twig)",
+    "completions": [
+        { "trigger": "loop.index\tTwig Loop Variable", "contents": "loop.index", },
+        { "trigger": "loop.index0\tTwig Loop Variable", "contents": "loop.index0", },
+        { "trigger": "loop.revindex\tTwig Loop Variable", "contents": "loop.revindex", },
+        { "trigger": "loop.revindex0\tTwig Loop Variable", "contents": "loop.revindex0", },
+        { "trigger": "loop.first\tTwig Loop Variable", "contents": "loop.first", },
+        { "trigger": "loop.last\tTwig Loop Variable", "contents": "loop.last", },
+        { "trigger": "loop.length\tTwig Loop Variable", "contents": "loop.length", },
+        { "trigger": "loop.parent\tTwig Loop Variable", "contents": "loop.parent", },
+    ],
 }

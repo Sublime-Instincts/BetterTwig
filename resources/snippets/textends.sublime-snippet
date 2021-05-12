@@ -2,7 +2,7 @@
 <content><![CDATA[
 {% extends ${1} %}
 ]]></content>
-	<tabTrigger>textends</tabTrigger>
-	<scope>text.html.twig</scope>
-	<description>Twig extends tag</description>
+    <tabTrigger>textends</tabTrigger>
+    <scope>text.html.twig</scope>
+    <description>Twig extends tag</description>
 </snippet>

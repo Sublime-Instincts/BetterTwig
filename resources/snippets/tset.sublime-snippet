@@ -2,7 +2,7 @@
 <content><![CDATA[
 {% set ${1:variable} = ${2:value} %}${0}
 ]]></content>
-	<tabTrigger>tset</tabTrigger>
-	<scope>text.html.twig</scope>
-	<description>Twig set tag</description>
+    <tabTrigger>tset</tabTrigger>
+    <scope>text.html.twig</scope>
+    <description>Twig set tag</description>
 </snippet>
