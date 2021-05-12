@@ -35,6 +35,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Fixed
 - Cleaned up the syntax definition a bit and added more tests.
 - Ternary operators not highlighting.
+- Import statements not getting highlighted.
 - More specific language constant scopes.
 - Quoted string escapes not highlighting.
 - Better scoping of builtin tests.

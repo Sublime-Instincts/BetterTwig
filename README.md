@@ -46,7 +46,7 @@ extensions: [
 - The key bindings are configured so that pressing <kbd>shift + {</kbd> **twice** will automatically add spaces on both sides for the inner brace expression block & place the cursor in the center, like so `{{ | }}`.
 - |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
-- Use <kbd>shift + #</kbd> within strings, to get the interpolation expression, like so `#{|}`.
+- Use <kbd>#</kbd> within strings, to get the interpolation expression, like so `#{|}`.
 - Use <kbd>backspace</kbd> to come out of an empty expression/statement.
 
 ### Auto completions
