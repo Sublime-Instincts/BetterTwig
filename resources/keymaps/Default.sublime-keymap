@@ -49,23 +49,4 @@
             { "key": "selector", "operator": "equal", "operand": "text.html.twig & meta.string" },
         ],
     },
-
-    // This keybinding makes it easier to come out of an empty expression/statement.
-    //
-    // When inside of an expression block, pressing backspace will bring the inner brackets
-    // together, like so
-    // {{ | }} -> {{|}} -> {|} -> None, where | is the cursor.
-    // {% | %} -> {%|%} -> {|} -> None, where | is the cursor.
-    {
-        "keys": ["backspace"],
-        "command": "run_macro_file",
-        "args": {"file": "res://Packages/Default/Delete Left Right.sublime-macro"},
-        "context": [
-            { "key": "selector", "operator": "equal", "operand": "text.html.twig, meta.expression" },
-            { "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-            { "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
-            { "key": "preceding_text", "operator": "regex_contains", "operand": "\\{\\s{1}|\\%\\s{1}", "match_all": true },
-            { "key": "following_text", "operator": "regex_contains", "operand": "\\s{1}\\}|\\s{1}\\%", "match_all": true }
-        ]
-    },
 ]
