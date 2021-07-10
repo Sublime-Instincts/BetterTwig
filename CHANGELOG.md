@@ -42,3 +42,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 - Additional keybindings for interpolation & to come out of empty statements/expression blocks.
+
+## [1.0.5] - 2021-05-24
+### Removed
+- Keybindings to come out of empty statements/expression blocks.
