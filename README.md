@@ -47,7 +47,6 @@ Since a user can have more than one templating language package installed, this 
 - |||ly pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
 - Use <kbd>#</kbd> within strings, to get the interpolation expression, like so `#{|}`.
-- Use <kbd>backspace</kbd> to come out of an empty expression/statement.
 
 ### Auto completions
 In order to get the auto completions, go to `Preferences: Settings` from the command palette and paste the following in the `Preferences.sublime-settings -- User` (the right hand window)
@@ -84,11 +83,11 @@ If you already have these in your user settings, then just copy the Twig related
 | `tverbatim`     | `{% verbatim %}{% endverbatim %}`     |
 | `twith`         | `{% with %}{% endwith %}`             |
 
-## Issues & Feature requests.
+## Reporting issues.
 
-There is always scope for improvements so please do report any bug(s) that you encounter.
+There is always scope for improvements, so please do report any bug(s) that you encounter.
 
-Please follow the issue templates that have been setup while reporting any bug(s) (So as to stay as organised as possible).
+Please follow the issue template that has been setup while reporting any bug(s) (So as to stay as organised as possible).
 
 Use the [Twig playground](https://twigfiddle.com/) if you want to share a particular snippet of template while creating a specific issue.
 
