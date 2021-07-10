@@ -22,7 +22,7 @@ receiving syntax highlighting.
 The following file extensions are supported :-
 	- .twig
 	- .htm.twig
-	- .htm.twig 
+	- .html.twig 
 
 Having Problems ?
 -----------------
