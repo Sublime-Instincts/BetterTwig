@@ -15,7 +15,7 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 ## Installation
 
 #### Package Control
-The best way is to install it via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `BetterTwig` and install it. Package Control will take care for of automatically updating the package for you if there are new releases.
+The best way is to install it via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `Twig`. There should be a package with the URL as https://github.com/Sublime-Instincts/BetterTwig. Install it. Package Control will take care for of automatically updating the package for you if there are new releases.
 
 You can also use `Package Control: Add Repository`. Copy the github url (without the `.git` at the end) and enter it into the input panel that pops up at the bottom when you select `Package Control: Add Repository`. Now use `Package Control: Install Package` and search for `BetterTwig` and install it.
 
