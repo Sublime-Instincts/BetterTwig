@@ -46,3 +46,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.5] - 2021-05-24
 ### Removed
 - Keybindings to come out of empty statements/expression blocks.
+
+## [1.0.6] - 2021-10-29
+### Removed
+- Regex highlighting in strings.

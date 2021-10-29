@@ -361,25 +361,25 @@ contexts:
     - include: double_string_regex_match
     - include: double_quoted_string
 
-  single_string_regex_match:
-    - match: (')(?:/)
-      captures:
-        1: punctuation.definition.string.begin.twig
-      embed: scope:source.regexp
-      embed_scope: string.quoted.single.twig
-      escape: (?:/{{regex_modifiers}})(')
-      escape_captures:
-        1: punctuation.definition.string.end.twig
+  # single_string_regex_match:
+  #   - match: (')(?:/)
+  #     captures:
+  #       1: punctuation.definition.string.begin.twig
+  #     embed: scope:source.regexp
+  #     embed_scope: string.quoted.single.twig
+  #     escape: (?:/{{regex_modifiers}})(')
+  #     escape_captures:
+  #       1: punctuation.definition.string.end.twig
 
-  double_string_regex_match:
-    - match: (")(?:/)
-      captures:
-        1: punctuation.definition.string.begin.twig
-      embed: scope:source.regexp
-      embed_scope: string.quoted.double.twig
-      escape: (?:/{{regex_modifiers}})(")
-      escape_captures:
-        1: punctuation.definition.string.end.twig
+  # double_string_regex_match:
+  #   - match: (")(?:/)
+  #     captures:
+  #       1: punctuation.definition.string.begin.twig
+  #     embed: scope:source.regexp
+  #     embed_scope: string.quoted.double.twig
+  #     escape: (?:/{{regex_modifiers}})(")
+  #     escape_captures:
+  #       1: punctuation.definition.string.end.twig
 
   single_quoted_string:
     - match: \'
