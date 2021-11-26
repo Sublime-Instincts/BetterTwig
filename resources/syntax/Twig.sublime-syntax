@@ -392,21 +392,25 @@ contexts:
   within_strings:
     - include: escape_characters
     - include: printf_placeholder
-    - include: other_placeholder
+    - include: string_interpolation
 
-  other_placeholder:
-    - match: \#\{
-      scope: punctuation.section.interpolation.begin.twig
-      push:
-        - clear_scopes: 1
-        - meta_content_scope: text.embedded.twig
-        - meta_scope: meta.interpolation.twig
-        - match: \}
-          scope: punctuation.section.interpolation.end.twig
-          pop: 1
-        - include: match_numbers
-        - include: operators
-        - include: match_identifiers
+  string_interpolation:
+    - match: (\#)(\{)
+      captures:
+        1: punctuation.definition.interpolation.twig
+        2: punctuation.section.interpolation.begin.twig
+      push: string_interpolation_body
+
+  string_interpolation_body:
+    - clear_scopes: 1
+    - meta_content_scope: text.embedded.twig
+    - meta_scope: meta.interpolation.twig
+    - match: \}
+      scope: punctuation.section.interpolation.end.twig
+      pop: 1
+    - include: match_numbers
+    - include: operators
+    - include: match_identifiers
 
   printf_placeholder:
     - match: \%[s]
