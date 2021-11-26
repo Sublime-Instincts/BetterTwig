@@ -48,11 +48,27 @@ variables:
     )
 
 contexts:
-  main:
-    - meta_append: true
+
+  prototype:
+    - meta_prepend: true
+    - include: twig
+    - include: comments
+
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: twig
+
+  twig:
     - include: statement_block
     - include: expression_block
-    - include: comments
+
+  main:
+    - meta_append: true
+    - include: twig
+
+  strings-common-content:
+    - meta_prepend: true
+    - include: statement_block
 
   statement_block:
     - match: \{\%{{modifiers}}?
