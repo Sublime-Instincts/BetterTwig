@@ -5,6 +5,9 @@ file_extensions:
   - htm.twig
   - html.twig
 scope: text.html.twig
+version: 2
+
+extends: Packages/HTML/HTML.sublime-syntax
 
 variables:
   digit: '[0-9]'
@@ -44,12 +47,10 @@ variables:
 
 contexts:
   main:
-    - match: ""
-      push: "Packages/HTML/HTML.sublime-syntax"
-      with_prototype:
-        - include: statement_block
-        - include: expression_block
-        - include: comments
+    - meta_append: true
+    - include: statement_block
+    - include: expression_block
+    - include: comments
 
   statement_block:
     - match: \{\%{{modifiers}}?
@@ -356,30 +357,8 @@ contexts:
       scope: keyword.operator.word.bitwise.twig
 
   match_strings:
-    - include: single_string_regex_match
     - include: single_quoted_string
-    - include: double_string_regex_match
     - include: double_quoted_string
-
-  # single_string_regex_match:
-  #   - match: (')(?:/)
-  #     captures:
-  #       1: punctuation.definition.string.begin.twig
-  #     embed: scope:source.regexp
-  #     embed_scope: string.quoted.single.twig
-  #     escape: (?:/{{regex_modifiers}})(')
-  #     escape_captures:
-  #       1: punctuation.definition.string.end.twig
-
-  # double_string_regex_match:
-  #   - match: (")(?:/)
-  #     captures:
-  #       1: punctuation.definition.string.begin.twig
-  #     embed: scope:source.regexp
-  #     embed_scope: string.quoted.double.twig
-  #     escape: (?:/{{regex_modifiers}})(")
-  #     escape_captures:
-  #       1: punctuation.definition.string.end.twig
 
   single_quoted_string:
     - match: \'
