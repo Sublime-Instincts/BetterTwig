@@ -1,13 +1,15 @@
 %YAML 1.2
 ---
-file_extensions:
-  - twig
-  - htm.twig
-  - html.twig
+name: Twig
 scope: text.html.twig
 version: 2
 
 extends: Packages/HTML/HTML.sublime-syntax
+
+file_extensions:
+  - twig
+  - htm.twig
+  - html.twig
 
 variables:
   digit: '[0-9]'
