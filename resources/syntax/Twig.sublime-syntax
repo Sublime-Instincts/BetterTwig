@@ -295,13 +295,15 @@ contexts:
       captures:
         1: meta.item-access.twig
         2: meta.item-access.twig punctuation.section.brackets.begin.twig
-      push:
-        - meta_content_scope: meta.item-access.twig
-        - match: \]
-          scope: meta.item-access.twig punctuation.section.brackets.end.twig
-          pop: 1
-        - include: match_strings
-        - include: integers
+      push: get_item_body
+
+  get_item_body:
+    - meta_content_scope: meta.item-access.twig
+    - match: \]
+      scope: meta.item-access.twig punctuation.section.brackets.end.twig
+      pop: 1
+    - include: match_strings
+    - include: integers
 
   data_structures:
     - include: array
