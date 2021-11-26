@@ -21,6 +21,7 @@ variables:
   modifiers: '(?:[-~])'
   logical_operators: \b(?:and|or|not|is)\b
   bitwise_operators: \b(?:b-and|b-or|b-xor)\b
+
   builtin_tags: |-
     (?x:
       \b(?:
@@ -45,6 +46,14 @@ variables:
         constant|defined|divisible\s{1}by|empty|even|odd|iterable
         |odd|same\s{1}as
       )\b
+    )
+
+  builtin_functions: |-
+    (?x:
+      \b(?:
+        attribute|block|constant|cycle|date|dump|html_classes|include|max|min
+        |parent|random|range|source|country_timezones|template_from_string
+      )
     )
 
 contexts:
@@ -249,25 +258,21 @@ contexts:
       pop: 1
 
   builtin_functions:
-    - match: |-
-        (?x:
-          \b(
-            attribute|block|constant|cycle|date|dump|html_classes|include|max|min
-            |parent|random|range|source|country_timezones|template_from_string
-          )\b
-        )(\()
+    - match: ({{builtin_functions}})(\()
       captures:
         1: support.function.builtin.twig
         2: punctuation.section.arguments.begin.twig
-      push:
-        - meta_content_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: 1
-        - include: parameters
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      push: functions_body
+
+  functions_body:
+    - meta_content_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: parameters
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
 
   builtin_tests:
     - match: '{{builtin_tests}}'
@@ -292,15 +297,7 @@ contexts:
       captures:
         1: variable.function.twig
         2: punctuation.section.arguments.begin.twig
-      push:
-        - meta_content_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: 1
-        - include: parameters
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      push: functions_body
 
   parameters:
     - match: '{{identifiers}}'
