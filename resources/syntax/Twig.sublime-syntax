@@ -282,15 +282,17 @@ contexts:
   parameters_else_pop:
     - match: \(
       scope: punctuation.section.arguments.begin.twig
-      set:
-        - meta_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: 1
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      set: parameters_body
     - include: else_pop
+
+  parameters_body:
+    - meta_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
 
   functions:
     - match: (\w+)(\()
