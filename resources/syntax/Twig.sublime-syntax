@@ -58,10 +58,32 @@ variables:
 
 contexts:
 
+  else_pop:
+    - match: (?=\S)
+      pop: 1
+
+  immediately_pop:
+    - match: ""
+      pop: 1
+
   prototype:
     - meta_prepend: true
     - include: twig
     - include: comments
+
+  comments:
+    - include: multi_line_comment
+
+  multi_line_comment:
+    - match: \{\#
+      scope: punctuation.definition.comment.begin.twig
+      push: multi_line_comment_body
+
+  multi_line_comment_body:
+    - meta_scope: comment.block.twig
+    - match: \#\}
+      scope: punctuation.definition.comment.end.twig
+      pop: 1
 
   tag-attribute-value-content:
     - meta_prepend: true
@@ -165,20 +187,6 @@ contexts:
       captures:
         1: keyword.other.twig
 
-  comments:
-    - include: multi_line_comment
-
-  multi_line_comment:
-    - match: \{\#
-      scope: punctuation.definition.comment.begin.twig
-      push: multi_line_comment_body
-
-  multi_line_comment_body:
-    - meta_scope: comment.block.twig
-    - match: \#\}
-      scope: punctuation.definition.comment.end.twig
-      pop: 1
-
   import_statements:
     - match: \b(import)\b
       scope: keyword.control.import.twig
@@ -248,14 +256,6 @@ contexts:
   dot_accessor:
     - match: \.
       scope: punctuation.accessor.dot.twig
-
-  else_pop:
-    - match: (?=\S)
-      pop: 1
-
-  immediately_pop:
-    - match: ""
-      pop: 1
 
   builtin_functions:
     - match: ({{builtin_functions}})(\()
