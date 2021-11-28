@@ -31,6 +31,7 @@ variables:
           |flush|use|only|deprecated|embed|sandbox|cache
       )\b
     )
+
   end_tags: |-
     (?x:
       \b(?:
@@ -99,7 +100,7 @@ contexts:
 
   strings-common-content:
     - meta_prepend: true
-    - include: statement_block
+    - include: twig
 
   statement_block:
     - match: \{\%{{modifiers}}?
@@ -322,7 +323,7 @@ contexts:
 
   data_structures:
     - include: array
-    - include: tuple
+    - include: tuple_or_group
     - include: dictionary
 
   array:
@@ -355,10 +356,33 @@ contexts:
     - match: \,
       scope: punctuation.separator.mapping.pair.twig
 
+  tuple_or_group:
+    - match: (?=\()
+      branch_point: tuple_or_group
+      branch:
+        - group
+        - tuple
+
+  group:
+    - match: \(
+      scope: punctuation.section.group.begin.twig
+      push: group_body
+    - include: else_pop
+
+  group_body:
+    - meta_scope: meta.group.twig
+    - match: \)
+      scope: punctuation.section.group.begin.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      fail: tuple_or_group
+
   tuple:
     - match: \(
       scope: punctuation.section.sequence.begin.twig
       push: tuple_body
+    - include: else_pop
 
   tuple_body:
     - meta_scope: meta.sequence.tuple.twig
@@ -404,7 +428,6 @@ contexts:
       scope: punctuation.definition.string.end.twig
       pop: 1
     - include: within_strings
-    - include: expression_blocks
 
   within_strings:
     - include: escape_characters

@@ -180,6 +180,14 @@
 ##                                    ^^^^ constant.language.boolean.twig
 ##                                          ^^^^^ constant.language.boolean.twig
 
+    {{ (1 + 2 - 3) }}
+##  ^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                 ^^ punctuation.definition.placeholder.end.twig
+##     ^^^^^^^^^^^ meta.group.twig
+##     ^ punctuation.section.group.begin.twig
+##               ^ punctuation.section.group.begin.twig
+
     {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
 ##  ^^ punctuation.definition.placeholder.begin.twig
