@@ -1,0 +1,54 @@
+## SYNTAX TEST reindent "Packages/BetterTwig/resources/syntax/Twig.sublime-syntax"
+
+{# Tags #}
+
+{% apply upper %}
+    This text becomes uppercase
+{% endapply %}
+
+{% autoescape %}
+    Everything will be automatically escaped in this block using the HTML strategy
+{% endautoescape %}
+
+{% block content %}
+    {{ "string" }}
+{% endblock content %}
+
+{% cache "cache key" %}
+    Cached forever (depending on the cache implementation)
+{% endcache %}
+
+{% embed "teasers_skeleton.twig" %}
+    {{ "string" }}
+{% endembed %}
+
+{% for i in range(1..5) %}
+    {{ i }}
+{% endfor %}
+
+{% if block("footer") is defined %}
+    {{ "string" }}
+{% else %}
+    {{ "string" }}
+{% endif %}
+
+{% macro input(name, value, type = "text", size = 20) %}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}"/>
+{% endmacro %}
+
+{% sandbox %}
+    {% include 'user.html' %}
+{% endsandbox %}
+
+{% verbatim %}
+    <ul>
+    {% for item in seq %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% endverbatim %}
+
+{% with %}
+    {% set foo = 42 %}
+    {{ foo }}
+{% endwith %}
