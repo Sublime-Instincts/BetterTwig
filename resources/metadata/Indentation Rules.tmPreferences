@@ -2,13 +2,27 @@
 <plist version="1.0">
 <dict>
     <key>scope</key>
-    <string>text.html.twig text.html.basic</string>
+    <string>text.html.twig</string>
     <key>settings</key>
     <dict>
         <key>decreaseIndentPattern</key>
-        <string>^\s*\{\%[-]?\s*(endblock|endmacro|endif|endfor|endautoescape|endverbatim|endwith|endapply|endembed)\b.*\s*\%\}\s*$</string>
+        <string>(?x)
+            ^\s*\{\%[-]?\s*
+            (
+                endblock|endmacro|endif|endfor|endautoescape|endverbatim|endwith|endapply|endembed|else|endcache
+            )
+            \b.*\s*\%\}\s*$
+        </string>
+
         <key>increaseIndentPattern</key>
-        <string>^\s*\{\%-?\s*\b(block|macro|if|for|autoescape|verbatim|with|apply|embed|else)\b.*%}\s*$</string>
+        <string>(?x)
+            ^\s*\{\%-?\s*\b
+            (
+                apply|autoescape|block|cache|macro|if|for|verbatim|with|embed|else
+            )
+            \b.*%}\s*$
+        </string>
+
         <key>disableIndentNextLinePattern</key>
         <string></string>
     </dict>

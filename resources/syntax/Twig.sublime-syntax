@@ -28,7 +28,7 @@ variables:
           block|recursive|macro|set|extends|include
           |with|autoescape|pluralize|scoped|as
           |verbatim|starts|ends|matches|apply|do
-          |flush|use|only|deprecated|embed|sandbox
+          |flush|use|only|deprecated|embed|sandbox|cache
       )\b
     )
   end_tags: |-
@@ -36,7 +36,7 @@ variables:
       \b(?:
         endblock|endfor|endmacro|endif|endwith
         |endautoescape|endverbatim|endapply|endembed
-        |endsandbox
+        |endsandbox|endcache
       )\b
     )
 
