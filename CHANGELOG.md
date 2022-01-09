@@ -50,3 +50,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.6] - 2021-10-29
 ### Removed
 - Regex highlighting in strings.
+
+## [2.0.0] - 2022-01-
+### Added
+- Syntax now uses inheritance to provide HTML highlighting. As an end user, there should be no difference
+at all, but using inheritance should significantly reduce syntax & regex cache size on disk, offerring
+improved performance.
+- Better test coverage for indentation using indentation tests.
+- All of the completion files are now updated to use kind, annotation & details.
+- Added support for highlighting `cache` tags.
+-
