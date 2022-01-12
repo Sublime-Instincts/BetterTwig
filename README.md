@@ -1,6 +1,7 @@
 # BetterTwig
 
 ![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge)    ![LICENSE](https://img.shields.io/badge/ST-Build%203092+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterTwig?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Twig?style=for-the-badge)
+![Syntax tests](https://github.com/github/docs/actions/workflows/syntax_test.yml/badge.svg)
 
 A Sublime Text package that offers enhanced syntax highlighting, snippets, completions and much more for PHP [Twig](https://twig.symfony.com/) templates. Read more for the full documentation.
 
