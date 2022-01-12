@@ -51,9 +51,14 @@ jobs:
           tar xf st_syntax_tests.tar.xz
           mv st_syntax_tests/* ./
           rm -R st_syntax_tests st_syntax_tests.tar.xz
-      - name: 'Move root dirs & files into "Data/Packages/BetterTwig" subdir (except for syntax_tests)'
+      - name: Move root dirs & files into "Data/Packages/BetterTwig" subdir (except for syntax_tests)
         run: |
           mkdir -p Data/Packages/BetterTwig
           find . -maxdepth 1 -mindepth 1 -not -name 'Data' \! -name 'syntax_tests' -exec mv '{}' Data/Packages/BetterTwig ';'
+      - name: Download the HTML syntax and move it to Data/Packages
+        run: |
+          wget -O HTML.sublime-syntax https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML.sublime-syntax
+          mkdir -p Data/Packages/HTML
+          mv HTML.sublime-syntax ./Data/Packages/HTML
       - name: Run syntax tests
         run: ./syntax_tests
