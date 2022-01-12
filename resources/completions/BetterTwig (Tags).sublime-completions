@@ -1,7 +1,6 @@
 {
     "scope": "text.html.twig & (meta.placeholder.twig | meta.statement.twig)",
     "completions": [
-        // Completions for tags
         { "trigger": "apply\tTwig Tag", "contents": "apply", },
         { "trigger": "autoescape\tTwig Tag", "contents": "autoescape", },
         { "trigger": "block\tTwig Tag", "contents": "block", },
@@ -22,7 +21,6 @@
         { "trigger": "verbatim\tTwig Tag", "contents": "verbatim", },
         { "trigger": "with\tTwig Tag", "contents": "with", },
 
-        // Completions for endtags
         { "trigger": "endapply\tTwig EndTag", "contents": "endapply", },
         { "trigger": "endautoescape\tTwig EndTag", "contents": "endautoescape", },
         { "trigger": "endblock\tTwig EndTag", "contents": "endblock", },

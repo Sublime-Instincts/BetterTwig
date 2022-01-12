@@ -125,14 +125,14 @@
             "contents": "format_date",
             "kind": ["namespace", "f", "Twig Filter"],
             "annotation": "Twig Filter",
-            "details": "",
+            "details": "Formats a date.",
         },
         {
             "trigger": "format_datetime",
             "contents": "format_datetime",
             "kind": ["namespace", "f", "Twig Filter"],
             "annotation": "Twig Filter",
-            "details": "",
+            "details": "Formats a date time.",
         },
         {
             "trigger": "format_number",
