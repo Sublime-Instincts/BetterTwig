@@ -59,4 +59,5 @@ improved performance.
 - Better test coverage for indentation using indentation tests.
 - All of the completion files are now updated to use kind, annotation & details.
 - Added support for highlighting `cache` tags.
--
+- Added command palette entries for opening documentation and keybindings.
+- Added CI for running syntax tests via GitHub Actions.
