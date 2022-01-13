@@ -98,6 +98,10 @@ Please follow the issue template that has been setup while reporting any bug(s) 
 
 Use the [Twig playground](https://twigfiddle.com/) if you want to share a particular snippet of template while creating a specific issue.
 
+## Acknowledgements.
+
+The [syntax_test.yml](https://github.com/Sublime-Instincts/BetterTwig/.github/workflows/syntax_test.yml) is taken & used (with some modifications) from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
+
 ## License
 The MIT License (MIT)
 
