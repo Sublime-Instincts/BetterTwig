@@ -1,0 +1,14 @@
+BetterTwig v2.0.0
+-----------------
+
+** Breaking Changes **
+
+ - Note that even though this is a major version upgrade, the only breaking change
+   in this release is that the syntax name is changed from "Twig.sublime-syntax"
+   to "HTML (Twig).sublime-syntax". This is done to better reflect the fact that
+   the Twig syntax now extends HTML syntax to provide highlighting for both Twig
+   & HTML specific code. If you are referring the syntax by its name for any purpose,
+   then please change it to "HTML (Twig).sublime-syntax".
+
+Apart from that, there are a ton of improvements & fixes. Please view the release
+notes for v2.0.0 or the CHANGELOG for detailed information.

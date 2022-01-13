@@ -1,10 +1,15 @@
 %YAML 1.2
 ---
+name: HTML (Twig)
+scope: text.html.twig
+version: 2
+
+extends: Packages/HTML/HTML.sublime-syntax
+
 file_extensions:
   - twig
   - htm.twig
   - html.twig
-scope: text.html.twig
 
 variables:
   digit: '[0-9]'
@@ -16,21 +21,23 @@ variables:
   modifiers: '(?:[-~])'
   logical_operators: \b(?:and|or|not|is)\b
   bitwise_operators: \b(?:b-and|b-or|b-xor)\b
+
   builtin_tags: |-
     (?x:
       \b(?:
           block|recursive|macro|set|extends|include
           |with|autoescape|pluralize|scoped|as
           |verbatim|starts|ends|matches|apply|do
-          |flush|use|only|deprecated|embed|sandbox
+          |flush|use|only|deprecated|embed|sandbox|cache
       )\b
     )
+
   end_tags: |-
     (?x:
       \b(?:
         endblock|endfor|endmacro|endif|endwith
         |endautoescape|endverbatim|endapply|endembed
-        |endsandbox
+        |endsandbox|endcache
       )\b
     )
 
@@ -42,14 +49,58 @@ variables:
       )\b
     )
 
+  builtin_functions: |-
+    (?x:
+      \b(?:
+        attribute|block|constant|cycle|date|dump|html_classes|include|max|min
+        |parent|random|range|source|country_timezones|template_from_string
+      )
+    )
+
 contexts:
-  main:
+
+  else_pop:
+    - match: (?=\S)
+      pop: 1
+
+  immediately_pop:
     - match: ""
-      push: "Packages/HTML/HTML.sublime-syntax"
-      with_prototype:
-        - include: statement_block
-        - include: expression_block
-        - include: comments
+      pop: 1
+
+  prototype:
+    - meta_prepend: true
+    - include: twig
+    - include: comments
+
+  comments:
+    - include: multi_line_comment
+
+  multi_line_comment:
+    - match: \{\#
+      scope: punctuation.definition.comment.begin.twig
+      push: multi_line_comment_body
+
+  multi_line_comment_body:
+    - meta_scope: comment.block.twig
+    - match: \#\}
+      scope: punctuation.definition.comment.end.twig
+      pop: 1
+
+  tag-attribute-value-content:
+    - meta_prepend: true
+    - include: twig
+
+  twig:
+    - include: statement_block
+    - include: expression_block
+
+  main:
+    - meta_append: true
+    - include: twig
+
+  strings-common-content:
+    - meta_prepend: true
+    - include: twig
 
   statement_block:
     - match: \{\%{{modifiers}}?
@@ -62,7 +113,7 @@ contexts:
       scope: invalid.illegal.twig
     - match: '{{modifiers}}?\%\}'
       scope: punctuation.definition.statement.end.twig
-      pop: true
+      pop: 1
     - include: expressions
 
   expression_block:
@@ -74,7 +125,7 @@ contexts:
     - meta_scope: meta.placeholder.twig
     - match: '{{modifiers}}?\}{2}'
       scope: punctuation.definition.placeholder.end.twig
-      pop: true
+      pop: 1
     - include: expressions
 
   expressions:
@@ -136,20 +187,6 @@ contexts:
     - match: (\bwithout\b)\s{1}(?=\bcontext\b)
       captures:
         1: keyword.other.twig
-
-  comments:
-    - include: multi_line_comment
-
-  multi_line_comment:
-    - match: \{\#
-      scope: punctuation.definition.comment.begin.twig
-      push: multi_line_comment_body
-
-  multi_line_comment_body:
-    - meta_scope: comment.block.twig
-    - match: \#\}
-      scope: punctuation.definition.comment.end.twig
-      pop: true
 
   import_statements:
     - match: \b(import)\b
@@ -215,40 +252,28 @@ contexts:
   ternary_colon:
     - match: ':'
       scope: keyword.operator.ternary.twig
-      pop: true
+      pop: 1
 
   dot_accessor:
     - match: \.
       scope: punctuation.accessor.dot.twig
 
-  else_pop:
-    - match: (?=\S)
-      pop: true
-
-  immediately_pop:
-    - match: ""
-      pop: true
-
   builtin_functions:
-    - match: |-
-        (?x:
-          \b(
-            attribute|block|constant|cycle|date|dump|html_classes|include|max|min
-            |parent|random|range|source|country_timezones|template_from_string
-          )\b
-        )(\()
+    - match: ({{builtin_functions}})(\()
       captures:
         1: support.function.builtin.twig
         2: punctuation.section.arguments.begin.twig
-      push:
-        - meta_content_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: true
-        - include: parameters
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      push: functions_body
+
+  functions_body:
+    - meta_content_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: parameters
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
 
   builtin_tests:
     - match: '{{builtin_tests}}'
@@ -258,30 +283,24 @@ contexts:
   parameters_else_pop:
     - match: \(
       scope: punctuation.section.arguments.begin.twig
-      set:
-        - meta_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: true
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      set: parameters_body
     - include: else_pop
+
+  parameters_body:
+    - meta_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
 
   functions:
     - match: (\w+)(\()
       captures:
         1: variable.function.twig
         2: punctuation.section.arguments.begin.twig
-      push:
-        - meta_content_scope: meta.function-call.arguments.twig
-        - match: \)
-          scope: punctuation.section.arguments.end.twig
-          pop: true
-        - include: parameters
-        - include: expressions
-        - match: \,
-          scope: punctuation.separator.parameters.twig
+      push: functions_body
 
   parameters:
     - match: '{{identifiers}}'
@@ -292,17 +311,19 @@ contexts:
       captures:
         1: meta.item-access.twig
         2: meta.item-access.twig punctuation.section.brackets.begin.twig
-      push:
-        - meta_content_scope: meta.item-access.twig
-        - match: \]
-          scope: meta.item-access.twig punctuation.section.brackets.end.twig
-          pop: true
-        - include: match_strings
-        - include: integers
+      push: get_item_body
+
+  get_item_body:
+    - meta_content_scope: meta.item-access.twig
+    - match: \]
+      scope: meta.item-access.twig punctuation.section.brackets.end.twig
+      pop: 1
+    - include: match_strings
+    - include: integers
 
   data_structures:
     - include: array
-    - include: tuple
+    - include: tuple_or_group
     - include: dictionary
 
   array:
@@ -314,7 +335,7 @@ contexts:
     - meta_scope: meta.sequence.array.twig
     - match: \]
       scope: punctuation.section.sequence.end.twig
-      pop: true
+      pop: 1
     - include: expressions
     - match: \,
       scope: punctuation.separator.sequence.twig
@@ -328,23 +349,46 @@ contexts:
     - meta_scope: meta.mapping.twig
     - match: \}
       scope: punctuation.section.mapping.end.twig
-      pop: true
+      pop: 1
     - include: expressions
     - match: ':'
       scope: punctuation.separator.mapping.key-value.twig
     - match: \,
       scope: punctuation.separator.mapping.pair.twig
 
+  tuple_or_group:
+    - match: (?=\()
+      branch_point: tuple_or_group
+      branch:
+        - group
+        - tuple
+
+  group:
+    - match: \(
+      scope: punctuation.section.group.begin.twig
+      push: group_body
+    - include: else_pop
+
+  group_body:
+    - meta_scope: meta.group.twig
+    - match: \)
+      scope: punctuation.section.group.begin.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      fail: tuple_or_group
+
   tuple:
     - match: \(
       scope: punctuation.section.sequence.begin.twig
       push: tuple_body
+    - include: else_pop
 
   tuple_body:
     - meta_scope: meta.sequence.tuple.twig
     - match: \)
       scope: punctuation.section.sequence.end.twig
-      pop: true
+      pop: 1
     - include: expressions
     - match: \,
       scope: punctuation.separator.sequence.twig
@@ -356,30 +400,8 @@ contexts:
       scope: keyword.operator.word.bitwise.twig
 
   match_strings:
-    - include: single_string_regex_match
     - include: single_quoted_string
-    - include: double_string_regex_match
     - include: double_quoted_string
-
-  # single_string_regex_match:
-  #   - match: (')(?:/)
-  #     captures:
-  #       1: punctuation.definition.string.begin.twig
-  #     embed: scope:source.regexp
-  #     embed_scope: string.quoted.single.twig
-  #     escape: (?:/{{regex_modifiers}})(')
-  #     escape_captures:
-  #       1: punctuation.definition.string.end.twig
-
-  # double_string_regex_match:
-  #   - match: (")(?:/)
-  #     captures:
-  #       1: punctuation.definition.string.begin.twig
-  #     embed: scope:source.regexp
-  #     embed_scope: string.quoted.double.twig
-  #     escape: (?:/{{regex_modifiers}})(")
-  #     escape_captures:
-  #       1: punctuation.definition.string.end.twig
 
   single_quoted_string:
     - match: \'
@@ -391,7 +413,7 @@ contexts:
     - meta_scope: meta.string.twig string.quoted.single.twig
     - match: \'
       scope: punctuation.definition.string.end.twig
-      pop: true
+      pop: 1
     - include: within_strings
 
   double_quoted_string:
@@ -404,28 +426,31 @@ contexts:
     - meta_scope: meta.string.twig string.quoted.double.twig
     - match: \"
       scope: punctuation.definition.string.end.twig
-      pop: true
+      pop: 1
     - include: within_strings
-    - include: expression_blocks
 
   within_strings:
     - include: escape_characters
     - include: printf_placeholder
-    - include: other_placeholder
+    - include: string_interpolation
 
-  other_placeholder:
-    - match: \#\{
-      scope: punctuation.section.interpolation.begin.twig
-      push:
-        - clear_scopes: 1
-        - meta_content_scope: text.embedded.twig
-        - meta_scope: meta.interpolation.twig
-        - match: \}
-          scope: punctuation.section.interpolation.end.twig
-          pop: true
-        - include: match_numbers
-        - include: operators
-        - include: match_identifiers
+  string_interpolation:
+    - match: (\#)(\{)
+      captures:
+        1: punctuation.definition.interpolation.twig
+        2: punctuation.section.interpolation.begin.twig
+      push: string_interpolation_body
+
+  string_interpolation_body:
+    - clear_scopes: 1
+    - meta_content_scope: text.embedded.twig
+    - meta_scope: meta.interpolation.twig
+    - match: \}
+      scope: punctuation.section.interpolation.end.twig
+      pop: 1
+    - include: match_numbers
+    - include: operators
+    - include: match_identifiers
 
   printf_placeholder:
     - match: \%[s]
