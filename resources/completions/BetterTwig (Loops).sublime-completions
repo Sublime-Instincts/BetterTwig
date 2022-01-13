@@ -6,14 +6,14 @@
             "contents": "loop.index",
             "kind": ["variable", "v", "Twig Loop Variable"],
             "annotation": "Loop Variable",
-            "details": "The current iteration of the loop. (1 indexed).",
+            "details": "The current iteration of the loop (1 indexed).",
         },
         {
             "trigger": "loop.index0",
             "contents": "loop.index0",
             "kind": ["variable", "v", "Twig Loop Variable"],
             "annotation": "Loop Variable",
-            "details": "The current iteration of the loop. (0 indexed).",
+            "details": "The current iteration of the loop (0 indexed).",
         },
         {
             "trigger": "loop.revindex",
