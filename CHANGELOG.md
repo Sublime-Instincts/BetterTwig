@@ -51,7 +51,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 - Regex highlighting in strings.
 
-## [2.0.0] - 2022-01-
+## [2.0.0] - 2022-01-13
 ### Added
 - Syntax now uses inheritance to provide HTML highlighting. As an end user, there should be no difference
 at all, but using inheritance should significantly reduce syntax & regex cache size on disk, offerring
