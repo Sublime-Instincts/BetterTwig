@@ -10,7 +10,7 @@
         "caption": "Preferences: BetterTwig Key Bindings",
         "command": "edit_settings",
         "args": {
-            "base_file": "${packages}/BetterTwig/resources/keymaps/Default.sublime-keymap",
+            "base_file": "${packages}/Twig/resources/keymaps/Default.sublime-keymap",
             "default": "[\n\t${0}\n]\n",
         },
     }
