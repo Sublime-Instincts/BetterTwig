@@ -61,3 +61,8 @@ improved performance.
 - Added support for highlighting `cache` tags.
 - Added command palette entries for opening documentation and keybindings.
 - Added CI for running syntax tests via GitHub Actions.
+
+## [2.0.1] - 2022-01-20
+### Fixed
+- Twig comments not working.
+- Key bindings file not opening from the menu & command palette.
