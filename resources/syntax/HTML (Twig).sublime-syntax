@@ -139,15 +139,15 @@ contexts:
     - include: functions
     - include: constants
     - include: others
-    - include: match_keywords
-    - include: match_identifiers
-    - include: match_strings
-    - include: match_numbers
+    - include: keywords
+    - include: identifier
+    - include: string
+    - include: number
     - include: dot_accessor
     - include: parameters
     - include: ternary_operator
 
-  match_keywords:
+  keywords:
     - match: \b(if)\b
       scope: keyword.control.conditional.if.twig
     - match: \b(endif)\b
@@ -212,7 +212,7 @@ contexts:
     - include: else_pop
 
   string_else_pop:
-    - include: match_strings
+    - include: string
     - include: else_pop
 
   import_alias:
@@ -221,7 +221,7 @@ contexts:
     - include: else_pop
 
   identifier_else_pop:
-    - include: match_identifiers
+    - include: identifier
     - match: \,
       scope: punctuation.separator.comma.twig
     - include: immediately_pop
@@ -230,7 +230,7 @@ contexts:
     - meta_scope: meta.import.twig
     - include: immediately_pop
 
-  match_identifiers:
+  identifier:
     - match: \b_\b
       scope: variable.language.blank.twig
     - match: \b_self\b
@@ -318,7 +318,7 @@ contexts:
     - match: \]
       scope: meta.item-access.twig punctuation.section.brackets.end.twig
       pop: 1
-    - include: match_strings
+    - include: string
     - include: integers
 
   data_structures:
@@ -399,7 +399,7 @@ contexts:
     - match: '{{bitwise_operators}}'
       scope: keyword.operator.word.bitwise.twig
 
-  match_strings:
+  string:
     - include: single_quoted_string
     - include: double_quoted_string
 
@@ -448,9 +448,9 @@ contexts:
     - match: \}
       scope: punctuation.section.interpolation.end.twig
       pop: 1
-    - include: match_numbers
+    - include: number
     - include: operators
-    - include: match_identifiers
+    - include: identifier
 
   printf_placeholder:
     - match: \%[s]
@@ -492,17 +492,17 @@ contexts:
     - match: \b(none|null)\b
       scope: constant.language.null.twig
 
-  match_numbers:
-    - include: floats
-    - include: integers
+  number:
+    - include: float
+    - include: integer
 
-  integers:
+  integer:
     - match: '{{integers}}'
       scope: meta.number.integer.decimal.twig
       captures:
         0: constant.numeric.value.twig
 
-  floats:
+  float:
     - match: '{{floats}}'
       scope: meta.number.float.decimal.twig
       captures:
