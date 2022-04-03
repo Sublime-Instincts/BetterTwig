@@ -69,7 +69,7 @@ contexts:
 
   prototype:
     - meta_prepend: true
-    - include: twig
+    - include: twig_embedded
     - include: comments
 
   comments:
@@ -88,19 +88,19 @@ contexts:
 
   tag-attribute-value-content:
     - meta_prepend: true
-    - include: twig
-
-  twig:
-    - include: statement_block
-    - include: expression_block
-
-  main:
-    - meta_append: true
-    - include: twig
+    - include: twig_embedded_in_string
 
   strings-common-content:
     - meta_prepend: true
-    - include: twig
+    - include: twig_embedded_in_string
+
+  twig_embedded:
+    - include: statement_block
+    - include: expression_block
+
+  twig_embedded_in_string:
+    - include: statement_block_embedded_in_string
+    - include: expression_block_embedded_in_string
 
   statement_block:
     - match: \{\%{{modifiers}}?
@@ -122,6 +122,34 @@ contexts:
       push: expression_block_body
 
   expression_block_body:
+    - meta_scope: meta.placeholder.twig
+    - match: '{{modifiers}}?\}{2}'
+      scope: punctuation.definition.placeholder.end.twig
+      pop: 1
+    - include: expressions
+
+  statement_block_embedded_in_string:
+    - match: \{\%{{modifiers}}?
+      scope: punctuation.definition.statement.begin.twig
+      push: statement_block_embedded_in_string_body
+
+  statement_block_embedded_in_string_body:
+    - clear_scopes: 1
+    - meta_scope: meta.statement.twig
+    - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+      scope: invalid.illegal.twig
+    - match: '{{modifiers}}?\%\}'
+      scope: punctuation.definition.statement.end.twig
+      pop: 1
+    - include: expressions
+
+  expression_block_embedded_in_string:
+    - match: \{{2}{{modifiers}}?
+      scope: punctuation.definition.placeholder.begin.twig
+      push: expression_block_embedded_in_string_body
+
+  expression_block_embedded_in_string_body:
+    - clear_scopes: 1
     - meta_scope: meta.placeholder.twig
     - match: '{{modifiers}}?\}{2}'
       scope: punctuation.definition.placeholder.end.twig
