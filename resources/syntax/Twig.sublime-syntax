@@ -1,0 +1,515 @@
+%YAML 1.2
+---
+name: Twig
+scope: text.twig
+version: 2
+hidden: true
+
+variables:
+  digit: '[0-9]'
+  integers: '(?:{{digit}}*_)?{{digit}}+'
+  floats: '(?:(?:{{digit}}*_?)*)?(\.){{digit}}+(?:[eE]{{digit}}*)?'
+  identifiers: '[a-zA-Z_]+(?:{{digit}}*)?'
+  regex_modifiers: '[eimsuxADJSUX]*'
+
+  modifiers: '(?:[-~])'
+  logical_operators: \b(?:and|or|not|is)\b
+  bitwise_operators: \b(?:b-and|b-or|b-xor)\b
+
+  builtin_tags: |-
+    (?x:
+      \b(?:
+          block|recursive|macro|set|extends|include
+          |with|autoescape|pluralize|scoped|as
+          |verbatim|starts|ends|matches|apply|do
+          |flush|use|only|deprecated|embed|sandbox|cache
+      )\b
+    )
+
+  end_tags: |-
+    (?x:
+      \b(?:
+        endblock|endfor|endmacro|endif|endwith
+        |endautoescape|endverbatim|endapply|endembed
+        |endsandbox|endcache
+      )\b
+    )
+
+  builtin_tests: |-
+    (?x:
+      \b(?:
+        constant|defined|divisible\s{1}by|empty|even|odd|iterable
+        |odd|same\s{1}as
+      )\b
+    )
+
+  builtin_functions: |-
+    (?x:
+      \b(?:
+        attribute|block|constant|cycle|date|dump|html_classes|include|max|min
+        |parent|random|range|source|country_timezones|template_from_string
+      )
+    )
+
+contexts:
+
+  else_pop:
+    - match: (?=\S)
+      pop: 1
+
+  immediately_pop:
+    - match: ""
+      pop: 1
+
+  comment:
+    - include: multi_line_comment
+
+  multi_line_comment:
+    - match: \{\#
+      scope: punctuation.definition.comment.begin.twig
+      push: multi_line_comment_body
+
+  multi_line_comment_body:
+    - meta_scope: comment.block.twig
+    - match: \#\}
+      scope: punctuation.definition.comment.end.twig
+      pop: 1
+
+  main:
+    - include: statement_block
+    - include: expression_block
+
+  statement_block:
+    - match: \{\%{{modifiers}}?
+      scope: punctuation.definition.statement.begin.twig
+      push: statement_block_body
+
+  statement_block_body:
+    - meta_scope: meta.statement.twig
+    - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+      scope: invalid.illegal.twig
+    - match: '{{modifiers}}?\%\}'
+      scope: punctuation.definition.statement.end.twig
+      pop: 1
+    - include: expressions
+
+  expression_block:
+    - match: \{{2}{{modifiers}}?
+      scope: punctuation.definition.placeholder.begin.twig
+      push: expression_block_body
+
+  expression_block_body:
+    - meta_scope: meta.placeholder.twig
+    - match: '{{modifiers}}?\}{2}'
+      scope: punctuation.definition.placeholder.end.twig
+      pop: 1
+    - include: expressions
+
+  statement_block_embedded_in_string:
+    - match: \{\%{{modifiers}}?
+      scope: punctuation.definition.statement.begin.twig
+      push: statement_block_embedded_in_string_body
+
+  statement_block_embedded_in_string_body:
+    - clear_scopes: 1
+    - meta_scope: meta.statement.twig
+    - match: (\s+\-(?!\%))|(\-\s+(?=\%))
+      scope: invalid.illegal.twig
+    - match: '{{modifiers}}?\%\}'
+      scope: punctuation.definition.statement.end.twig
+      pop: 1
+    - include: expressions
+
+  expression_block_embedded_in_string:
+    - match: \{{2}{{modifiers}}?
+      scope: punctuation.definition.placeholder.begin.twig
+      push: expression_block_embedded_in_string_body
+
+  expression_block_embedded_in_string_body:
+    - clear_scopes: 1
+    - meta_scope: meta.placeholder.twig
+    - match: '{{modifiers}}?\}{2}'
+      scope: punctuation.definition.placeholder.end.twig
+      pop: 1
+    - include: expressions
+
+  expressions:
+    - include: import_statements
+    - include: get_item
+    - include: data_structures
+    - include: operators
+    - include: logical_and_bitwise
+    - include: builtin_functions
+    - include: builtin_tests
+    - include: functions
+    - include: constants
+    - include: others
+    - include: keywords
+    - include: identifier
+    - include: string
+    - include: number
+    - include: dot_accessor
+    - include: parameters
+    - include: ternary_operator
+
+  keywords:
+    - match: \b(if)\b
+      scope: keyword.control.conditional.if.twig
+    - match: \b(endif)\b
+      scope: keyword.control.conditional.end.twig
+    - match: \b(else)\b
+      scope: keyword.control.conditional.else.twig
+    - match: \b(elseif)\b
+      scope: keyword.control.conditional.elseif.twig
+    - match: \b(for)\b
+      scope: keyword.control.loop.for.twig
+    - match: \b(endfor)\b
+      scope: keyword.control.loop.end.twig
+    - match: \b(continue)\b
+      scope: keyword.control.flow.continue.twig
+    - match: \b(break)\b
+      scope: keyword.control.flow.break.twig
+    - match: '{{builtin_tags}}'
+      scope: keyword.other.tag.twig
+    - match: '{{end_tags}}'
+      scope: keyword.other.endtag.twig
+    - match: \b(in)\b
+      scope: keyword.control.loop.for.in.twig
+
+  others:
+    - match: (\bignore\b)\s{1}(?=\bmissing\b)
+      captures:
+        1: keyword.other.twig
+    - match: (\bmissing\b)(?!\bignore\b\s{1})
+      captures:
+        1: keyword.other.twig
+    - match: (\bwith\b)\s{1}(?=\bcontext\b)
+      captures:
+        1: keyword.other.twig
+    - match: (\bcontext\b)(?!\bwith\b\s{1})
+      captures:
+        1: keyword.other.twig
+    - match: (\bwithout\b)\s{1}(?=\bcontext\b)
+      captures:
+        1: keyword.other.twig
+
+  import_statements:
+    - match: \b(import)\b
+      scope: keyword.control.import.twig
+      push:
+        - meta_import
+        - identifier_else_pop
+        - import_alias
+        - string_else_pop
+    - match: \b(from)\b
+      scope: keyword.control.import.from.twig
+      push:
+        - meta_import
+        - identifier_else_pop
+        - import_alias
+        - identifier_else_pop
+        - match_import
+        - string_else_pop
+
+  match_import:
+    - match: \b(import)\b
+      scope: keyword.control.import.twig
+    - include: else_pop
+
+  string_else_pop:
+    - include: string
+    - include: else_pop
+
+  import_alias:
+    - match: \b(as)\b
+      scope: keyword.control.import.twig
+    - include: else_pop
+
+  identifier_else_pop:
+    - include: identifier
+    - match: \,
+      scope: punctuation.separator.comma.twig
+    - include: immediately_pop
+
+  meta_import:
+    - meta_scope: meta.import.twig
+    - include: immediately_pop
+
+  identifier:
+    - match: \b_\b
+      scope: variable.language.blank.twig
+    - match: \b_self\b
+      scope: variable.language.twig
+    - match: '{{identifiers}}'
+      scope: variable.other.twig
+
+  ternary_operator:
+    - match: '\?'
+      scope: keyword.operator.ternary.twig
+      push:
+        - include: ternary_colon
+        - include: expressions_else_pop
+
+  expressions_else_pop:
+    - include: expressions
+    - include: else_pop
+
+  ternary_colon:
+    - match: ':'
+      scope: keyword.operator.ternary.twig
+      pop: 1
+
+  dot_accessor:
+    - match: \.
+      scope: punctuation.accessor.dot.twig
+
+  builtin_functions:
+    - match: ({{builtin_functions}})(\()
+      captures:
+        1: support.function.builtin.twig
+        2: punctuation.section.arguments.begin.twig
+      push: functions_body
+
+  functions_body:
+    - meta_content_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: parameters
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
+
+  builtin_tests:
+    - match: '{{builtin_tests}}'
+      scope: support.function.test.twig
+      push: parameters_else_pop
+
+  parameters_else_pop:
+    - match: \(
+      scope: punctuation.section.arguments.begin.twig
+      set: parameters_body
+    - include: else_pop
+
+  parameters_body:
+    - meta_scope: meta.function-call.arguments.twig
+    - match: \)
+      scope: punctuation.section.arguments.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.parameters.twig
+
+  functions:
+    - match: (\w+)(\()
+      captures:
+        1: variable.function.twig
+        2: punctuation.section.arguments.begin.twig
+      push: functions_body
+
+  parameters:
+    - match: '{{identifiers}}'
+      scope: variable.parameter.twig
+
+  get_item:
+    - match: (\w+)(\[)
+      captures:
+        1: meta.item-access.twig
+        2: meta.item-access.twig punctuation.section.brackets.begin.twig
+      push: get_item_body
+
+  get_item_body:
+    - meta_content_scope: meta.item-access.twig
+    - match: \]
+      scope: meta.item-access.twig punctuation.section.brackets.end.twig
+      pop: 1
+    - include: string
+    - include: integers
+
+  data_structures:
+    - include: array
+    - include: tuple_or_group
+    - include: dictionary
+
+  array:
+    - match: \[
+      scope: punctuation.section.sequence.begin.twig
+      push: array_body
+
+  array_body:
+    - meta_scope: meta.sequence.array.twig
+    - match: \]
+      scope: punctuation.section.sequence.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.sequence.twig
+
+  dictionary:
+    - match: \{
+      scope: punctuation.section.mapping.begin.twig
+      push: dictionary_body
+
+  dictionary_body:
+    - meta_scope: meta.mapping.twig
+    - match: \}
+      scope: punctuation.section.mapping.end.twig
+      pop: 1
+    - include: expressions
+    - match: ':'
+      scope: punctuation.separator.mapping.key-value.twig
+    - match: \,
+      scope: punctuation.separator.mapping.pair.twig
+
+  tuple_or_group:
+    - match: (?=\()
+      branch_point: tuple_or_group
+      branch:
+        - group
+        - tuple
+
+  group:
+    - match: \(
+      scope: punctuation.section.group.begin.twig
+      push: group_body
+    - include: else_pop
+
+  group_body:
+    - meta_scope: meta.group.twig
+    - match: \)
+      scope: punctuation.section.group.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      fail: tuple_or_group
+
+  tuple:
+    - match: \(
+      scope: punctuation.section.sequence.begin.twig
+      push: tuple_body
+    - include: else_pop
+
+  tuple_body:
+    - meta_scope: meta.sequence.tuple.twig
+    - match: \)
+      scope: punctuation.section.sequence.end.twig
+      pop: 1
+    - include: expressions
+    - match: \,
+      scope: punctuation.separator.sequence.twig
+
+  logical_and_bitwise:
+    - match: '{{logical_operators}}'
+      scope: keyword.operator.word.logical.twig
+    - match: '{{bitwise_operators}}'
+      scope: keyword.operator.word.bitwise.twig
+
+  string:
+    - include: single_quoted_string
+    - include: double_quoted_string
+
+  single_quoted_string:
+    - match: \'
+      scope: punctuation.definition.string.begin.twig
+      push: single_quoted_string_body
+
+  single_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.twig string.quoted.single.twig
+    - match: \'
+      scope: punctuation.definition.string.end.twig
+      pop: 1
+    - include: within_strings
+
+  double_quoted_string:
+    - match: \"
+      scope: punctuation.definition.string.begin.twig
+      push: double_quoted_string_body
+
+  double_quoted_string_body:
+    - meta_include_prototype: false
+    - meta_scope: meta.string.twig string.quoted.double.twig
+    - match: \"
+      scope: punctuation.definition.string.end.twig
+      pop: 1
+    - include: within_strings
+
+  within_strings:
+    - include: escape_characters
+    - include: printf_placeholder
+    - include: string_interpolation
+
+  string_interpolation:
+    - match: (\#)(\{)
+      captures:
+        1: punctuation.definition.interpolation.twig
+        2: punctuation.section.interpolation.begin.twig
+      push: string_interpolation_body
+
+  string_interpolation_body:
+    - clear_scopes: 1
+    - meta_content_scope: text.embedded.twig
+    - meta_scope: meta.interpolation.twig
+    - match: \}
+      scope: punctuation.section.interpolation.end.twig
+      pop: 1
+    - include: number
+    - include: operators
+    - include: identifier
+
+  printf_placeholder:
+    - match: \%[s]
+      scope: constant.other.placeholder.twig
+
+  escape_characters:
+    - match: \{[\{\#]
+      scope: constant.character.escape.twig
+    - match: \\['"]
+      scope: constant.character.escape.twig
+
+  operators:
+    - match: '\.{2}'
+      scope: keyword.operator.range.twig
+    - match: '\?{2}'
+      scope: keyword.operator.null-coalescing.twig
+    - match: '\?:'
+      scope: keyword.operator.ternary.twig
+    - match: \|
+      scope: keyword.operator.logical.pipe.twig
+    - match: \~
+      scope: keyword.operator.concatenation.twig
+    - match: \={2}
+      scope: keyword.operator.comparison.twig
+    - match: \=
+      scope: keyword.operator.assignment.twig
+    - match: '[><!]='
+      scope: keyword.operator.comparison.twig
+    - match: '[><]'
+      scope: keyword.operator.comparison.twig
+    - match: '[\*\/]{2}'
+      scope: keyword.operator.arithmetic.twig
+    - match: '[\+\-\*\/\%]'
+      scope: keyword.operator.arithmetic.twig
+
+  constants:
+    - match: \b(true|false)\b
+      scope: constant.language.boolean.twig
+    - match: \b(none|null)\b
+      scope: constant.language.null.twig
+
+  number:
+    - include: float
+    - include: integer
+
+  integer:
+    - match: '{{integers}}'
+      scope: meta.number.integer.decimal.twig
+      captures:
+        0: constant.numeric.value.twig
+
+  float:
+    - match: '{{floats}}'
+      scope: meta.number.float.decimal.twig
+      captures:
+        0: constant.numeric.value.twig
+        1: punctuation.separator.decimal.twig
