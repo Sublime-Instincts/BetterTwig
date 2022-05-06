@@ -70,5 +70,8 @@ improved performance.
 ## [2.1.0] - <undecided>
 ### Fixed
 - Clearing of string scopes when expressions and statements are present in strings.
-- General syntax cleanups.
+- Fix a bug where ending `)` was scoped as `punctuation.section.group.begin.twig`.
+- General syntax context name cleanups.
+
+### Added
 - Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
