@@ -347,7 +347,7 @@ contexts:
       scope: meta.item-access.twig punctuation.section.brackets.end.twig
       pop: 1
     - include: string
-    - include: integers
+    - include: integer
 
   data_structures:
     - include: array
