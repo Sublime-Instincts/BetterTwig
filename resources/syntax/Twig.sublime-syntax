@@ -19,18 +19,16 @@ variables:
   builtin_tags: |-
     (?x:
       \b(?:
-          block|recursive|macro|set|extends|include
-          |with|autoescape|pluralize|scoped|as
-          |verbatim|starts|ends|matches|apply|do
-          |flush|use|only|deprecated|embed|sandbox|cache
+          block|recursive|macro|set|extends|include|with|autoescape|pluralize
+          |scoped|as|starts|ends|matches|apply|do|flush|use|only|deprecated
+          |embed|sandbox|cache
       )\b
     )
 
   end_tags: |-
     (?x:
       \b(?:
-        endblock|endfor|endmacro|endif|endwith
-        |endautoescape|endverbatim|endapply|endembed
+        endblock|endfor|endmacro|endif|endwith|endautoescape|endapply|endembed
         |endsandbox|endcache
       )\b
     )
@@ -38,8 +36,7 @@ variables:
   builtin_tests: |-
     (?x:
       \b(?:
-        constant|defined|divisible\s{1}by|empty|even|odd|iterable
-        |odd|same\s{1}as
+        constant|defined|divisible\s{1}by|empty|even|odd|iterable|odd|same\s{1}as
       )\b
     )
 
@@ -80,10 +77,12 @@ contexts:
     - include: expression_block
 
   twig_embedded:
+    - include: verbatim_tag
     - include: statement_block
     - include: expression_block
 
   twig_embedded_in_string:
+    - include: verbatim_tag
     - include: statement_block_embedded_in_string
     - include: expression_block_embedded_in_string
 
@@ -140,6 +139,22 @@ contexts:
       scope: punctuation.definition.placeholder.end.twig
       pop: 1
     - include: expressions
+
+  verbatim_tag:
+    - match: (\{\%)\s*(\bverbatim\b)\s*(\%\})
+      captures:
+        0: meta.statement.twig
+        1: punctuation.definition.statement.begin.twig
+        2: keyword.other.tag.twig
+        3: punctuation.definition.statement.end.twig
+      embed: constant.character.twig
+      embed_scope: constant.character.twig
+      escape: (\{\%)\s*(\bendverbatim\b)\s*(\%\})
+      escape_captures:
+        0: meta.statement.twig
+        1: punctuation.definition.statement.begin.twig
+        2: keyword.other.endtag.twig
+        3: punctuation.definition.statement.end.twig
 
   expressions:
     - include: import_statements
