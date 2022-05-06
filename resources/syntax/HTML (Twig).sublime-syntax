@@ -13,23 +13,15 @@ file_extensions:
 
 contexts:
 
-  twig_embedded:
-    - include: Twig.sublime-syntax#statement_block
-    - include: Twig.sublime-syntax#expression_block
-
-  twig_embedded_in_string:
-    - include: Twig.sublime-syntax#statement_block_embedded_in_string
-    - include: Twig.sublime-syntax#expression_block_embedded_in_string
-
   prototype:
     - meta_prepend: true
-    - include: twig_embedded
+    - include: Twig.sublime-syntax#twig_embedded
     - include: Twig.sublime-syntax#comment
 
   tag-attribute-value-content:
     - meta_prepend: true
-    - include: twig_embedded_in_string
+    - include: Twig.sublime-syntax#twig_embedded_in_string
 
   strings-common-content:
     - meta_prepend: true
-    - include: twig_embedded_in_string
+    - include: Twig.sublime-syntax#twig_embedded_in_string

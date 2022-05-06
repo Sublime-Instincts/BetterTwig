@@ -79,6 +79,14 @@ contexts:
     - include: statement_block
     - include: expression_block
 
+  twig_embedded:
+    - include: statement_block
+    - include: expression_block
+
+  twig_embedded_in_string:
+    - include: statement_block_embedded_in_string
+    - include: expression_block_embedded_in_string
+
   statement_block:
     - match: \{\%{{modifiers}}?
       scope: punctuation.definition.statement.begin.twig
