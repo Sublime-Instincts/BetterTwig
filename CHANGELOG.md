@@ -66,3 +66,9 @@ improved performance.
 ### Fixed
 - Twig comments not working.
 - Key bindings file not opening from the menu & command palette.
+
+## [2.1.0] - <undecided>
+### Fixed
+- Clearing of string scopes when expressions and statements are present in strings.
+- General syntax cleanups.
+- Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
