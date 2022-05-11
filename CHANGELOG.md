@@ -69,9 +69,11 @@ improved performance.
 
 ## [2.1.0] - <undecided>
 ### Fixed
-- Clearing of string scopes when expressions and statements are present in strings.
+- String scopes are now properly cleared when expressions and statements are present in strings.
 - Fix a bug where ending `)` was scoped as `punctuation.section.group.begin.twig`.
+- Code within `verbatim` blocks are now, not syntax highlighted anymore (to represent raw plain text).
 - General syntax context name cleanups.
 
 ### Added
 - Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
+- Added a `CSS (Twig).sublime-syntax` to support embedding Twig expressions in CSS & HTML (Resolves #25)
