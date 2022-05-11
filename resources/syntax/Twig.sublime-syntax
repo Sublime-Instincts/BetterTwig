@@ -147,14 +147,17 @@ contexts:
         1: punctuation.definition.statement.begin.twig
         2: keyword.other.tag.twig
         3: punctuation.definition.statement.end.twig
-      embed: constant.character.twig
-      embed_scope: constant.character.twig
-      escape: (\{\%)\s*(\bendverbatim\b)\s*(\%\})
-      escape_captures:
+      push: verbatim_tag_body
+
+  verbatim_tag_body:
+    - meta_scope: constant.character.twig
+    - match: (\{\%)\s*(\bendverbatim\b)\s*(\%\})
+      captures:
         0: meta.statement.twig
         1: punctuation.definition.statement.begin.twig
         2: keyword.other.endtag.twig
         3: punctuation.definition.statement.end.twig
+      pop: 1
 
   expressions:
     - include: import_statements
