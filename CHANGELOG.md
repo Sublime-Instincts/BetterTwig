@@ -67,7 +67,7 @@ improved performance.
 - Twig comments not working.
 - Key bindings file not opening from the menu & command palette.
 
-## [2.1.0] - <undecided>
+## [2.1.0] - 2022-05-11
 ### Fixed
 - String scopes are now properly cleared when expressions and statements are present in strings.
 - Fix a bug where ending `)` was scoped as `punctuation.section.group.begin.twig`.
