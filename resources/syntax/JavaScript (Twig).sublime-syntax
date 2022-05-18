@@ -1,0 +1,20 @@
+%YAML 1.2
+---
+name: JavaScript (Twig)
+scope: source.js.twig
+version: 2
+
+extends: Packages/JavaScript/JavaScript.sublime-syntax
+
+file_extensions:
+  - js.twig
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Twig.sublime-syntax#twig_embedded
+
+  string-content:
+    - meta_prepend: true
+    - include: Twig.sublime-syntax#twig_embedded_in_string
