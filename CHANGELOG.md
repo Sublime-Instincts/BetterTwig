@@ -77,3 +77,7 @@ improved performance.
 ### Added
 - Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
 - Added a `CSS (Twig).sublime-syntax` to support embedding Twig expressions in CSS & HTML (Resolves #25)
+
+## [2.2.0] - <unreleased>
+### Added
+- Added a `JavaScript (Twig).sublime-syntax` to support highlight embedded Twig expressions in `<script>` tags.
