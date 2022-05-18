@@ -40,7 +40,7 @@ jobs:
             sublime-build: 4126
             optional: false
           - sublime-channel: dev
-            sublime-build: 4125
+            sublime-build: 4131
             optional: false
     steps:
       - name: Git checkout
@@ -55,7 +55,7 @@ jobs:
         run: |
           mkdir -p Data/Packages/BetterTwig
           find . -maxdepth 1 -mindepth 1 -not -name 'Data' \! -name 'syntax_tests' -exec mv '{}' Data/Packages/BetterTwig ';'
-      - name: Download the HTML syntax and move it to Data/Packages
+      - name: Download HTML & other extending syntaxes and move it to Data/Packages
         run: |
           wget -O HTML.sublime-syntax https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML.sublime-syntax
           wget -O CSS.sublime-syntax https://raw.githubusercontent.com/sublimehq/Packages/master/CSS/CSS.sublime-syntax
