@@ -63,6 +63,7 @@ jobs:
           wget -O 'HTML (Plain).sublime-syntax' 'https://raw.githubusercontent.com/sublimehq/Packages/master/HTML/HTML%20(Plain).sublime-syntax'
           mkdir -p Data/Packages/HTML
           mkdir -p Data/Packages/CSS
+          mkdir -p Data/Packages/JavaScript
           mv HTML.sublime-syntax ./Data/Packages/HTML
           mv CSS.sublime-syntax ./Data/Packages/CSS
           mv JavaScript.sublime-syntax ./Data/Packages/JavaScript
