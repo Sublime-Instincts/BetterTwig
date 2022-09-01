@@ -28,7 +28,7 @@ variables:
   end_tags: |-
     (?x:
       \b(?:
-        endblock|endfor|endmacro|endif|endwith|endautoescape|endapply|endembed
+        endblock|endset|endfor|endmacro|endif|endwith|endautoescape|endapply|endembed
         |endsandbox|endcache
       )\b
     )
