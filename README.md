@@ -47,7 +47,7 @@ Since a user can have more than one templating language package installed, this 
 ### Key bindings
 
 - The key bindings are configured so that pressing <kbd>shift + {</kbd> **twice** will automatically add spaces on both sides for the inner brace expression block & place the cursor in the center, like so `{{ | }}`.
-- Simimlarly, pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
+- Similarly, pressing <kbd>shift + %</kbd> within `{}` will add spaces on both sides of the inner `%` like so `{% | %}`
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
 - Use <kbd>#</kbd> within strings, to get the interpolation expression, like so `#{|}`.
 
