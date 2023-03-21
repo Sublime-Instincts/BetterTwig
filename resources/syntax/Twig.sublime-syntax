@@ -289,6 +289,7 @@ contexts:
     - match: \.
       scope: punctuation.accessor.dot.twig
       push:
+        - include: functions
         - match: '{{identifiers}}'
           scope: meta.property.object.twig
         - include: immediately_pop
