@@ -288,6 +288,10 @@ contexts:
   dot_accessor:
     - match: \.
       scope: punctuation.accessor.dot.twig
+      push:
+        - match: '{{identifiers}}'
+          scope: meta.property.object.twig
+        - include: immediately_pop
 
   builtin_functions:
     - match: ({{builtin_functions}})(\()
