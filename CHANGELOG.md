@@ -94,3 +94,4 @@ improved performance.
 - Scopes of the parent context are now completely cleared,
   ensuring clean highlighting of Twig statement not matter where it's inserted.
 - Add many more tests and handle more expressions with more detail.
+- Updated CI setup for up to date tests on the latest Sublime Text builds.
