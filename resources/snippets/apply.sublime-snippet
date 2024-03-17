@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% apply ${1} %}
+    ${2}
+{% endapply %}
+]]></content>
+<tabTrigger>apply</tabTrigger>
+<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<description>Twig apply</description>
+</snippet>

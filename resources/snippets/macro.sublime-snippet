@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% macro ${1:function_name}() %}
+    ${2}
+{% endmacro %}
+]]></content>
+<tabTrigger>macro</tabTrigger>
+<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<description>Twig macro</description>
+</snippet>
