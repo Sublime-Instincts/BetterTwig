@@ -9,8 +9,7 @@
         <string>(?x)
             ^\s*\{\%[-]?\s*
             (
-                endblock|endmacro|endif|endfor|endautoescape|endverbatim|endwith|endapply
-                |endembed|else|endcache|endsandbox
+                else|elseif|endapply|endautoescape|endblock|endcache|endembed|endfor|endif|endmacro|endsandbox|endverbatim|endwith
             )
             \b.*\s*\%\}\s*$
         </string>
@@ -19,7 +18,7 @@
         <string>(?x)
             ^\s*\{\%-?\s*\b
             (
-                apply|autoescape|block|cache|macro|if|for|verbatim|with|embed|else|sandbox
+                apply|autoescape|block|cache|else|elseif|embed|for|if|macro|sandbox|verbatim|with
             )
             \b.*%}\s*$
         </string>
