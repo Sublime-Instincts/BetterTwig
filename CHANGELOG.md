@@ -78,6 +78,8 @@ improved performance.
 - Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
 - Added a `CSS (Twig).sublime-syntax` to support embedding Twig expressions in CSS & HTML (Resolves #25)
 
-## [2.2.0] - <unreleased>
-### Added
-- Added a `JavaScript (Twig).sublime-syntax` to support highlight embedded Twig expressions in `<script>` tags.
+## [3.0.0] - Draft
+- Consistently renamed the package to Twig
+- Snippet triggers no longer prefixed with "t"
+- Improved support for |filters
+- Object properties now have the correct scope
