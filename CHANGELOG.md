@@ -79,7 +79,18 @@ improved performance.
 - Added a `CSS (Twig).sublime-syntax` to support embedding Twig expressions in CSS & HTML (Resolves #25)
 
 ## [3.0.0] - Draft
-- Consistently renamed the package to Twig
-- Snippet triggers no longer prefixed with "t"
-- Improved support for |filters
-- Object properties now have the correct scope
+- Consistently renamed the package to Twig.
+- Snippet triggers no longer prefixed with "t".
+- Add missing indent rule for elseif.
+- Improved support for filters.
+- Object properties now have the correct scope.
+- More detailed matching in for loops.
+- Recognizes variable declarations, supporting goto definition and symbol list.
+- Support arrow functions, range, spread operators, the only keyword, etc. etc..
+- More detailed matching of test statements ("... is bar").
+- More detailed matching of filters, allowing more context-aware completions.
+- Consistent with Twig's documentation, {% %} is now scoped as meta.statement,
+  {{ }} as meta.expression.
+- Scopes of the parent context are now completely cleared,
+  ensuring clean highlighting of Twig statement not matter where it's inserted.
+- Add many more tests and handle more expressions with more detail.
