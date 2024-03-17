@@ -1,0 +1,20 @@
+## SYNTAX TEST "Packages/Twig/resources/syntax/HTML (Twig).sublime-syntax"
+
+    {{ 'value'|count }}
+##  ^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                   ^^ meta.placeholder.twig punctuation.definition.placeholder.end.twig
+##            ^ keyword.operator.logical.pipe.twig
+##             ^^^^^ variable.function.filter.twig
+    {{ 'value'|count_filter}}
+##             ^^^^^^^^^^^^ variable.function.filter.twig
+##                           ^ - meta.placeholder.twig
+
+    {{ 'value'|default(null) }}
+##  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
+##  ^^ punctuation.definition.placeholder.begin.twig
+##                           ^^ meta.placeholder.twig punctuation.definition.placeholder.end.twig
+##            ^ keyword.operator.logical.pipe.twig
+##             ^^^^^^^ - variable.function.filter.twig
+##             ^^^^^^^ variable.function.twig
+##                     ^^^^ meta.function-call.arguments.twig

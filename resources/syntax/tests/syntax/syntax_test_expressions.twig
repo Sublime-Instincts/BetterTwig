@@ -1,4 +1,4 @@
-## SYNTAX TEST "Packages/BetterTwig/resources/syntax/HTML (Twig).sublime-syntax"
+## SYNTAX TEST "Packages/Twig/resources/syntax/HTML (Twig).sublime-syntax"
 
     {{  }}
 ##  ^^^^^^ meta.placeholder.twig
@@ -141,7 +141,7 @@
     {{ { == >= <= != > < } }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
 ##  ^^ punctuation.definition.placeholder.begin.twig
-##                         ^^ punctuation.definition.placeholder.end.twig            
+##                         ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
 ##     ^ punctuation.section.mapping.begin.twig
 ##                       ^ punctuation.section.mapping.end.twig
@@ -226,7 +226,7 @@
 ##           ^ punctuation.section.interpolation.begin.twig
 ##               ^ punctuation.section.interpolation.end.twig
 ##            ^^^ text.embedded.twig variable.other.twig
-   
+
     {{ "foo #{1 + 2.3} baz" }}
 ##  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.placeholder.twig
 ##  ^^ punctuation.definition.placeholder.begin.twig
@@ -248,7 +248,7 @@
 ##  ^^ punctuation.definition.placeholder.begin.twig
 ##             ^^ punctuation.definition.placeholder.end.twig
 ##     ^^^ variable.other.twig
-##         ^^^ variable.other.twig
+##         ^^^ meta.property.object.twig
 ##        ^ punctuation.accessor.dot.twig
 
     {{ foo ? 'yes' : 'no' }}

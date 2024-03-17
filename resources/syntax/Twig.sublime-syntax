@@ -288,6 +288,11 @@ contexts:
   dot_accessor:
     - match: \.
       scope: punctuation.accessor.dot.twig
+      push:
+        - include: functions
+        - match: '{{identifiers}}'
+          scope: meta.property.object.twig
+        - include: immediately_pop
 
   builtin_functions:
     - match: ({{builtin_functions}})(\()
@@ -502,6 +507,12 @@ contexts:
       scope: keyword.operator.ternary.twig
     - match: \|
       scope: keyword.operator.logical.pipe.twig
+      push:
+        - include: builtin_functions
+        - include: functions
+        - match: '{{identifiers}}+(?=\b)'
+          scope: variable.function.filter.twig
+        - include: immediately_pop
     - match: \~
       scope: keyword.operator.concatenation.twig
     - match: \={2}
