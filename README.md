@@ -1,4 +1,4 @@
-# BetterTwig
+# Twig
 
 ![LICENSE](https://img.shields.io/badge/LICENSE-MIT-green?style=for-the-badge) ![Sublime Text](https://img.shields.io/badge/ST-Build%204107+-orange?style=for-the-badge&logo=sublime-text) ![Tag](https://img.shields.io/github/v/tag/Sublime-Instincts/BetterTwig?style=for-the-badge&logo=github&sort=semver) ![Downloads](https://img.shields.io/packagecontrol/dt/Twig?style=for-the-badge)
 ![Syntax tests](https://img.shields.io/github/workflow/status/Sublime-Instincts/BetterTwig/syntax_test?color=green&label=Syntax%20Tests&logo=github&logoColor=white&style=for-the-badge)
@@ -15,10 +15,13 @@ A Sublime Text package that offers enhanced syntax highlighting, snippets, compl
 
 ## Installation
 
-#### Package Control
-The best way is to install it via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `Twig`. There should be a package with the URL as https://github.com/Sublime-Instincts/BetterTwig. Install it. Package Control will take care for of automatically updating the package for you if there are new releases.
+### Package Control
+Install Twig via [Package Control](https://packagecontrol.io/). Once you have Package Control setup in Sublime Text, open the command palette and search for `Package Control: Install Package`. Search for `Twig`. There should be a package with the URL as https://github.com/Sublime-Instincts/BetterTwig. Install it. 
 
-You can also use `Package Control: Add Repository`. Copy the github url (without the `.git` at the end) and enter it into the input panel that pops up at the bottom when you select `Package Control: Add Repository`. Now use `Package Control: Install Package` and search for `BetterTwig` and install it.
+Package Control will take care for of automatically updating the package for you if there are new releases.
+
+### Manual installation
+In Sublime Text open the Preferences > Browse Packages menu item. In the Packages directory you should now see, clone this repository in a new directory called "Twig".
 
 ## Documentation
 
@@ -51,44 +54,30 @@ Since a user can have more than one templating language package installed, this 
 - Use <kbd>ctrl + /</kbd> or <kbd>ctrl + shift + /</kbd> for Twig comments (`{# This is a Twig comment #}`)
 - Use <kbd>#</kbd> within strings, to get the interpolation expression, like so `#{|}`.
 
-### Auto completions
-In order to get the auto completions, go to `Preferences: Settings` from the command palette and paste the following in the `Preferences.sublime-settings -- User` (the right hand window)
-
-```json
-"auto_complete_selector": "text.html.twig, meta.tag - punctuation.definition.tag.begin, source - comment - string.quoted.double.block - string.quoted.single.block - string.unquoted.heredoc",
-"auto_complete_triggers":
-[
-    {"characters": "<", "selector": "text.html"},
-    {"selector": "text.html.twig, text.html.basic"},
-]
-```
-
-If you already have these in your user settings, then just copy the Twig related portions into them.
-
 ### Snippets
 
-`BetterTwig` only adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
-[snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own.
+This package adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
+[snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own. Or use [SnippetMaker](https://packagecontrol.io/packages/SnippetMaker) for convenience.
 
-| **Tab Trigger** |          **Twig Code Block**          |
-|-----------------|---------------------------------------|
-| `tapply`        | `{% apply %}{% endapply %}`           |
-| `tautoescape`   | `{% autoescape %}{% endautoescape %}` |
-| `tblock`        | `{% block %}{% endblock %}`           |
-| `tdeprecated`   | `{% deprecated %}`                    |
-| `tembed`        | `{% embed %}{% endembed %}`           |
-| `textends`      | `{% extends %}`                       |
-| `tfor`          | `{% for %}{% endfor %}`               |
-| `tforelse`      | `{% for %}{% else %}{% endfor %}`     |
-| `tmacro`        | `{% macro %}{% endmacro %}`           |
-| `tsandbox`      | `{% sandbox %}{% endsandbox %}`       |
-| `tset`          | `{% set %}`                           |
-| `tverbatim`     | `{% verbatim %}{% endverbatim %}`     |
-| `twith`         | `{% with %}{% endwith %}`             |
+- apply
+- autoescape
+- block
+- dump
+- embed
+- extends
+- for
+- if
+- if else
+- include
+- macro
+- sandbox
+- set
+- verbatim
+- with
 
 If you want to ignore the snippets that are provided by default, you can use the `ignored_snippets` setting.
 
-`"ignored_snippets": ["BetterTwig/*"]`
+`"ignored_snippets": ["Twig/*"]`
 
 ## Reporting issues.
 
@@ -97,10 +86,6 @@ There is always scope for improvements, so please do report any bug(s) that you 
 Please follow the issue template that has been setup while reporting any bug(s) (So as to stay as organised as possible).
 
 Use the [Twig playground](https://twigfiddle.com/) if you want to share a particular snippet of template while creating a specific issue.
-
-## Acknowledgements.
-
-The [syntax_test.yml](https://github.com/Sublime-Instincts/BetterTwig/.github/workflows/syntax_test.yml) is taken & used (with some modifications) from the official [Packages](https://github.com/sublimehq/Packages) repository. So full credit goes to them for it.
 
 ## License
 The MIT License (MIT)

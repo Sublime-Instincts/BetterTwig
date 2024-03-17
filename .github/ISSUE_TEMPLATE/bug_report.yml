@@ -1,6 +1,6 @@
 ---
 name: Bug Report
-description: File a bug report to address an issue in BetterTwig !
+description: File a bug report to address an issue in Twig !
 
 body:
   - type: textarea
@@ -38,7 +38,7 @@ body:
 
   - type: input
     attributes:
-      label: BetterTwig version
+      label: Twig version
       placeholder: "e.g. 2.0.0"
     validations:
       required: true

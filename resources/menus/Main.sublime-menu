@@ -12,10 +12,10 @@
                 "children":
                 [
                     {
-                        "caption": "BetterTwig",
+                        "caption": "Twig",
                         "children": [
                             {
-                                "caption": "Documentation",
+                                "caption": "Readme",
                                 "command": "open_url",
                                 "args": {
                                     "url": "https://github.com/Sublime-Instincts/BetterTwig/blob/master/README.md"
