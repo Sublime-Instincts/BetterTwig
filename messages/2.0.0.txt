@@ -1,5 +1,5 @@
-BetterTwig v2.0.0
------------------
+Twig v2.0.0
+-----------
 
 ** Breaking Changes **
 

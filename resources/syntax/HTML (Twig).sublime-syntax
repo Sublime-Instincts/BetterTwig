@@ -20,11 +20,11 @@ contexts:
 
   tag-attribute-value-content:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded_in_string
+    - include: Twig.sublime-syntax#twig_embedded
 
   strings-common-content:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded_in_string
+    - include: Twig.sublime-syntax#twig_embedded
 
   style-css-content:
     - meta_include_prototype: false

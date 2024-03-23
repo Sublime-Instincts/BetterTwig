@@ -18,4 +18,4 @@ contexts:
 
   string-content:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded_in_string
+    - include: Twig.sublime-syntax#twig_embedded

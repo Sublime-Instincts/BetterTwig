@@ -1,0 +1,8 @@
+<snippet>
+<content><![CDATA[
+{{ include('${1:file}'${2:, \{key: 'value'\}}) }}
+]]></content>
+<tabTrigger>include</tabTrigger>
+<description>Twig include</description>
+<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+</snippet>

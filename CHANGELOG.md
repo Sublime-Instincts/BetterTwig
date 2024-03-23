@@ -78,6 +78,24 @@ improved performance.
 - Seperated the main syntax and extracted a core `Twig` syntax. This makes the syntax reusable and could now be used in other markups with little effort.
 - Added a `CSS (Twig).sublime-syntax` to support embedding Twig expressions in CSS & HTML (Resolves #25)
 
-## [2.2.0] - <unreleased>
-### Added
-- Added a `JavaScript (Twig).sublime-syntax` to support highlight embedded Twig expressions in `<script>` tags.
+## [3.0.0] - 2024-03-23
+ - 4142 (Nov 10 2022) is the oldest supported build of Sublime Text.
+ - Snippet triggers no longer prefixed with "t".
+ - Better contextual suggestions and completions
+ - Scopes of the parent context are now completely cleared,
+   ensuring clean highlighting of Twig in more contexts.
+ - {% %} is now scoped as meta.statement, {{ }} as meta.expression.
+ - The above mentioned scope clearing changes scopes in some cases.
+ - Add missing indent rule for elseif.
+ - Add some missing snippets
+ - Object properties now have the correct scope.
+ - Recognize variable declarations, supporting goto definition and symbol list.
+ - Support arrow functions, range, spread operators, "only" keyword, etc..
+ - More detailed matching in for loops.
+ - More detailed matching of test statements ("... is bar").
+ - More detailed matching of filters, allowing more context-aware completions.
+ - In general improved support for filters.
+ - And more... see:
+   https://github.com/Sublime-Instincts/BetterTwig/pull/31
+   https://github.com/Sublime-Instincts/BetterTwig/pull/32
+

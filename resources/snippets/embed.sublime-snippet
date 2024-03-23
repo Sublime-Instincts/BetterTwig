@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% embed ${1:template_name} %}
+    ${2}
+{% endembed %}
+]]></content>
+<tabTrigger>embed</tabTrigger>
+<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<description>Twig embed</description>
+</snippet>

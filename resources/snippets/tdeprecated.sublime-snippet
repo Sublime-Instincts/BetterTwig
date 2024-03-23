@@ -1,8 +1,0 @@
-<snippet>
-<content><![CDATA[
-{% deprecated ${1:deprecation_message} %}${0}
-]]></content>
-    <tabTrigger>tdeprecated</tabTrigger>
-    <scope>text.html.twig</scope>
-    <description>Twig deprecated tag</description>
-</snippet>
