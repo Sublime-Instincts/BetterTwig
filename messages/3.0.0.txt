@@ -27,3 +27,5 @@ Twig v3.0.0
  - And more... see:
    https://github.com/Sublime-Instincts/BetterTwig/pull/31
    https://github.com/Sublime-Instincts/BetterTwig/pull/32
+
+Note that 4142 (Nov 10 2022) is the oldest supported build of Sublime Text.
