@@ -234,6 +234,8 @@ contexts:
   tests_body:
     - meta_scope: meta.function.test.twig
     - include: block_pop
+    - match: (?=\b(and|or|b-and|b-or|b-xor)\b)
+      pop: 1
       # builtin tests
     - match: '\bnot\b'
       scope: keyword.operator.word.logical.twig
