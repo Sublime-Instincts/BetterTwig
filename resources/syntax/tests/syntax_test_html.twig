@@ -582,13 +582,13 @@
 |^ punctuation.definition.expression.begin.twig
 |              ^ - variable.function.test.twig
 
-{% if loop.index is divisible by(3) and foo == bar %}{% endif %}
+{% if loop.index is divisible by(3) ? foo : bar %}{% endif %}
 |^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
 |                ^^ keyword.operator.comparison.test.twig
 |                   ^^^^^^^^^^^^ support.function.test.twig
 |                               ^^^ meta.function-call.arguments.twig
 |                                ^  constant.numeric.value.twig
-|                                       ^^^ variable.other.twig
+|                                     ^^^ variable.other.twig
 
 {# Custom test #}
 {{ name is weird }}
