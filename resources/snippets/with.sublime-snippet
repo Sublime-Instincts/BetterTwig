@@ -5,6 +5,6 @@
 {% endwith %}${0}
 ]]></content>
 <tabTrigger>with</tabTrigger>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<scope>meta.template.twig - meta.expression.twig - meta.statement.twig</scope>
 <description>Twig with</description>
 </snippet>

@@ -5,7 +5,7 @@
     <key>name</key>
     <string>Comments</string>
     <key>scope</key>
-    <string>text.html.twig, meta.statement.twig, meta.expression.twig</string>
+    <string>meta.template.twig</string>
     <key>settings</key>
     <dict>
     <key>shellVariables</key>

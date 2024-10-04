@@ -4,5 +4,5 @@
 ]]></content>
 <tabTrigger>include</tabTrigger>
 <description>Twig include</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<scope>meta.template.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>
