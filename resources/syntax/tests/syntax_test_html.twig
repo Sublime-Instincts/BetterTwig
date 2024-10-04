@@ -72,6 +72,27 @@
 |                 ^ - meta.function-call.arguments.twig
 |                 ^ - meta.function.filter.twig
 
+{{ name | striptags | title }}
+|  ^^^^ variable.other.twig
+|       ^^^^^^^^^^^^^^^^^^^ meta.function.filter.twig
+|                          ^ - meta.function.filter.twig
+|       ^ keyword.operator.pipe.twig
+|         ^^^^^^^^^ support.function.filter.twig
+|                   ^ keyword.operator.pipe.twig
+|                     ^^^^^ support.function.filter.twig
+
+{{ list | join(', ') }}
+|  ^^^^ variable.other.twig
+|       ^^^^^^ meta.function.filter.twig
+|             ^^^^^^ meta.group.twig meta.function-call.arguments.twig
+|            ^ - meta.group.twig
+|            ^ - meta.function-call.arguments.twig
+|             ^ punctuation.section.group.begin.twig
+|              ^^^^ meta.string.twig string.quoted.single.twig
+|                  ^ punctuation.section.group.end.twig
+|                   ^ - meta.function-call.arguments.twig
+|                   ^ - meta.function.filter.twig
+
 {% apply upper %}
 |  ^^^^^^^^^^^ meta.statement.apply.twig
 |  ^^^^^ keyword.control.twig

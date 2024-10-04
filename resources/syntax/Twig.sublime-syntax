@@ -207,8 +207,9 @@ contexts:
 ###[ Filters ]#################################################################
 
   filter:
-    - match: \|
-      scope: keyword.operator.pipe.twig
+    - match: \s*(\|)\s*
+      captures:
+        1: keyword.operator.pipe.twig
       push: filter_body
 
   filter_body:
