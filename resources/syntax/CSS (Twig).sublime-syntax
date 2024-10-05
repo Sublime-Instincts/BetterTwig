@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: CSS (Twig)
-scope: source.css.twig
+scope: source.css.twig meta.template.twig
 version: 2
 
 extends: Packages/CSS/CSS.sublime-syntax

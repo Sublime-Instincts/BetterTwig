@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: JavaScript (Twig)
-scope: source.js.twig
+scope: source.js.twig meta.template.twig
 version: 2
 
 extends: Packages/JavaScript/JavaScript.sublime-syntax
