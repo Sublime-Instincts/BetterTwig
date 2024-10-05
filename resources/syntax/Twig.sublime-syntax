@@ -66,7 +66,7 @@ contexts:
       push: statement_block_meta
 
   statement_block_meta:
-    - meta_scope: meta.statement.twig
+    - meta_scope: meta.template.twig meta.statement.twig
     - clear_scopes: true
     - include: statement_body
 
@@ -88,7 +88,7 @@ contexts:
       push: expression_block_meta
 
   expression_block_meta:
-    - meta_scope: meta.expression.twig
+    - meta_scope: meta.template.twig meta.expression.twig
     - clear_scopes: true
     - include: expression_body
 
