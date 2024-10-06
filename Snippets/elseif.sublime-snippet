@@ -1,10 +1,9 @@
 <snippet>
 <content><![CDATA[
-{% verbatim %}
+{% elseif $1 %}
 ${TM_TEMPLATE_INDENT}$0
-{% endverbatim %}
 ]]></content>
-<tabTrigger>verbatim</tabTrigger>
+<tabTrigger>elseif</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig verbatim</description>
+<description>Twig elseif</description>
 </snippet>

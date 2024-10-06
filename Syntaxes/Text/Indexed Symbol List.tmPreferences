@@ -3,7 +3,7 @@
 <dict>
 	<key>scope</key>
 	<string>
-		meta.statement.twig meta.declaration.identifier variable.other
+		meta.embedded.statement.twig meta.declaration.identifier variable.other
 	</string>
 	<key>settings</key>
 	<dict>

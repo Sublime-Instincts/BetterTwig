@@ -1,5 +1,5 @@
 {
-    "scope": "meta.statement.twig",
+    "scope": "meta.embedded.statement.twig",
     "completions": [
         {
             "trigger": "apply",

@@ -1,9 +1,11 @@
 {
-    "scope": "meta.function.test.twig",
+    // complete full function signature
+
+    "scope": "source.twig meta.expression.test",
     "completions": [
         {
             "trigger": "constant",
-            "contents": "constant()",
+            "contents": "constant($0)",
             "kind": ["type", "t", "Twig Test"],
             "annotation": "Twig Test",
             "details": "Checks if a variable has the exact same value as a constant.",
@@ -17,7 +19,7 @@
         },
         {
             "trigger": "divisible by",
-            "contents": "divisible by()",
+            "contents": "divisible by($0)",
             "kind": ["type", "t", "Twig Test"],
             "annotation": "Twig Test",
             "details": "Checks if a variable is divisible by a number.",
@@ -59,7 +61,7 @@
         },
         {
             "trigger": "same as",
-            "contents": "same as()",
+            "contents": "same as($0)",
             "kind": ["type", "t", "Twig Test"],
             "annotation": "Twig Test",
             "details": "Checks if a variable is the same as another variable.",

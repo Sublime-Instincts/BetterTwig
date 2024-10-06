@@ -1,0 +1,208 @@
+/* SYNTAX TEST "Packages/Twig/Syntaxes/CSS/CSS (Twig).sublime-syntax" */
+
+    {# commet #}
+/*  ^^^^^^^^^^^^ meta.embedded.comment.twig comment.block.twig */
+/*  ^^ punctuation.definition.comment.begin.twig */
+/*            ^^ punctuation.definition.comment.end.twig */
+
+    {%  %}
+/*  ^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^ source.twig.embedded */
+/*      ^^ punctuation.section.embedded.end.twig */
+
+    {%-  -%}
+/*  ^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^^ punctuation.section.embedded.begin.twig */
+/*     ^^ source.twig.embedded */
+/*       ^^^ punctuation.section.embedded.end.twig */
+
+    {%~  ~%}
+/*  ^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^^ punctuation.section.embedded.begin.twig */
+/*     ^^ source.twig.embedded */
+/*       ^^^ punctuation.section.embedded.end.twig */
+
+    {% if expression %}
+/*  ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^^^^^^^^^ source.twig.embedded */
+/*     ^^ keyword.control.conditional.if.twig */
+/*        ^^^^^^^^^^ variable.other.twig */
+/*                   ^^ punctuation.section.embedded.end.twig */
+
+    {% endif %}
+/*  ^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^ source.twig.embedded */
+/*     ^^^^^ keyword.control.conditional.endif.twig */
+/*           ^^ punctuation.section.embedded.end.twig */
+
+    {% set var = "%}" %}
+/*  ^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^^^^^^^^^^ source.twig.embedded */
+/*     ^^^ meta.declaration.twig keyword.declaration.variable.twig */
+/*        ^^^^^ meta.declaration.identifier.twig */
+/*         ^^^ variable.other.twig */
+/*             ^ meta.declaration.twig keyword.operator.assignment.twig */
+/*              ^^^^^^ meta.declaration.value.twig */
+/*               ^^^^ meta.string.twig string.quoted.double.twig */
+/*               ^ punctuation.definition.string.begin.twig */
+/*                  ^ punctuation.definition.string.end.twig */
+/*                    ^^ punctuation.section.embedded.end.twig */
+
+    {% verbatim %}
+/*  ^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^^^^ source.twig.embedded */
+/*     ^^^^^^^^ keyword.control.twig */
+/*             ^ source.twig.embedded */
+/*              ^^ punctuation.section.embedded.end.twig */
+
+/* <- meta.raw.twig */
+
+    {% endverbatim %}
+/*  ^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^^^^^^^ source.twig.embedded */
+/*     ^^^^^^^^^^^ keyword.control.twig */
+/*                 ^^ punctuation.section.embedded.end.twig */
+
+    @media {{ prop }} > {{ value }} {
+/*  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.at-rule.media.css */
+/*  ^^^^^^ keyword.control.directive.css */
+/*  ^ punctuation.definition.keyword.css */
+/*         ^^^^^^^^^^ meta.embedded.expression.twig */
+/*         ^^ punctuation.section.embedded.begin.twig */
+/*           ^^^^^^ source.twig.embedded */
+/*            ^^^^ variable.other.twig */
+/*                 ^^ punctuation.section.embedded.end.twig */
+/*                    ^ keyword.operator.comparison.css */
+/*                      ^^^^^^^^^^^ meta.embedded.expression.twig */
+/*                      ^^ punctuation.section.embedded.begin.twig */
+/*                        ^^^^^^^ source.twig.embedded */
+/*                         ^^^^^ variable.other.twig */
+/*                               ^^ punctuation.section.embedded.end.twig */
+/*                                  ^^^^ meta.block.css */
+/*                                  ^ punctuation.section.block.begin.css */
+        {% if condition %}
+/*      ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+
+        button {
+/*      ^^^^^^^ meta.at-rule.media.css meta.selector.css */
+/*             ^^ meta.at-rule.media.css meta.block.css */
+
+        }
+/*      ^ meta.at-rule.media.css meta.block.css punctuation.section.block.end.css */
+
+        {% endif %}
+/*      ^^^^^^^^^^^ meta.embedded.statement.twig */
+    }
+/*^^^ meta.at-rule.media.css meta.block.css */
+/*  ^ punctuation.section.block.end.css */
+
+    div {
+/*  ^^^^ meta.selector.css */
+/*      ^^ meta.property-list.css meta.block.css */
+/*  ^^^ entity.name.tag.html.css */
+/*      ^ punctuation.section.block.begin.css */
+
+    /*
+     * Statement
+     */
+
+       {% block style %}{% endblock %}
+/*     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*     ^^ punctuation.section.embedded.begin.twig */
+/*       ^^^^^^^^^^^^^ source.twig.embedded */
+/*        ^^^^^ keyword.declaration.block.twig */
+/*              ^^^^^ entity.name.block.twig */
+/*                    ^^ punctuation.section.embedded.end.twig */
+/*                      ^^ punctuation.section.embedded.begin.twig */
+/*                        ^^^^^^^^^^ source.twig.embedded */
+/*                         ^^^^^^^^ keyword.declaration.block.end.twig */
+/*                                  ^^ punctuation.section.embedded.end.twig */
+
+    /*
+     * Expression
+     */
+
+       color: {{ blue|escape }} {# a comment #};
+/*     ^^^^^ meta.property-name.css support.type.property-name.css */
+/*          ^ punctuation.separator.key-value.css */
+/*           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.css */
+/*            ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig */
+/*            ^^ punctuation.section.embedded.begin.twig */
+/*              ^^^^^^^^^^^^^ source.twig.embedded */
+/*               ^^^^ variable.other.twig */
+/*                   ^^^^^^^^ meta.filter.twig */
+/*                   ^ keyword.operator.pipe.twig */
+/*                    ^^^^^^ meta.function-call.identifier.twig support.function.filter.twig */
+/*                           ^^ punctuation.section.embedded.end.twig */
+/*                              ^^^^^^^^^^^^^^^ meta.embedded.comment.twig comment.block.twig */
+/*                              ^^ punctuation.definition.comment.begin.twig */
+/*                                           ^^ punctuation.definition.comment.end.twig */
+/*                                             ^ punctuation.terminator.rule.css */
+
+       font-size: 24px;
+/*     ^^^^^^^^^ meta.property-name.css */
+
+    }
+/*^^^ meta.property-list.css meta.block.css */
+/*  ^ punctuation.section.block.end.css */
+
+    /*
+     * Interpolated selectors, properties and values
+     */
+
+    {{ tag }}[{{ kind }}={{ value }}] { {{ prop }}: {{ value }} }
+/*  ^^^^^^^^^ meta.selector.css meta.embedded.expression.twig - meta.attribute-selector */
+/*           ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded */
+/*            ^^^^^^^^^^ meta.selector.css meta.attribute-selector.css meta.brackets.css entity.other.attribute-name.css meta.embedded.expression.twig */
+/*                      ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded - entity */
+/*                       ^^^^^^^^^^^ meta.selector.css meta.attribute-selector.css meta.brackets.css meta.string.css string.unquoted.css meta.embedded.expression.twig */
+/*                                  ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded */
+/*                                   ^ meta.selector.css - meta.attribute-selector */
+/*                                    ^^ meta.template.twig meta.property-list.css meta.block.css - mete.embedded */
+/*                                      ^^^^^^^^^^ meta.property-list.css meta.block.css meta.property-name.css support.type.property-name.css meta.embedded.expression.twig */
+/*                                                ^ meta.property-list.css meta.block.css - meta.property-name - meta.property-value */
+/*                                                 ^ meta.property-list.css meta.block.css meta.property-value.css - meta.embedded */
+/*                                                  ^^^^^^^^^^^ meta.property-list.css meta.block.css meta.property-value.css meta.embedded.expression.twig */
+/*                                                             ^ meta.property-list.css meta.block.css meta.property-value.css - meta.embedded */
+/*                                                              ^ meta.property-list.css meta.block.css - meta.property-value */
+/*                                                               ^ - meta.property-list - meta.block - meta.embedded */
+
+    .{% test %} > {% class %} {
+/*  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.selector.css */
+/*  ^ entity.other.attribute-name.class.css punctuation.definition.entity.css */
+/*   ^^^^^^^^^^ meta.embedded.statement.twig */
+/*   ^^ punctuation.section.embedded.begin.twig */
+/*     ^^^^^^ source.twig.embedded */
+/*      ^^^^ variable.other.twig */
+/*           ^^ punctuation.section.embedded.end.twig */
+/*              ^ keyword.operator.combinator.css */
+/*                ^^^^^^^^^^^ meta.embedded.statement.twig */
+/*                ^^ punctuation.section.embedded.begin.twig */
+/*                  ^^^^^^^ source.twig.embedded */
+/*                   ^^^^^ variable.other.twig */
+/*                         ^^ punctuation.section.embedded.end.twig */
+/*                            ^ meta.property-list.css meta.block.css punctuation.section.block.begin.css */
+
+      {% if expression %}
+/*    ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig */
+/*    ^^ punctuation.section.embedded.begin.twig */
+/*      ^^^^^^^^^^^^^^^ source.twig.embedded */
+/*       ^^ keyword.control.conditional.if.twig */
+/*          ^^^^^^^^^^ variable.other.twig */
+/*                     ^^ punctuation.section.embedded.end.twig */
+
+    {% endif %}
+/*  ^^^^^^^^^^^ meta.embedded.statement.twig */
+/*  ^^ punctuation.section.embedded.begin.twig */
+/*    ^^^^^^^ source.twig.embedded */
+/*     ^^^^^ keyword.control.conditional.endif.twig */
+/*           ^^ punctuation.section.embedded.end.twig */
+    }
+/*^^^ meta.template.twig meta.property-list.css meta.block.css */
+/*  ^ punctuation.section.block.end.css */

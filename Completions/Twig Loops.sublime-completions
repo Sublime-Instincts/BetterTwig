@@ -1,5 +1,5 @@
 {
-    "scope": "meta.expression.twig",
+    "scope": "source.twig",
     "completions": [
         {
             "trigger": "loop.index",

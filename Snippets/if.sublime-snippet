@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
 {% if $1 %}
-	$2
+${TM_TEMPLATE_INDENT}$0
 {% endif %}
 ]]></content>
 <tabTrigger>if</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
 <description>Twig if</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>

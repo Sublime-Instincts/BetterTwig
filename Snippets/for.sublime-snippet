@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
 {% for ${1:item} in ${2:collection} %}
-	$3
+${TM_TEMPLATE_INDENT}$0
 {% endfor %}
 ]]></content>
 <tabTrigger>for</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
 <description>Twig for</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>

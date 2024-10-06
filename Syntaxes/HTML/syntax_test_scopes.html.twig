@@ -6,13 +6,29 @@
 |==============================================================================
 
 {{ foo.bar }}
-|^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
-|<- punctuation.definition.expression.begin.twig
-|          ^^ punctuation.definition.expression.end.twig
+|^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
+|<- punctuation.section.embedded.begin.twig
+|          ^^ punctuation.section.embedded.end.twig
 |  ^^^ variable.other.twig
 |     ^ punctuation.accessor.dot.twig
-|      ^^^ meta.property.object.twig
+|      ^^^ variable.other.member.twig
+
+{{ foo.bar().baz() }}
+|^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^ variable.other.twig
+|     ^ punctuation.accessor.dot.twig
+|      ^^^ meta.function-call.identifier.twig variable.function.twig
+|         ^^ meta.function-call.arguments.twig
+|         ^ punctuation.section.arguments.begin.twig
+|          ^ punctuation.section.arguments.end.twig
+|            ^^^ meta.function-call.identifier.twig variable.function.twig
+|               ^^ meta.function-call.arguments.twig
+|               ^ punctuation.section.arguments.begin.twig
+|                ^ punctuation.section.arguments.end.twig
+|                  ^^ punctuation.section.embedded.end.twig
 
 {# https://twig.symfony.com/doc/3.x/templates.html#global-variables #}
 {{ _self }}
@@ -22,11 +38,11 @@
 
 {# https://twig.symfony.com/doc/3.x/templates.html#setting-variables #}
 {% set foo = 'foo' %}
-|^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
-|<- punctuation.definition.statement.begin.twig
-|                  ^^ punctuation.definition.statement.end.twig
-|  ^^^ keyword.declaration.twig
+|^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|<- punctuation.section.embedded.begin.twig
+|                  ^^ punctuation.section.embedded.end.twig
+|  ^^^ keyword.declaration.variable.twig
 |      ^^^ meta.declaration.identifier.twig variable.other.twig
 |          ^ keyword.operator.assignment.twig
 |            ^^^^^ meta.declaration.value.twig meta.string.twig string.quoted.single.twig
@@ -42,9 +58,17 @@
 
 {# TODO : indicate keys as meta.mapping.key.twig #}
 {% set foo = {'foo': 'bar'} %}
-|            ^^^^^^^^^^^^^^ meta.mapping.twig
-|             ^^^^^ meta.string.twig
-|                  ^ punctuation.separator.mapping.key-value.twig
+|           ^^^^^^^^^^^^^^^^ meta.declaration.value.twig
+|            ^ meta.mapping.twig punctuation.section.mapping.begin.twig
+|             ^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
+|             ^ punctuation.definition.string.begin.twig
+|                 ^ punctuation.definition.string.end.twig
+|                  ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                   ^^^^^^ meta.mapping.value.twig
+|                    ^^^^^ meta.string.twig string.quoted.single.twig
+|                    ^ punctuation.definition.string.begin.twig
+|                        ^ punctuation.definition.string.end.twig
+|                         ^ meta.mapping.twig punctuation.section.mapping.end.twig
 
 |==============================================================================
 | Filters
@@ -52,41 +76,123 @@
 |==============================================================================
 
 {{ name|striptags|title }}
+|^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
 |  ^^^^ variable.other.twig
-|      ^^^^^^^^^^^^^^^^ meta.function.filter.twig
-|                      ^ - meta.function.filter.twig
+|      ^^^^^^^^^^^^^^^^ meta.filter.twig
 |      ^ keyword.operator.pipe.twig
 |       ^^^^^^^^^ support.function.filter.twig
 |                ^ keyword.operator.pipe.twig
 |                 ^^^^^ support.function.filter.twig
 
+{{ name | striptags | title }}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|  ^^^^ variable.other.twig
+|       ^^^^^^^^^^^^^^^^^^^ meta.filter.twig
+|       ^ keyword.operator.pipe.twig
+|         ^^^^^^^^^ support.function.filter.twig
+|                   ^ keyword.operator.pipe.twig
+|                     ^^^^^ support.function.filter.twig
+
+{{ list|join(', ' }}  {# incomplete groups don't break highlighting #}
+|^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|  ^^^^ variable.other.twig
+|      ^^^^^^^^^^^ meta.filter.twig
+|       ^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|           ^^^^^^ meta.function-call.arguments.twig
+|                 ^^ - meta.function-call
+|           ^ punctuation.section.arguments.begin.twig
+|            ^^^^ meta.string.twig string.quoted.single.twig
+|                 ^^ punctuation.section.embedded.end.twig
+
 {{ list|join(', ') }}
 |  ^^^^ variable.other.twig
-|      ^^^^^ meta.function.filter.twig
-|           ^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|          ^ - meta.group.twig
-|          ^ - meta.function-call.arguments.twig
-|           ^ punctuation.section.group.begin.twig
+|       ^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|           ^^^^^^ meta.function-call.arguments.twig
+|           ^ punctuation.section.arguments.begin.twig
 |            ^^^^ meta.string.twig string.quoted.single.twig
-|                ^ punctuation.section.group.end.twig
-|                 ^ - meta.function-call.arguments.twig
-|                 ^ - meta.function.filter.twig
+|                ^ punctuation.section.arguments.end.twig
+|                 ^ - meta.function-call
+
+{{ (1..5)|join(', ') }}
+|^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^ meta.group.twig
+|  ^ punctuation.section.group.begin.twig
+|   ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|    ^^ keyword.operator.range.twig
+|      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|       ^ punctuation.section.group.end.twig
+|        ^^^^^^^^^^^ meta.filter.twig
+|        ^ keyword.operator.pipe.twig
+|         ^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|             ^^^^^^ meta.function-call.arguments.twig
+|             ^ punctuation.section.arguments.begin.twig
+|              ^^^^ meta.string.twig string.quoted.single.twig
+|              ^ punctuation.definition.string.begin.twig
+|                 ^ punctuation.definition.string.end.twig
+|                  ^ punctuation.section.arguments.end.twig
+|                    ^^ punctuation.section.embedded.end.twig
+
+{{ ('HELLO' ~ 'FABIEN') | lower }}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^^^^^^^^^^^^^ meta.group.twig
+|  ^ punctuation.section.group.begin.twig
+|   ^^^^^^^ meta.string.twig string.quoted.single.twig
+|   ^ punctuation.definition.string.begin.twig
+|         ^ punctuation.definition.string.end.twig
+|           ^ keyword.operator.concatenation.twig
+|             ^^^^^^^^ meta.string.twig string.quoted.single.twig
+|             ^ punctuation.definition.string.begin.twig
+|                    ^ punctuation.definition.string.end.twig
+|                     ^ punctuation.section.group.end.twig
+|                       ^^^^^^^^ meta.filter.twig
+|                       ^ keyword.operator.pipe.twig
+|                         ^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                               ^^ punctuation.section.embedded.end.twig
+
 
 {% apply upper %}
-|  ^^^^^^^^^^^ meta.statement.apply.twig
-|  ^^^^^ keyword.control.twig
+|^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^^^^^ meta.filter.twig
+|  ^^^^^ keyword.other.twig
 |        ^^^^^ support.function.filter.twig
+|              ^^ punctuation.section.embedded.end.twig
     This text becomes uppercase
 {% endapply %}
-|  ^^^^^^^^ keyword.control.twig
+|^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^ keyword.other.twig
+|           ^^ punctuation.section.embedded.end.twig
 
-{# Custom filters #}
-{% apply custom %}
-|  ^^^^^ keyword.control.twig
-|        ^^^^^^ variable.function.filter.twig
-{{ foo|bar }}
-|     ^^^^ meta.function.filter.twig
-|      ^^^ meta.function-call.identifier.twig variable.function.filter.twig
+{% apply lower|escape('html') %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^  meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.filter.twig
+|  ^^^^^ keyword.other.twig
+|        ^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|             ^ keyword.operator.pipe.twig
+|              ^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                    ^^^^^^^^ meta.function-call.arguments.twig
+|                    ^ punctuation.section.arguments.begin.twig
+|                     ^^^^^^ meta.string.twig string.quoted.single.twig
+|                     ^ punctuation.definition.string.begin.twig
+|                          ^ punctuation.definition.string.end.twig
+|                           ^ punctuation.section.arguments.end.twig
+|                             ^^ punctuation.section.embedded.end.twig
+    <strong>SOME TEXT</strong>
+{% endapply %}
+|^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^ keyword.other.twig
+|           ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
 | Functions
@@ -94,63 +200,80 @@
 |==============================================================================
 
 {% for i in range(0, 3) %}
-|^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|  ^^^ keyword.control.loop.for.twig
-|      ^ variable.other.twig
-|           ^^^^^ - meta.function-call.arguments.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|           ^^^^^ meta.function-call.identifier.twig - meta.function-call.arguments.twig
+|                ^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
 |           ^^^^^ support.function.twig
-|                ^ punctuation.section.group.begin.twig
-|                ^^^^^^ meta.group.twig
-|                ^^^^^^ meta.function-call.arguments.twig
+|                ^ punctuation.section.arguments.begin.twig
 |                 ^ constant.numeric.value.twig
-|                  ^ punctuation.separator.parameters.twig
-|                     ^ punctuation.section.group.end.twig
-
-    {{ i }},
-{% endfor %}
-|  ^^^^^^ keyword.control.loop.for.twig
+|                  ^ punctuation.separator.sequence.twig
+|                     ^ punctuation.section.arguments.end.twig
 
 {# https://twig.symfony.com/doc/3.x/templates.html#named-arguments #}
 {% for i in range(low=1, high=10, step=2) %}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|  ^^^ keyword.control.loop.for.twig
-|      ^ variable.other.twig
-|        ^^ meta.statement.twig keyword.control.loop.for.in.twig
-|           ^^^^^ meta.function-call.identifier.twig
-|           ^^^^^ - meta.function-call.arguments.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|           ^^^^^ meta.function-call.identifier.twig - meta.function-call.arguments.twig
+|                ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
 |           ^^^^^ support.function.twig
-|                ^ punctuation.section.group.begin.twig
-|                ^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.twig
-|                ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
-|                                       ^ punctuation.section.group.end.twig
-|                      ^ punctuation.separator.parameters.twig
-|                               ^ punctuation.separator.parameters.twig
+|                ^ punctuation.section.arguments.begin.twig
 |                 ^^^ variable.parameter.twig
 |                    ^ keyword.operator.assignment.twig
 |                     ^ constant.numeric.value.twig
-    {{ i }},
-{% endfor %}
+|                      ^ punctuation.separator.sequence.twig
+|                               ^ punctuation.separator.sequence.twig
+|                                       ^ punctuation.section.arguments.end.twig
+
+{% for i in range(low: 1, high: 10, step: 2) %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|           ^^^^^ meta.function-call.identifier.twig - meta.function-call.arguments.twig
+|                ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
+|           ^^^^^ support.function.twig
+|                ^ punctuation.section.arguments.begin.twig
+|                 ^^^ variable.parameter.twig
+|                    ^ keyword.operator.assignment.twig
+|                      ^ constant.numeric.value.twig
+|                       ^ punctuation.separator.sequence.twig
+|                         ^^^^ variable.parameter.twig
+|                             ^ keyword.operator.assignment.twig
+|                               ^^ constant.numeric.value.twig
+|                                 ^ punctuation.separator.sequence.twig
+|                                   ^^^^ variable.parameter.twig
+|                                       ^ keyword.operator.assignment.twig
+|                                         ^ constant.numeric.value.twig
+|                                          ^ punctuation.section.arguments.end.twig
 
 {{ data|convert_encoding('UTF-8', 'iso-2022-jp') }}
-|      ^ meta.function.filter.twig keyword.operator.pipe.twig
-|       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.filter.twig
-|       ^^^^^^^^^^^^^^^^ support.function.filter.twig
-|       ^^^^^^^^^^^^^^^^ meta.function-call.identifier.twig
-|                       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                       ^ punctuation.section.group.begin.twig
-|                        ^^^^^^^ string.quoted.single.twig
-|                               ^ punctuation.separator.parameters.twig
-|                                 ^^^^^^^^^^^^^ string.quoted.single.twig
-|                                              ^ punctuation.section.group.end.twig
-
-{# versus #}
-|^^^^^^^^^^^ comment.block.twig
+|^^^^^^ meta.embedded.expression.twig - meta.filter
+|      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig meta.filter.twig
+|                                               ^^^ meta.embedded.expression.twig - meta.filter
+|                                                  ^ - meta.embedded
+|       ^^^^^^^^^^^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                       ^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
+|                       ^ punctuation.section.arguments.begin.twig
+|                        ^^^^^^^ meta.string.twig string.quoted.single.twig
+|                               ^ punctuation.separator.sequence.twig
+|                                 ^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                                              ^ punctuation.section.arguments.end.twig
+|                                                ^^ punctuation.section.embedded.end.twig
 
 {{ data|convert_encoding(from='iso-2022-jp', to='UTF-8') }}
+|       ^^^^^^^^^^^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
 |                        ^^^^ variable.parameter.twig
 |                            ^ keyword.operator.assignment.twig
 |                             ^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
-|                                          ^ punctuation.separator.parameters.twig
+|                                          ^ punctuation.separator.sequence.twig
+|                                            ^^ variable.parameter.twig
+|                                              ^ keyword.operator.assignment.twig
+|                                               ^^^^^^^ meta.string.twig string.quoted.single.twig
+
+{{ data|convert_encoding(from:'iso-2022-jp', to:'UTF-8') }}
+|       ^^^^^^^^^^^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig - meta.function-call.identifier
+|                        ^^^^ variable.parameter.twig
+|                            ^ keyword.operator.assignment.twig
+|                             ^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                                          ^ punctuation.separator.sequence.twig
 |                                            ^^ variable.parameter.twig
 |                                              ^ keyword.operator.assignment.twig
 |                                               ^^^^^^^ meta.string.twig string.quoted.single.twig
@@ -158,7 +281,7 @@
 {# the first argument is the date format, which defaults to the global date format if null is passed #}
 {{ "now"|date(null, "Europe/Paris") }}
 |  ^^^^^ meta.string.twig string.quoted.double.twig
-|       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.filter.twig
+|       ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.filter.twig
 |        ^^^^ meta.function-call.identifier.twig support.function.filter.twig
 |             ^^^^ constant.language.null.twig
 |                   ^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
@@ -168,12 +291,12 @@
 |             ^^^^^^^^ variable.parameter.twig
 
 {{ "now"|date('d/m/Y H:i', timezone="Europe/Paris") }}
-|             ^^^^^^^^^^^ meta.function.filter.twig meta.group.twig meta.function-call.arguments.twig meta.string.twig string.quoted.single.twig
+|             ^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
 
 {# Custom functions #}
 {{ apply_foo(data, 'string') }}
 |  ^^^^^^^^^ meta.function-call.identifier.twig variable.function.twig
-|           ^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
+|           ^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
 
 |==============================================================================
 | Control Structure
@@ -183,43 +306,71 @@
 <h1>Members</h1>
 <ul>
     {% for user in users %}
-|   ^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|   ^^ punctuation.definition.statement.begin.twig
+|   ^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|   ^^ punctuation.section.embedded.begin.twig
 |      ^^^ keyword.control.loop.for.twig
 |          ^^^^ variable.other.twig
-|               ^^ keyword.control.loop.for.in.twig
+|               ^^ keyword.operator.iteration.twig
 |                  ^^^^^ variable.other.twig
-|                        ^^ punctuation.definition.statement.end.twig
+|                        ^^ punctuation.section.embedded.end.twig
         <li>{{ user.username|e }}</li>
     {% endfor %}
 </ul>
 
 {% if users|length > 0 %}
-|^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^ keyword.control.conditional.if.twig
 |     ^^^^^ variable.other.twig
-|          ^^^^^^^ meta.function.filter.twig
+|          ^^^^^^^ meta.filter.twig
 |          ^ keyword.operator.pipe.twig
 |           ^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
 |                  ^ keyword.operator.comparison.twig
 |                    ^ meta.number.integer.decimal.twig
-|                      ^^ punctuation.definition.statement.end.twig
+|                      ^^ punctuation.section.embedded.end.twig
     <ul>
         {% for user in users %}
             <li>{{ user.username|e }}</li>
-|               ^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|               ^^ punctuation.definition.expression.begin.twig
+|               ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|               ^^ punctuation.section.embedded.begin.twig
 |                  ^^^^ variable.other.twig
 |                      ^ punctuation.accessor.dot.twig
-|                       ^^^^^^^^ meta.property.object.twig
-|                               ^^ meta.function.filter.twig
+|                       ^^^^^^^^ variable.other.member.twig
+|                               ^^ meta.filter.twig
 |                               ^ keyword.operator.pipe.twig
 |                                ^ meta.function-call.identifier.twig variable.function.filter.twig
-|                                  ^^ punctuation.definition.expression.end.twig
+|                                  ^^ punctuation.section.embedded.end.twig
         {% endfor %}
     </ul>
 {% endif %}
+|^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^ source.twig.embedded
+|  ^^^^^ keyword.control.conditional.endif.twig
+|        ^^ punctuation.section.embedded.end.twig
+
+{% if block("footer") is defined %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^ keyword.control.conditional.if.twig
+|     ^^^^^ meta.function-call.identifier.twig support.function.twig
+|          ^^^^^^^^^^ meta.function-call.arguments.twig
+|          ^ punctuation.section.arguments.begin.twig
+|           ^^^^^^^^ meta.string.twig string.quoted.double.twig
+|           ^ punctuation.definition.string.begin.twig
+|                  ^ punctuation.definition.string.end.twig
+|                   ^ punctuation.section.arguments.end.twig
+|                     ^^^^^^^^^^^ meta.expression.test.twig
+|                     ^^ keyword.operator.comparison.test.twig
+|                        ^^^^^^^ meta.function-call.identifier.twig support.function.test.twig
+|                                ^^ punctuation.section.embedded.end.twig
+{% endif %}
+|^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^ source.twig.embedded
+|  ^^^^^ keyword.control.conditional.endif.twig
+|        ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
 | Comments
@@ -242,16 +393,16 @@
 |==============================================================================
 
 {{ include('sidebar.html') }}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^^^^^ meta.function-call.identifier.twig support.function.twig
-|         ^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|         ^ punctuation.section.group.begin.twig
+|         ^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
+|         ^ punctuation.section.arguments.begin.twig
 |          ^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
 |          ^ punctuation.definition.string.begin.twig
 |                       ^ punctuation.definition.string.end.twig
-|                        ^ punctuation.section.group.end.twig
-|                          ^^ punctuation.definition.expression.end.twig
+|                        ^ punctuation.section.arguments.end.twig
+|                          ^^ punctuation.section.embedded.end.twig
 
 {% for box in boxes %}
     {{ include('render_box.html') }}
@@ -268,11 +419,11 @@
 <html>
     <head>
         {% block head %}
-|       ^^^^^^^^^^^^^^^^ meta.statement.twig
-|       ^^ punctuation.definition.statement.begin.twig
-|          ^^^^^ keyword.control.twig
-|                ^^^^ meta.generic-name.twig
-|                     ^^ punctuation.definition.statement.end.twig
+|       ^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|       ^^ punctuation.section.embedded.begin.twig
+|          ^^^^^ keyword.declaration.block.twig
+|                ^^^^ entity.name.block.twig
+|                     ^^ punctuation.section.embedded.end.twig
             <link rel="stylesheet" href="style.css"/>
             <title>{% block title %}{% endblock %} - My Webpage</title>
         {% endblock %}
@@ -288,33 +439,33 @@
 </html>
 
 {% extends "base.html" %}
-|^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^^^^^ keyword.other.twig
 |          ^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 |          ^ punctuation.definition.string.begin.twig
 |                    ^ punctuation.definition.string.end.twig
-|                      ^^ punctuation.definition.statement.end.twig
+|                      ^^ punctuation.section.embedded.end.twig
 
 {% block title %}Index{% endblock %}
-|^^^^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
-|  ^^^^^ keyword.control.twig
-|        ^^^^^ meta.generic-name.twig
-|              ^^ punctuation.definition.statement.end.twig
-|                     ^^ punctuation.definition.statement.begin.twig
-|                     ^^^^^^^^^^^^^^ meta.statement.twig
-|                        ^^^^^^^^ keyword.control.twig
-|                                 ^^ punctuation.definition.statement.end.twig
+|^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^^ keyword.declaration.block.twig
+|        ^^^^^ entity.name.block.twig
+|              ^^ punctuation.section.embedded.end.twig
+|                     ^^ punctuation.section.embedded.begin.twig
+|                     ^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|                        ^^^^^^^^ keyword.declaration.block.end.twig
+|                                 ^^ punctuation.section.embedded.end.twig
 {% block head %}
     {{ parent() }}
-|   ^^^^^^^^^^^^^^ meta.expression.twig
-|   ^^ punctuation.definition.expression.begin.twig
+|   ^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^ punctuation.section.embedded.begin.twig
 |      ^^^^^^ meta.function-call.identifier.twig support.function.twig
-|            ^^ meta.group.twig meta.function-call.arguments.twig
-|            ^ punctuation.section.group.begin.twig
-|             ^ punctuation.section.group.end.twig
-|               ^^ punctuation.definition.expression.end.twig
+|            ^^ meta.function-call.arguments.twig
+|            ^ punctuation.section.arguments.begin.twig
+|             ^ punctuation.section.arguments.end.twig
+|               ^^ punctuation.section.embedded.end.twig
     <style type="text/css">
         .important { color: #336699; }
     </style>
@@ -338,20 +489,20 @@
 |==============================================================================
 
 {{ user.username|e }}
-|^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|               ^^ meta.function.filter.twig
+|^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|               ^^ meta.filter.twig
 |               ^ keyword.operator.pipe.twig
 |                ^ meta.function-call.identifier.twig variable.function.filter.twig
 
 {{ user.username|e('js') }}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|               ^^^^^^^^ meta.function.filter.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|               ^^^^^^^^ meta.filter.twig
 |               ^ keyword.operator.pipe.twig
 |                ^ meta.function-call.identifier.twig variable.function.filter.twig
-|                 ^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                 ^ punctuation.section.group.begin.twig
+|                 ^^^^^^ meta.function-call.arguments.twig
+|                 ^ punctuation.section.arguments.begin.twig
 |                  ^^^^ meta.string.twig string.quoted.single.twig
-|                      ^ punctuation.section.group.end.twig
+|                      ^ punctuation.section.arguments.end.twig
 
 {{ user.username|e('css') }}
 {{ user.username|e('url') }}
@@ -372,10 +523,10 @@
 {% endautoescape %}
 
 {# https://twig.symfony.com/doc/3.x/templates.html#escaping #}
-{{ '{{' }}
+{{ '{{' }}  Not an escape, but interpreted literal this way
 |  ^^^^ meta.string.twig string.quoted.single.twig
 |  ^ punctuation.definition.string.begin.twig
-|   ^^ constant.character.escape.twig
+|   ^^ - constant - punctuation
 |     ^ punctuation.definition.string.end.twig
 
 |==============================================================================
@@ -385,25 +536,25 @@
 
 {% set greeting = 'Hello ' %}
 |                 ^^^^^^^^ meta.string.twig string.quoted.single.twig
-|                          ^^ punctuation.definition.statement.end.twig
+|                          ^^ punctuation.section.embedded.end.twig
 {% set name = 'Fabien' %}
 
 {{ greeting ~ name|lower }}   {# Hello fabien #}
 
 {# use parenthesis to change precedence #}
 {{ (greeting ~ name)|lower }} {# hello fabien #}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^^^^^^^^^^^^^^^ meta.group.twig
 |  ^ punctuation.section.group.begin.twig
 |   ^^^^^^^^ variable.other.twig
 |            ^ keyword.operator.concatenation.twig
 |              ^^^^ variable.other.twig
 |                  ^ punctuation.section.group.end.twig
-|                   ^^^^^^ meta.function.filter.twig
+|                   ^^^^^^ meta.filter.twig
 |                   ^ keyword.operator.pipe.twig
 |                    ^^^^^ meta.function-call.identifier.twig support.function.filter.twig
-|                          ^^ punctuation.definition.expression.end.twig
+|                          ^^ punctuation.section.embedded.end.twig
 |                             ^^^^^^^^^^^^^^^^^^ comment.block.twig
 |                             ^^ punctuation.definition.comment.begin.twig
 |                                             ^^ punctuation.definition.comment.end.twig
@@ -419,18 +570,16 @@
 |            ^ punctuation.section.sequence.begin.twig
 |             ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |              ^ punctuation.separator.sequence.twig
-|                ^^^^^^^^^^^^^^ meta.mapping.twig
-|                ^ punctuation.section.mapping.begin.twig
-|                 ^^^^^ meta.string.twig string.quoted.double.twig
+|                ^ meta.mapping.twig punctuation.section.mapping.begin.twig
+|                 ^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.double.twig
 |                 ^ punctuation.definition.string.begin.twig
 |                     ^ punctuation.definition.string.end.twig
-|                      ^ punctuation.separator.mapping.key-value.twig
+|                      ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                       ^^^^^^ meta.mapping.value.twig
 |                        ^^^^^ meta.string.twig string.quoted.double.twig
 |                        ^ punctuation.definition.string.begin.twig
 |                            ^ punctuation.definition.string.end.twig
-|                             ^ punctuation.section.mapping.end.twig
-|                              ^ punctuation.section.sequence.end.twig
-|                                ^^ punctuation.definition.statement.end.twig
+|                             ^ meta.mapping.twig punctuation.section.mapping.end.twig
 
 {# https://twig.symfony.com/doc/3.x/templates.html#math #}
 {{ 1 + 1 }}
@@ -457,7 +606,11 @@
 
 {# https://twig.symfony.com/doc/3.x/templates.html#logic #}
 {{ and }}{{ or }}{{ not }}{{ and not }}
-|  ^^^ keyword.operator.word.logical.twig
+|  ^^^ keyword.operator.logical.twig
+|           ^^ keyword.operator.logical.twig
+|                   ^^^ keyword.operator.logical.twig
+|                            ^^^ keyword.operator.logical.twig
+|                                ^^^ keyword.operator.logical.twig
 
 |==============================================================================
 | Comparisons
@@ -486,26 +639,26 @@
 {# https://twig.symfony.com/doc/3.x/templates.html#containment-operator #}
 {{ 1 in [1, 2, 3] }}
 |  ^ meta.number.integer.decimal.twig constant.numeric.value.twig
-|    ^^ keyword.control.in.twig
+|    ^^ keyword.operator.iteration.twig
 |       ^^^^^^^^^ meta.sequence.array.twig
 
 {{ 'cd' in 'abcde' }}
 |  ^^^^ meta.string.twig string.quoted.single.twig
-|       ^^ keyword.control.in.twig
+|       ^^ keyword.operator.iteration.twig
 |          ^^^^^^^ meta.string.twig string.quoted.single.twig
 
 {% if 1 not in [1, 2, 3] %}
 |     ^ meta.number.integer.decimal.twig constant.numeric.value.twig
-|       ^^^ keyword.operator.word.logical.twig
-|           ^^ keyword.control.in.twig
+|       ^^^ keyword.operator.logical.twig
+|           ^^ keyword.operator.iteration.twig
 |              ^^^^^^^^^ meta.sequence.array.twig
 
 {# is equivalent to #}
 {% if not (1 in [1, 2, 3]) %}
 |  ^^ keyword.control.conditional.if.twig
-|     ^^^ keyword.operator.word.logical.twig
+|     ^^^ keyword.operator.logical.twig
 |         ^^^^^^^^^^^^^^^^ meta.group.twig
-|            ^^ keyword.control.in.twig
+|            ^^ keyword.operator.iteration.twig
 |               ^^^^^^^^^ meta.sequence.array.twig
 
 |==============================================================================
@@ -516,7 +669,7 @@
 
 {# arrow function #}
 {% set hasOnlyOver38 = sizes has every v => v > 38 %}
-|  ^^^^ keyword.declaration.twig
+|  ^^^ keyword.declaration.variable.twig
 |      ^^^^^^^^^^^^^ meta.declaration.identifier.twig variable.other.twig
 |                    ^ keyword.operator.assignment.twig
 |                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.declaration.value.twig
@@ -535,32 +688,32 @@
 
 {# https://twig.symfony.com/doc/3.x/filters/reduce.html #}
 {{ numbers|reduce((carry, v, k) => carry + v * k, 10) }}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^^^^^ variable.other.twig
-|         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.filter.twig
+|         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.filter.twig
 |         ^ keyword.operator.pipe.twig
 |          ^^^^^^ meta.function-call.identifier.twig support.function.filter.twig
-|                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                ^ punctuation.section.group.begin.twig
+|                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
+|                ^ punctuation.section.arguments.begin.twig
 |                 ^^^^^^^^^^^^^ meta.function.parameters.twig
-|                 ^ punctuation.section.sequence.begin.twig
+|                 ^ punctuation.section.parameters.begin.twig
 |                  ^^^^^ variable.parameter.twig
 |                       ^ punctuation.separator.sequence.twig
 |                         ^ variable.parameter.twig
 |                          ^ punctuation.separator.sequence.twig
 |                            ^ variable.parameter.twig
-|                             ^ punctuation.section.sequence.end.twig
+|                             ^ punctuation.section.parameters.end.twig
 |                               ^^ keyword.declaration.function.arrow.twig
 |                                  ^^^^^ variable.other.twig
 |                                        ^ keyword.operator.arithmetic.twig
 |                                          ^ variable.other.twig
 |                                            ^ keyword.operator.arithmetic.twig
 |                                              ^ variable.other.twig
-|                                               ^ punctuation.separator.parameters.twig
+|                                               ^ punctuation.separator.sequence.twig
 |                                                 ^^ meta.number.integer.decimal.twig constant.numeric.value.twig
-|                                                   ^ punctuation.section.group.end.twig
-|                                                     ^^ punctuation.definition.expression.end.twig
+|                                                   ^ punctuation.section.arguments.end.twig
+|                                                     ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
 | Test operator
@@ -570,20 +723,23 @@
 {# find out if a variable is odd #}
 
 {{ name is odd }}
-|^^^^^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
+|^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^^ variable.other.twig
 |       ^^ keyword.operator.comparison.test.twig
 |          ^^^ support.function.test.twig
-|              ^^ punctuation.definition.expression.end.twig
+|              ^^ punctuation.section.embedded.end.twig
 
 {{ name is odd and name != '' }}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|^ punctuation.definition.expression.begin.twig
-|              ^ - variable.function.test.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^ - meta.expression.test
+|       ^^^^^^^ meta.expression.test.twig
+|              ^^^^^^^^^^^^^^^ - meta.expression.test
+|              ^^^ keyword.operator.logical.twig
 
 {% if loop.index is divisible by(3) ? foo : bar %}{% endif %}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
 |                ^^ keyword.operator.comparison.test.twig
 |                   ^^^^^^^^^^^^ support.function.test.twig
 |                               ^^^ meta.function-call.arguments.twig
@@ -593,47 +749,44 @@
 {# Custom test #}
 {{ name is weird }}
 |       ^^ keyword.operator.comparison.test.twig
-|          ^^^^^ meta.function.test.twig meta.function-call.identifier.twig variable.function.test.twig
+|          ^^^^^ meta.function-call.identifier.twig variable.function.test.twig
 
 {% if post.status is constant('Post::PUBLISHED') %}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^ keyword.control.conditional.if.twig
 |     ^^^^ variable.other.twig
 |         ^ punctuation.accessor.dot.twig
-|          ^^^^^^ meta.property.object.twig
-|                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.test.twig
+|          ^^^^^^ variable.other.member.twig
 |                 ^^ keyword.operator.comparison.test.twig
 |                    ^^^^^^^^ support.function.test.twig
-|                            ^^^^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                            ^ punctuation.section.group.begin.twig
+|                            ^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
+|                            ^ punctuation.section.arguments.begin.twig
 |                             ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
-|                                              ^ punctuation.section.group.end.twig
-|                                                ^^ punctuation.definition.statement.end.twig
+|                                              ^ punctuation.section.arguments.end.twig
+|                                                ^^ punctuation.section.embedded.end.twig
 
 {% if post.status is not constant('Post::PUBLISHED') %}
-|                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.test.twig
 |                 ^^ keyword.operator.comparison.test.twig
-|                    ^^^ keyword.operator.word.logical.twig
+|                    ^^^ keyword.operator.logical.twig
 |                        ^^^^^^^^ support.function.test.twig
-|                                ^^^^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                                ^ punctuation.section.group.begin.twig
+|                                ^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
+|                                ^ punctuation.section.arguments.begin.twig
 |                                 ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
-|                                                  ^ punctuation.section.group.end.twig
-|                                                    ^^ punctuation.definition.statement.end.twig
+|                                                  ^ punctuation.section.arguments.end.twig
+|                                                    ^^ punctuation.section.embedded.end.twig
 
 {# is equivalent to #}
 {% if not (post.status is constant('Post::PUBLISHED')) %}
-|         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.twig
+|         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.group.twig
 |         ^ punctuation.section.group.begin.twig
-|                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.test.twig
 |                      ^^ keyword.operator.comparison.test.twig
 |                         ^^^^^^^^ support.function.test.twig
-|                                 ^^^^^^^^^^^^^^^^^^^ meta.group.twig meta.function-call.arguments.twig
-|                                 ^ punctuation.section.group.begin.twig
+|                                 ^^^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig
+|                                 ^ punctuation.section.arguments.begin.twig
 |                                  ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
-|                                                   ^ punctuation.section.group.end.twig
-|                                                      ^^ punctuation.definition.statement.end.twig
+|                                                   ^ punctuation.section.arguments.end.twig
+|                                                      ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
 | Other Operators
@@ -643,7 +796,7 @@
 {% for i in 1..5 %}{{ i }}{% endfor %}
 |  ^^^ keyword.control.loop.for.twig
 |      ^ variable.other.twig
-|        ^^ keyword.control.loop.for.in.twig
+|        ^^ keyword.operator.iteration.twig
 |           ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |            ^^ keyword.operator.range.twig
 |              ^ meta.number.integer.decimal.twig constant.numeric.value.twig
@@ -655,7 +808,7 @@
 |    ^^ keyword.operator.range.twig
 |      ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |       ^ punctuation.section.group.end.twig
-|        ^^^^^^^^^^^ meta.function.filter.twig
+|        ^^^^^^^^^^^ meta.filter.twig
 |        ^ keyword.operator.pipe.twig
 
 {{ "Hello" ~ name ~ "!" }}
@@ -673,7 +826,24 @@
 |                ^^^^ meta.string.twig string.quoted.single.twig
 
 {{ foo ?: 'no' }} is the same as {{ foo ? foo : 'no' }}
+|  ^^^ variable.other.twig
+|      ^^ keyword.operator.ternary.twig
+|         ^^^^ meta.string.twig string.quoted.single.twig
+|                                   ^^^ variable.other.twig
+|                                       ^ keyword.operator.ternary.twig
+|                                         ^^^ variable.other.twig
+|                                             ^ keyword.operator.ternary.twig
+|                                               ^^^^ meta.string.twig string.quoted.single.twig
+
 {{ foo ? 'yes' }} is the same as {{ foo ? 'yes' : '' }}
+|  ^^^ variable.other.twig
+|      ^ keyword.operator.ternary.twig
+|        ^^^^^ meta.string.twig string.quoted.single.twig
+|                                   ^^^ variable.other.twig
+|                                       ^ keyword.operator.ternary.twig
+|                                         ^^^^^ meta.string.twig string.quoted.single.twig
+|                                               ^ keyword.operator.ternary.twig
+|                                                 ^^ meta.string.twig string.quoted.single.twig
 
 {# returns the value of foo if it is defined and not null, 'no' otherwise #}
 {{ foo ?? 'no' }}
@@ -693,41 +863,68 @@
 |                                     ^ punctuation.section.sequence.end.twig
 
 {% set ratings = { 'foo': 10, 'bar': 5, ...moreRatings } %}
-|                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.twig
-|                  ^^^^^ meta.string.twig string.quoted.single.twig
-|                       ^ punctuation.separator.mapping.key-value.twig
+|                ^^ meta.mapping.twig - meta.mapping.key
+|                ^ punctuation.section.mapping.begin.twig
+|                  ^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
+|                  ^ punctuation.definition.string.begin.twig
+|                      ^ punctuation.definition.string.end.twig
+|                       ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                        ^^^ meta.mapping.value.twig
 |                         ^^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|                           ^^ meta.mapping.twig
 |                           ^ punctuation.separator.mapping.pair.twig
-|                             ^^^^^ meta.string.twig string.quoted.single.twig
+|                             ^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
 |                             ^ punctuation.definition.string.begin.twig
 |                                 ^ punctuation.definition.string.end.twig
-|                                  ^ punctuation.separator.mapping.key-value.twig
+|                                  ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                                   ^^ meta.mapping.value.twig
 |                                    ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|                                     ^^ meta.mapping.twig
 |                                     ^ punctuation.separator.mapping.pair.twig
+|                                       ^^^^^^^^^^^^^^^ meta.mapping.key.twig
 |                                       ^^^ keyword.operator.spread.twig
-|                                          ^^^^^^^^^^^ variable.other.twig
-|                                                      ^ punctuation.section.mapping.end.twig
+|                                          ^^^^^^^^^^^ meta.path.twig variable.other.twig
+|                                                      ^ meta.mapping.twig punctuation.section.mapping.end.twig
 
 |==============================================================================
 | String Interpolation
 | https://twig.symfony.com/doc/3.x/templates.html#string-interpolation
 |==============================================================================
 
+{{ 'foo #{bar} baz' }}
+|  ^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig - meta.interpolation
+|  ^ punctuation.definition.string.begin.twig
+|                 ^ punctuation.definition.string.end.twig
+
 {{ "foo #{bar} baz" }}
+|  ^^^^^^^^^^^^^^^^ meta.string.twig
+|  ^^^^^ string.quoted.double.twig
+|  ^ punctuation.definition.string.begin.twig
+|       ^^^^^^ meta.interpolation.twig
+|       ^^ punctuation.section.interpolation.begin.twig
+|         ^^^ meta.path.twig variable.other.twig
+|            ^ punctuation.section.interpolation.end.twig
+|             ^^^^^ string.quoted.double.twig
+|                 ^ punctuation.definition.string.end.twig
+
 {{ "foo #{1 + 2} baz" }}
 |  ^^^^^^^^^^^^^^^^^^ meta.string.twig
 |  ^^^^^ string.quoted.double.twig
 |       ^^^^^^^^ - string
 |       ^^^^^^^^ meta.interpolation.twig
-|       ^ punctuation.definition.interpolation.twig
-|        ^ punctuation.section.interpolation.begin.twig
-|         ^^^^^ text.embedded.twig
+|       ^^ punctuation.section.interpolation.begin.twig
 |         ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |           ^ keyword.operator.arithmetic.twig
 |             ^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |              ^ punctuation.section.interpolation.end.twig
 |               ^^^^^ string.quoted.double.twig
 |                   ^ punctuation.definition.string.end.twig
+
+{{ "foo \#{1 + 2} baz" }}
+|  ^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig - meta.interpolation
+|  ^ punctuation.definition.string.begin.twig
+|       ^^ constant.character.escape.twig
+|                    ^ punctuation.definition.string.end.twig
 
 |==============================================================================
 | Whitespace Control
@@ -737,62 +934,44 @@
 {% set value = 'no spaces' %}
 {#- No leading/trailing whitespace -#}
 {%- if true -%}
-|^^^^^^^^^^^^^^ meta.statement.twig
-|^^ punctuation.definition.statement.begin.twig
-| ^ punctuation.definition.modifier.twig
-|           ^^^ punctuation.definition.statement.end.twig
-|           ^ punctuation.definition.modifier.twig
+|^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^^ punctuation.section.embedded.begin.twig
+|   ^^ keyword.control.conditional.if.twig
+|      ^^^^ constant.language.boolean.true.twig
+|           ^^^ punctuation.section.embedded.end.twig
     {{- value -}}
-|   ^^^^^^^^^^^^^ meta.expression.twig
-|   ^^^ punctuation.definition.expression.begin.twig
-|     ^ punctuation.definition.modifier.twig
-|       ^^^^^ variable.other.twig
-|             ^^^ punctuation.definition.expression.end.twig
-|             ^ punctuation.definition.modifier.twig
+|   ^^^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^^ punctuation.section.embedded.begin.twig
+|       ^^^^^ meta.path.twig variable.other.twig
+|             ^^^ punctuation.section.embedded.end.twig
 {%- endif -%}
 {# output 'no spaces' #}
 
 <li>
     {{ value }}    </li>
+|   ^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^ punctuation.section.embedded.begin.twig
+|     ^^^^^^^ source.twig.embedded
+|      ^^^^^ meta.path.twig variable.other.twig
+|            ^^ punctuation.section.embedded.end.twig
 {# outputs '<li>\n    no spaces    </li>' #}
 
 <li>
     {{- value }}    </li>
+|   ^^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^^ punctuation.section.embedded.begin.twig
+|      ^^^^^^^ source.twig.embedded
+|       ^^^^^ meta.path.twig variable.other.twig
+|             ^^ punctuation.section.embedded.end.twig
 {# outputs '<li>no spaces    </li>' #}
 
 <li>
     {{~ value }}    </li>
-|   ^^^^^^^^^^^^ meta.expression.twig
-|   ^^^ punctuation.definition.expression.begin.twig
-|     ^ punctuation.definition.modifier.twig
-|       ^^^^^ variable.other.twig
-|             ^^ punctuation.definition.expression.end.twig
+|   ^^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^^ punctuation.section.embedded.begin.twig
+|       ^^^^^ meta.path.twig variable.other.twig
+|             ^^ punctuation.section.embedded.end.twig
 {# outputs '<li>\nno spaces    </li>' #}
-
-{% apply spaceless %}
-    <div>
-        <strong>foo bar</strong>
-    </div>
-{% endapply %}
-
-|==============================================================================
-| Verbatim
-| https://twig.symfony.com/doc/3.x/tags/verbatim.html
-|==============================================================================
-
-{% verbatim %}
-|^^^^^^^^^^^^^ meta.statement.twig
-|^ punctuation.definition.statement.begin.twig
-|  ^^^^^^^^ keyword.control.twig
-|           ^^ punctuation.definition.statement.end.twig
-    <ul> bla
-|^^^^^^^^^^^ constant.character.twig
-    {% for item in seq %}
-|^^^^^^^^^^^^^^^^^^^^^^^^ constant.character.twig
-        <li>{{ item }}</li>
-    {% endfor %}
-    </ul>
-{% endverbatim %}
 
 |==============================================================================
 | For loops
@@ -802,64 +981,378 @@
 {# https://twig.symfony.com/doc/3.x/tags/for.html#the-loop-variable #}
 {% for user in users %}
     {{ loop.index }} - {{ user.username }}
+|   ^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|   ^^ punctuation.section.embedded.begin.twig
 |      ^^^^ variable.language.twig
 |          ^ punctuation.accessor.dot.twig
-|           ^^^^^ variable.other.twig
+|           ^^^^^ variable.language.member.twig
+|                 ^^ punctuation.section.embedded.end.twig
+|                      ^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig
+|                      ^^ punctuation.section.embedded.begin.twig
+|                         ^^^^^^^^^^^^^ meta.path.twig
 |                         ^^^^ variable.other.twig
-|                              ^^^^^^^^ - variable.other.twig
+|                             ^ punctuation.accessor.dot.twig
+|                              ^^^^^^^^ variable.other.member.twig
+|                                       ^^ punctuation.section.embedded.end.twig
 {% endfor %}
+|^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^^^ keyword.control.loop.for.end.twig
+|         ^^ punctuation.section.embedded.end.twig
 
 {# https://twig.symfony.com/doc/3.x/tags/for.html#iterating-over-keys #}
 <ul>
     {% for key in users|keys %}
-|      ^^^^^^^^^^^^^^^^^^^^^^ meta.statement.loop.for.twig
+|   ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|   ^^ punctuation.section.embedded.begin.twig
 |      ^^^ keyword.control.loop.for.twig
-|          ^^^ variable.other.twig
-|              ^^ keyword.control.loop.for.in.twig
-|                 ^^^^^ variable.other.twig
-|                      ^^^^^ meta.function.filter.twig
+|          ^^^ meta.path.twig variable.other.twig
+|              ^^ keyword.operator.iteration.twig
+|                 ^^^^^ meta.path.twig variable.other.twig
+|                      ^^^^^^ meta.filter.twig
 |                      ^ keyword.operator.pipe.twig
 |                       ^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                            ^^ punctuation.section.embedded.end.twig
         <li>{{ key }}</li>
     {% endfor %}
+|^^^^^^^^^^^^^^^ meta.template.twig
+|   ^^^^^^^^^^^^ meta.embedded.statement.twig
+|   ^^ punctuation.section.embedded.begin.twig
+|      ^^^^^^ keyword.control.loop.for.end.twig
+|             ^^ punctuation.section.embedded.end.twig
 </ul>
 
 {# https://twig.symfony.com/doc/3.x/tags/for.html#iterating-over-keys-and-values #}
 {% for key, user in users %}
-|  ^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.loop.for.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
 |  ^^^ keyword.control.loop.for.twig
-|      ^^^ variable.other.twig
+|      ^^^ meta.path.twig variable.other.twig
 |         ^ punctuation.separator.sequence.twig
-|           ^^^^ variable.other.twig
-|                ^^ keyword.control.loop.for.in.twig
-|                   ^^^^^ variable.other.twig
-|                         ^^ punctuation.definition.statement.end.twig
+|           ^^^^ meta.path.twig variable.other.twig
+|                ^^ keyword.operator.iteration.twig
+|                   ^^^^^ meta.path.twig variable.other.twig
+|                         ^^ punctuation.section.embedded.end.twig
     <li>{{ key }}: {{ user.username|e }}</li>
 {% endfor %}
+|^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^^^ keyword.control.loop.for.end.twig
+|         ^^ punctuation.section.embedded.end.twig
 
 {# https://twig.symfony.com/doc/3.x/tags/for.html#iterating-over-a-subset #}
 <ul>
     {% for user in users|slice(0, 10) %}
-|      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.loop.for.twig
+|   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|   ^^ punctuation.section.embedded.begin.twig
 |      ^^^ keyword.control.loop.for.twig
-|          ^^^^ variable.other.twig
-|               ^^ keyword.control.loop.for.in.twig
-|                  ^^^^^ variable.other.twig
-|                       ^^^^^^^^^^^^^ meta.function.filter.twig
-|                             ^^^^^^^ meta.group.twig meta.function-call.arguments.twig
+|          ^^^^ meta.path.twig variable.other.twig
+|               ^^ keyword.operator.iteration.twig
+|                  ^^^^^ meta.path.twig variable.other.twig
+|                       ^^^^^^^^^^^^^ meta.filter.twig
+|                       ^ keyword.operator.pipe.twig
+|                        ^^^^^ meta.function-call.identifier.twig support.function.filter.twig
+|                             ^^^^^^^ meta.function-call.arguments.twig
+|                             ^ punctuation.section.arguments.begin.twig
+|                              ^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|                               ^ punctuation.separator.sequence.twig
+|                                 ^^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|                                   ^ punctuation.section.arguments.end.twig
+|                                     ^^ punctuation.section.embedded.end.twig
         <li>{{ user.username|e }}</li>
     {% endfor %}
+|   ^^^^^^^^^^^^ meta.embedded.statement.twig
+|   ^^ punctuation.section.embedded.begin.twig
+|      ^^^^^^ keyword.control.loop.for.end.twig
+|             ^^ punctuation.section.embedded.end.twig
 </ul>
 
 |==============================================================================
-| Extends, Use
+| Macros
+| https://twig.symfony.com/doc/3.x/tags/macro.html#macro
+|==============================================================================
+
+{% macro input(name, value, type = "text", size = 20) %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^ meta.function.twig keyword.declaration.macro.twig
+|       ^^^^^^ meta.function.identifier.twig
+|        ^^^^^ entity.name.function.macro.twig
+|             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters.twig
+|             ^ punctuation.section.parameters.begin.twig
+|              ^^^^ meta.path.twig variable.other.twig
+|                  ^ punctuation.separator.sequence.twig
+|                    ^^^^^ meta.path.twig variable.other.twig
+|                         ^ punctuation.separator.sequence.twig
+|                           ^^^^ variable.parameter.twig
+|                                ^ keyword.operator.assignment.twig
+|                                  ^^^^^^ meta.string.twig string.quoted.double.twig
+|                                  ^ punctuation.definition.string.begin.twig
+|                                       ^ punctuation.definition.string.end.twig
+|                                        ^ punctuation.separator.sequence.twig
+|                                          ^^^^ variable.parameter.twig
+|                                               ^ keyword.operator.assignment.twig
+|                                                 ^^ meta.number.integer.decimal.twig constant.numeric.value.twig
+|                                                   ^ punctuation.section.parameters.end.twig
+|                                                     ^^ punctuation.section.embedded.end.twig
+
+    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}"/>
+|   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag
+|   ^ punctuation.definition.tag.begin.html
+|    ^^^^^ entity.name.tag.inline.form.html
+|          ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+|                            ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+|                                              ^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+|                                                                    ^^^^^^^^^^^^^^^^ meta.attribute-with-value.html
+|          ^^^^ entity.other.attribute-name.html
+|              ^ punctuation.separator.key-value.html
+|               ^^^^^^^^^^^^ meta.string.html
+|               ^ string.quoted.double.html punctuation.definition.string.begin.html
+|                ^^^^^^^^^^ meta.embedded.expression.twig
+|                ^^ punctuation.section.embedded.begin.twig
+|                  ^^^^^^ source.twig.embedded
+|                   ^^^^ meta.path.twig variable.other.twig
+|                        ^^ punctuation.section.embedded.end.twig
+|                          ^ string.quoted.double.html punctuation.definition.string.end.html
+|                            ^^^^ entity.other.attribute-name.html
+|                                ^ punctuation.separator.key-value.html
+|                                 ^^^^^^^^^^^^ meta.string.html
+|                                 ^ string.quoted.double.html punctuation.definition.string.begin.html
+|                                  ^^^^^^^^^^ meta.embedded.expression.twig
+|                                  ^^ punctuation.section.embedded.begin.twig
+|                                    ^^^^^^ source.twig.embedded
+|                                     ^^^^ meta.path.twig variable.other.twig
+|                                          ^^ punctuation.section.embedded.end.twig
+|                                            ^ string.quoted.double.html punctuation.definition.string.end.html
+|                                              ^^^^^ entity.other.attribute-name.html
+|                                                   ^ punctuation.separator.key-value.html
+|                                                    ^^^^^^^^^^^^^^^ meta.string.html
+|                                                    ^ string.quoted.double.html punctuation.definition.string.begin.html
+|                                                     ^^^^^^^^^^^^^ meta.embedded.expression.twig
+|                                                     ^^ punctuation.section.embedded.begin.twig
+|                                                       ^^^^^^^^^ source.twig.embedded
+|                                                        ^^^^^ meta.path.twig variable.other.twig
+|                                                             ^^^ meta.filter.twig
+|                                                             ^ keyword.operator.pipe.twig
+|                                                              ^ meta.function-call.identifier.twig variable.function.filter.twig
+|                                                                ^^ punctuation.section.embedded.end.twig
+|                                                                  ^ string.quoted.double.html punctuation.definition.string.end.html
+|                                                                    ^^^^ entity.other.attribute-name.html
+|                                                                        ^ punctuation.separator.key-value.html
+|                                                                         ^^^^^^^^^^^^ meta.string.html
+|                                                                         ^ string.quoted.double.html punctuation.definition.string.begin.html
+|                                                                          ^^^^^^^^^^ meta.embedded.expression.twig
+|                                                                          ^^ punctuation.section.embedded.begin.twig
+|                                                                            ^^^^^^ source.twig.embedded
+|                                                                             ^^^^ meta.path.twig variable.other.twig
+|                                                                                  ^^ punctuation.section.embedded.end.twig
+|                                                                                    ^ string.quoted.double.html punctuation.definition.string.end.html
+|                                                                                     ^^ punctuation.definition.tag.end.html
+
+{% endmacro input %}
+|^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^ keyword.declaration.macro.end.twig
+|           ^^^^^ variable.other.twig
+|                 ^^ punctuation.section.embedded.end.twig
+
+|==============================================================================
+| Importing Macros
+| https://twig.symfony.com/doc/3.x/tags/macro.html#importing-macros
+|==============================================================================
+
+{% import "forms.twig" as forms %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.import.twig
+|  ^^^^^^ keyword.control.import.twig
+|         ^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
+|         ^ punctuation.definition.string.begin.twig
+|                    ^ punctuation.definition.string.end.twig
+|                      ^^ keyword.operator.assignment.as.twig
+|                         ^^^^^ meta.path.twig variable.other.twig
+|                               ^^ punctuation.section.embedded.end.twig
+
+{% from 'forms.html' import input as input_field, textarea %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.import.twig
+|  ^^^^ keyword.control.import.from.twig
+|       ^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|       ^ punctuation.definition.string.begin.twig
+|                  ^ punctuation.definition.string.end.twig
+|                    ^^^^^^ keyword.control.import.twig
+|                           ^^^^^ meta.path.twig variable.other.twig
+|                                 ^^ keyword.operator.assignment.as.twig
+|                                    ^^^^^^^^^^^ meta.path.twig variable.other.twig
+|                                               ^ punctuation.separator.sequence.twig
+|                                                 ^^^^^^^^ meta.path.twig variable.other.twig
+|                                                          ^^ punctuation.section.embedded.end.twig
+
+|==============================================================================
+| Include
+| https://twig.symfony.com/doc/3.x/tags/include.html
+|==============================================================================
+
+{% include 'header.html' %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                      ^ punctuation.definition.string.end.twig
+|                        ^^ punctuation.section.embedded.end.twig
+
+{# template.html will have access to the variables from the current context and the additional ones provided #}
+{% include 'template.html' with {'name': 'Fabien'} %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                        ^ punctuation.definition.string.end.twig
+|                          ^^^^ keyword.other.twig
+|                               ^ meta.mapping.twig - meta.mapping.key
+|                               ^ punctuation.section.mapping.begin.twig
+|                                ^^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
+|                                ^ punctuation.definition.string.begin.twig
+|                                     ^ punctuation.definition.string.end.twig
+|                                      ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                                        ^^^^^^^^ meta.mapping.value.twig meta.string.twig string.quoted.single.twig
+|                                        ^ punctuation.definition.string.begin.twig
+|                                               ^ punctuation.definition.string.end.twig
+|                                                ^ punctuation.section.mapping.end.twig
+|                                                  ^^ punctuation.section.embedded.end.twig
+
+{# only the name variable will be accessible #}
+{% include 'template.html' with {'name': 'Fabien'} only %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                        ^ punctuation.definition.string.end.twig
+|                          ^^^^ keyword.other.twig
+|                               ^ meta.mapping.twig punctuation.section.mapping.begin.twig
+|                                ^^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
+|                                ^ punctuation.definition.string.begin.twig
+|                                     ^ punctuation.definition.string.end.twig
+|                                      ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                                       ^^^^^^^^^ meta.mapping.value.twig
+|                                        ^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                                        ^ punctuation.definition.string.begin.twig
+|                                               ^ punctuation.definition.string.end.twig
+|                                                ^ meta.mapping.twig punctuation.section.mapping.end.twig
+|                                                  ^^^^ keyword.other.twig
+|                                                       ^^ punctuation.section.embedded.end.twig
+{# no variables will be accessible #}
+{% include 'template.html' only %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                        ^ punctuation.definition.string.end.twig
+|                          ^^^^ keyword.other.twig
+|                               ^^ punctuation.section.embedded.end.twig
+
+{% include ajax ? 'ajax.html' : 'not_ajax.html' %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^ meta.path.twig variable.other.twig
+|               ^ keyword.operator.ternary.twig
+|                 ^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                 ^ punctuation.definition.string.begin.twig
+|                           ^ punctuation.definition.string.end.twig
+|                             ^ keyword.operator.ternary.twig
+|                               ^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                               ^ punctuation.definition.string.begin.twig
+|                                             ^ punctuation.definition.string.end.twig
+|                                               ^^ punctuation.section.embedded.end.twig
+
+{% include 'sidebar.html' ignore missing %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                       ^ punctuation.definition.string.end.twig
+|                         ^^^^^^ keyword.other.twig
+|                                ^^^^^^^ keyword.other.twig
+|                                        ^^ punctuation.section.embedded.end.twig
+
+{% include 'sidebar.html' ignore missing with {'name': 'Fabien'} %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                       ^ punctuation.definition.string.end.twig
+|                         ^^^^^^ keyword.other.twig
+|                                ^^^^^^^ keyword.other.twig
+|                                        ^^^^ keyword.other.twig
+|                                             ^ meta.mapping.twig punctuation.section.mapping.begin.twig
+|                                              ^^^^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig
+|                                              ^ punctuation.definition.string.begin.twig
+|                                                   ^ punctuation.definition.string.end.twig
+|                                                    ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|                                                     ^^^^^^^^^ meta.mapping.value.twig
+|                                                      ^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                                                      ^ punctuation.definition.string.begin.twig
+|                                                             ^ punctuation.definition.string.end.twig
+|                                                              ^ meta.mapping.twig punctuation.section.mapping.end.twig
+|                                                                ^^ punctuation.section.embedded.end.twig
+
+{% include 'sidebar.html' ignore missing only %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|          ^ punctuation.definition.string.begin.twig
+|                       ^ punctuation.definition.string.end.twig
+|                         ^^^^^^ keyword.other.twig
+|                                ^^^^^^^ keyword.other.twig
+|                                        ^^^^ keyword.other.twig
+|                                             ^^ punctuation.section.embedded.end.twig
+
+{% include ['page_detailed.html', 'page.html'] %}
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.control.import.include.twig
+|          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig
+|          ^ punctuation.section.sequence.begin.twig
+|           ^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|           ^ punctuation.definition.string.begin.twig
+|                              ^ punctuation.definition.string.end.twig
+|                               ^ punctuation.separator.sequence.twig
+|                                 ^^^^^^^^^^^ meta.string.twig string.quoted.single.twig
+|                                 ^ punctuation.definition.string.begin.twig
+|                                           ^ punctuation.definition.string.end.twig
+|                                            ^ punctuation.section.sequence.end.twig
+|                                              ^^ punctuation.section.embedded.end.twig
+
+|==============================================================================
+| Extends
 | https://twig.symfony.com/doc/3.x/tags/extends.html
-| https://twig.symfony.com/doc/3.x/tags/use.html
 |==============================================================================
 
 {# https://twig.symfony.com/doc/3.x/tags/extends.html#block-shortcuts #}
 {% block title page_title|title %}
-|                        ^^^^^^ meta.function.filter.twig
+|                        ^^^^^^ meta.filter.twig
 
 {# https://twig.symfony.com/doc/3.x/tags/extends.html#dynamic-inheritance #}
 {% extends ['layout.html', 'base_layout.html'] %}
@@ -876,82 +1369,495 @@
 {% extends "/_skeleton.html" %}
 |          ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 
+|==============================================================================
+| Use
+| https://twig.symfony.com/doc/3.x/tags/use.html
+|==============================================================================
+
 {# https://twig.symfony.com/doc/3.x/tags/use.html #}
 {% use "blocks.html" with sidebar as base_sidebar, title as base_title %}
-|  ^^^ keyword.control.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|  ^^^ keyword.control.import.use.twig
 |      ^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 |                    ^^^^ keyword.other.twig
 |                         ^^^^^^^ variable.other.twig
-|                                 ^^ keyword.other.twig
+|                                 ^^ keyword.operator.assignment.as.twig
 |                                    ^^^^^^^^^^^^ variable.other.twig
 |                                                ^ punctuation.separator.sequence.twig
 |                                                  ^^^^^ variable.other.twig
-|                                                        ^^ keyword.other.twig
+|                                                        ^^ keyword.operator.assignment.as.twig
 |                                                           ^^^^^^^^^^ variable.other.twig
 
 {% use "blocks.html" with sidebar as parent_sidebar %}
-|  ^^^ keyword.control.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|  ^^^ keyword.control.import.use.twig
 |      ^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
 |                    ^^^^ keyword.other.twig
 |                         ^^^^^^^ variable.other.twig
-|                                 ^^ keyword.other.twig
+|                                 ^^ keyword.operator.assignment.as.twig
 |                                    ^^^^^^^^^^^^^^ variable.other.twig
+
+|==============================================================================
+| Verbatim
+| https://twig.symfony.com/doc/3.x/tags/verbatim.html
+|==============================================================================
+
+{% verbatim %}
+|^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^^^^^ keyword.control.twig
+|           ^^ punctuation.section.embedded.end.twig
+    {% for item in seq %}
+|   ^^^^^^^^^^^^^^^^^^^^^ - meta.embedded
+        <li>{{ item }}</li>
+|       ^^^^^^^^^^^^^^^^^^^ - meta.embedded
+    {% endfor %}
+    ^^^^^^^^^^^^ - meta.embedded
+{% endverbatim %}
+|^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^^^^^^^^ keyword.control.twig
+|              ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
 | With
 | https://twig.symfony.com/doc/3.x/tags/with.html
 |==============================================================================
 
-{% with { foo: 42 } only %}
-|^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
+{% with %}
+| <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig
+|^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^ source.twig.embedded
 |  ^^^^ keyword.other.twig
-|       ^^^^^^^^^^^ meta.mapping.twig
+|       ^^ punctuation.section.embedded.end.twig
+    {% set value = 42 %}
+    {{ value }} {# value is 42 here #}
+{% endwith %}
+| <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig
+|^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.other.twig
+|          ^^ punctuation.section.embedded.end.twig
+
+{% set bar = 0 %}
+{% with { foo: 42 } only %}
+| <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig
+|^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+|  ^^^^ keyword.other.twig
+|       ^^ meta.mapping.twig
 |       ^ punctuation.section.mapping.begin.twig
-|         ^^^ variable.other.twig
-|            ^ punctuation.separator.mapping.key-value.twig
+|         ^^^ meta.mapping.key.twig variable.other.twig
+|            ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig
+|             ^^^^ meta.mapping.value.twig
 |              ^^ meta.number.integer.decimal.twig constant.numeric.value.twig
 |                 ^ punctuation.section.mapping.end.twig
 |                   ^^^^ keyword.other.twig
-|                        ^^ punctuation.definition.statement.end.twig
+|                        ^^ punctuation.section.embedded.end.twig
     {# only foo is defined #}
     {# bar is not defined #}
 {% endwith %}
+| <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig
+|^^^^^^^^^^^^ meta.embedded.statement.twig
+|^ punctuation.section.embedded.begin.twig
+| ^^^^^^^^^ source.twig.embedded
+|  ^^^^^^^ keyword.other.twig
+|          ^^ punctuation.section.embedded.end.twig
 
 |==============================================================================
-| Inside HTML, CSS, JS
+| format strings
+| https://twig.symfony.com/doc/3.x/filters/format.html
+|   using PHP's sprintf notation
 |==============================================================================
 
-<div data-{{ custom_attr }} class="class {{ var|convert_encoding }}"></div>
-|         ^^^^^^^^^^^^^^^^^ - entity.other.attribute-name.html
-|         ^^^^^^^^^^^^^^^^^ meta.expression.twig
-|                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.expression.twig
-|                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^ - meta.string
+{{ 'format: %b %d %c %d %e %E %f %F %g %G %h %H %o %s %u %x %X %%' }}
+|           ^ punctuation.definition.placeholder.php
+|           ^^ constant.other.placeholder.php
+|             ^ - constant.other.placeholder - punctuation
+|              ^ punctuation.definition.placeholder.php
+|              ^^ constant.other.placeholder.php
+|                ^ - constant.other.placeholder - punctuation
+|                 ^ punctuation.definition.placeholder.php
+|                 ^^ constant.other.placeholder.php
+|                   ^ - constant.other.placeholder - punctuation
+|                    ^ punctuation.definition.placeholder.php
+|                    ^^ constant.other.placeholder.php
+|                      ^ - constant.other.placeholder - punctuation
+|                       ^ punctuation.definition.placeholder.php
+|                       ^^ constant.other.placeholder.php
+|                         ^ - constant.other.placeholder - punctuation
+|                          ^ punctuation.definition.placeholder.php
+|                          ^^ constant.other.placeholder.php
+|                            ^ - constant.other.placeholder - punctuation
+|                             ^ punctuation.definition.placeholder.php
+|                             ^^ constant.other.placeholder.php
+|                               ^ - constant.other.placeholder - punctuation
+|                                ^ punctuation.definition.placeholder.php
+|                                ^^ constant.other.placeholder.php
+|                                  ^ - constant.other.placeholder - punctuation
+|                                   ^ punctuation.definition.placeholder.php
+|                                   ^^ constant.other.placeholder.php
+|                                     ^ - constant.other.placeholder - punctuation
+|                                      ^ punctuation.definition.placeholder.php
+|                                      ^^ constant.other.placeholder.php
+|                                        ^ - constant.other.placeholder - punctuation
+|                                         ^ punctuation.definition.placeholder.php
+|                                         ^^ constant.other.placeholder.php
+|                                           ^ - constant.other.placeholder - punctuation
+|                                            ^ punctuation.definition.placeholder.php
+|                                            ^^ constant.other.placeholder.php
+|                                              ^ - constant.other.placeholder - punctuation
+|                                               ^ punctuation.definition.placeholder.php
+|                                               ^^ constant.other.placeholder.php
+|                                                 ^ - constant.other.placeholder - punctuation
+|                                                  ^ punctuation.definition.placeholder.php
+|                                                  ^^ constant.other.placeholder.php
+|                                                    ^ - constant.other.placeholder - punctuation
+|                                                     ^ punctuation.definition.placeholder.php
+|                                                     ^^ constant.other.placeholder.php
+|                                                       ^ - constant.other.placeholder - punctuation
+|                                                        ^ punctuation.definition.placeholder.php
+|                                                        ^^ constant.other.placeholder.php
+|                                                          ^ - constant.other.placeholder - punctuation
+|                                                           ^ punctuation.definition.placeholder.php
+|                                                           ^^ constant.other.placeholder.php
+|                                                             ^ - constant.other.placeholder - punctuation
+|                                                              ^^ constant.character.escape.php - punctuation
+|                                                                ^ - constant
 
-<style type="text/css">
-    div {
-        color: {{ blue|escape }} {# a comment #};
-|              ^^^^^^^^^^^^^^^^^ meta.expression.twig
-|              ^^^^^^^^^^^^^^^^^ - meta.property-list.css
-|              ^^^^^^^^^^^^^^^^^ - meta.property-value.css
-|                                ^^^^^^^^^^^^^^^ comment.block.twig
-        {% block style %}{% endblock %}
-|       ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.statement.twig
-    }
-</style>
+{{ "format: %b %d %c %d %e %E %f %F %g %G %h %H %o %s %u %x %X %%" }}
+|           ^ punctuation.definition.placeholder.php
+|           ^^ constant.other.placeholder.php
+|             ^ - constant.other.placeholder - punctuation
+|              ^ punctuation.definition.placeholder.php
+|              ^^ constant.other.placeholder.php
+|                ^ - constant.other.placeholder - punctuation
+|                 ^ punctuation.definition.placeholder.php
+|                 ^^ constant.other.placeholder.php
+|                   ^ - constant.other.placeholder - punctuation
+|                    ^ punctuation.definition.placeholder.php
+|                    ^^ constant.other.placeholder.php
+|                      ^ - constant.other.placeholder - punctuation
+|                       ^ punctuation.definition.placeholder.php
+|                       ^^ constant.other.placeholder.php
+|                         ^ - constant.other.placeholder - punctuation
+|                          ^ punctuation.definition.placeholder.php
+|                          ^^ constant.other.placeholder.php
+|                            ^ - constant.other.placeholder - punctuation
+|                             ^ punctuation.definition.placeholder.php
+|                             ^^ constant.other.placeholder.php
+|                               ^ - constant.other.placeholder - punctuation
+|                                ^ punctuation.definition.placeholder.php
+|                                ^^ constant.other.placeholder.php
+|                                  ^ - constant.other.placeholder - punctuation
+|                                   ^ punctuation.definition.placeholder.php
+|                                   ^^ constant.other.placeholder.php
+|                                     ^ - constant.other.placeholder - punctuation
+|                                      ^ punctuation.definition.placeholder.php
+|                                      ^^ constant.other.placeholder.php
+|                                        ^ - constant.other.placeholder - punctuation
+|                                         ^ punctuation.definition.placeholder.php
+|                                         ^^ constant.other.placeholder.php
+|                                           ^ - constant.other.placeholder - punctuation
+|                                            ^ punctuation.definition.placeholder.php
+|                                            ^^ constant.other.placeholder.php
+|                                              ^ - constant.other.placeholder - punctuation
+|                                               ^ punctuation.definition.placeholder.php
+|                                               ^^ constant.other.placeholder.php
+|                                                 ^ - constant.other.placeholder - punctuation
+|                                                  ^ punctuation.definition.placeholder.php
+|                                                  ^^ constant.other.placeholder.php
+|                                                    ^ - constant.other.placeholder - punctuation
+|                                                     ^ punctuation.definition.placeholder.php
+|                                                     ^^ constant.other.placeholder.php
+|                                                       ^ - constant.other.placeholder - punctuation
+|                                                        ^ punctuation.definition.placeholder.php
+|                                                        ^^ constant.other.placeholder.php
+|                                                          ^ - constant.other.placeholder - punctuation
+|                                                           ^ punctuation.definition.placeholder.php
+|                                                           ^^ constant.other.placeholder.php
+|                                                             ^ - constant.other.placeholder - punctuation
+|                                                              ^^ constant.character.escape.php - punctuation
+|                                                                ^ - constant
 
-<script type="text/javascript">
-    var foo = function({{ arg|escape }}) {
-|                      ^^^^^^^^^^^^^^^^ meta.expression.twig
-|                      ^^^^^^^^^^^^^^^^ - meta.function.parameters.js
-        return;
-    }
+{{ 'format: %5$- .9f | %-.9g | %+0d | %\'ff' }}
+|           ^ punctuation.definition.placeholder.php
+|           ^^^^^^^^ constant.other.placeholder.php
+|                   ^^^ - constant
+|                      ^ punctuation.definition.placeholder.php
+|                      ^^^^^ constant.other.placeholder.php
+|                        ^ punctuation.separator.decimal.php
+|                           ^^^ - constant
+|                              ^ punctuation.definition.placeholder.php
+|                              ^^^^ constant.other.placeholder.php
+|                                  ^^^ - constant
+|                                     ^ punctuation.definition.placeholder.php
+|                                     ^^^^^ constant.other.placeholder.php
 
-    {# a comment #}
-|   ^^^^^^^^^^^^^^^ comment.block.twig
+{{ "format: %5$- .9f | %-.9g | %+0d | %'ff" }}
+|           ^ punctuation.definition.placeholder.php
+|           ^^^^^^^^ constant.other.placeholder.php
+|                   ^^^ - constant
+|                      ^ punctuation.definition.placeholder.php
+|                      ^^^^^ constant.other.placeholder.php
+|                        ^ punctuation.separator.decimal.php
+|                           ^^^ - constant
+|                              ^ punctuation.definition.placeholder.php
+|                              ^^^^ constant.other.placeholder.php
+|                                  ^^^ - constant
+|                                     ^ punctuation.definition.placeholder.php
+|                                     ^^^^ constant.other.placeholder.php
 
-    let obj = {
-        foo: "{{ bar }}"
-|             ^^^^^^^^^ meta.expression.twig
-|             ^^^^^^^^^ - string.quoted.double.js
-    }
-</script>
+{{"[%s]"}}       // standard string output
+|   ^^ constant.other.placeholder.php
+{{"[%10s]"}}     // right-justification with spaces
+|   ^^^^ constant.other.placeholder.php
+{{"[%-10s]"}}    // left-justification with spaces
+|   ^^^^^ constant.other.placeholder.php
+{{"[%010s]"}}    // zero-padding works on strings too
+|   ^^^^^ constant.other.placeholder.php
+{{"[%'#10s]"}}   // use the custom padding character '#'
+|   ^^^^^^ constant.other.placeholder.php
+{{"[%10.9s]"}}   // right-justification but with a cutoff of 8 characters
+|   ^^^^^^ constant.other.placeholder.php
+{{"[%-10.9s]"}}  // left-justification but with a cutoff of 8 characters
+|   ^^^^^^^ constant.other.placeholder.php
+
+   // https://www.php.net/manual/en/function.strftime
+{{'strftime: %a %A %d %e %j %u %w %U %V %W %b %B %h %m %C %g %G %y %Y %H %k %I %l %M %p %P %r %R %S %T %X %z %Z %c %D %F %s %x %n %t'}}
+|            ^ punctuation.definition.placeholder.php
+|            ^^ constant.other.placeholder.php
+|              ^ - constant.other.placeholder - punctuation
+|               ^ punctuation.definition.placeholder.php
+|               ^^ constant.other.placeholder.php
+|                 ^ - constant.other.placeholder - punctuation
+|                  ^ punctuation.definition.placeholder.php
+|                  ^^ constant.other.placeholder.php
+|                    ^ - constant.other.placeholder - punctuation
+|                     ^ punctuation.definition.placeholder.php
+|                     ^^ constant.other.placeholder.php
+|                       ^ - constant.other.placeholder - punctuation
+|                        ^ punctuation.definition.placeholder.php
+|                        ^^ constant.other.placeholder.php
+|                          ^ - constant.other.placeholder - punctuation
+|                           ^ punctuation.definition.placeholder.php
+|                           ^^ constant.other.placeholder.php
+|                             ^ - constant.other.placeholder - punctuation
+|                              ^ punctuation.definition.placeholder.php
+|                              ^^ constant.other.placeholder.php
+|                                ^ - constant.other.placeholder - punctuation
+|                                 ^ punctuation.definition.placeholder.php
+|                                 ^^ constant.other.placeholder.php
+|                                   ^ - constant.other.placeholder - punctuation
+|                                    ^ punctuation.definition.placeholder.php
+|                                    ^^ constant.other.placeholder.php
+|                                      ^ - constant.other.placeholder - punctuation
+|                                       ^ punctuation.definition.placeholder.php
+|                                       ^^ constant.other.placeholder.php
+|                                         ^ - constant.other.placeholder - punctuation
+|                                          ^ punctuation.definition.placeholder.php
+|                                          ^^ constant.other.placeholder.php
+|                                            ^ - constant.other.placeholder - punctuation
+|                                             ^ punctuation.definition.placeholder.php
+|                                             ^^ constant.other.placeholder.php
+|                                               ^ - constant.other.placeholder - punctuation
+|                                                ^ punctuation.definition.placeholder.php
+|                                                ^^ constant.other.placeholder.php
+|                                                  ^ - constant.other.placeholder - punctuation
+|                                                   ^ punctuation.definition.placeholder.php
+|                                                   ^^ constant.other.placeholder.php
+|                                                     ^ - constant.other.placeholder - punctuation
+|                                                      ^ punctuation.definition.placeholder.php
+|                                                      ^^ constant.other.placeholder.php
+|                                                        ^ - constant.other.placeholder - punctuation
+|                                                         ^ punctuation.definition.placeholder.php
+|                                                         ^^ constant.other.placeholder.php
+|                                                           ^ - constant.other.placeholder - punctuation
+|                                                            ^ punctuation.definition.placeholder.php
+|                                                            ^^ constant.other.placeholder.php
+|                                                              ^ - constant.other.placeholder - punctuation
+|                                                               ^^ constant.other.placeholder.php
+|                                                                 ^ - constant.other.placeholder - punctuation
+|                                                                  ^ punctuation.definition.placeholder.php
+|                                                                  ^^ constant.other.placeholder.php
+|                                                                    ^ - constant.other.placeholder - punctuation
+|                                                                     ^ punctuation.definition.placeholder.php
+|                                                                     ^^ constant.other.placeholder.php
+|                                                                       ^ - constant.other.placeholder - punctuation
+|                                                                        ^ punctuation.definition.placeholder.php
+|                                                                        ^^ constant.other.placeholder.php
+|                                                                          ^ - constant.other.placeholder - punctuation
+|                                                                           ^ punctuation.definition.placeholder.php
+|                                                                           ^^ constant.other.placeholder.php
+|                                                                             ^ - constant.other.placeholder - punctuation
+|                                                                              ^ punctuation.definition.placeholder.php
+|                                                                              ^^ constant.other.placeholder.php
+|                                                                                ^ - constant.other.placeholder - punctuation
+|                                                                                 ^ punctuation.definition.placeholder.php
+|                                                                                 ^^ constant.other.placeholder.php
+|                                                                                   ^ - constant.other.placeholder - punctuation
+|                                                                                    ^ punctuation.definition.placeholder.php
+|                                                                                    ^^ constant.other.placeholder.php
+|                                                                                      ^ - constant.other.placeholder - punctuation
+|                                                                                       ^ punctuation.definition.placeholder.php
+|                                                                                       ^^ constant.other.placeholder.php
+|                                                                                         ^ - constant.other.placeholder - punctuation
+|                                                                                          ^ punctuation.definition.placeholder.php
+|                                                                                          ^^ constant.other.placeholder.php
+|                                                                                            ^ - constant.other.placeholder - punctuation
+|                                                                                             ^ punctuation.definition.placeholder.php
+|                                                                                             ^^ constant.other.placeholder.php
+|                                                                                               ^ - constant.other.placeholder - punctuation
+|                                                                                                ^ punctuation.definition.placeholder.php
+|                                                                                                ^^ constant.other.placeholder.php
+|                                                                                                  ^ - constant.other.placeholder - punctuation
+|                                                                                                   ^ punctuation.definition.placeholder.php
+|                                                                                                   ^^ constant.other.placeholder.php
+|                                                                                                     ^ - constant.other.placeholder - punctuation
+|                                                                                                      ^ punctuation.definition.placeholder.php
+|                                                                                                      ^^ constant.other.placeholder.php
+|                                                                                                        ^ - constant.other.placeholder - punctuation
+|                                                                                                         ^ punctuation.definition.placeholder.php
+|                                                                                                         ^^ constant.other.placeholder.php
+|                                                                                                           ^ - constant.other.placeholder - punctuation
+|                                                                                                            ^ punctuation.definition.placeholder.php
+|                                                                                                            ^^ constant.other.placeholder.php
+|                                                                                                              ^ - constant.other.placeholder - punctuation
+|                                                                                                               ^ punctuation.definition.placeholder.php
+|                                                                                                               ^^ constant.other.placeholder.php
+|                                                                                                                 ^ - constant.other.placeholder - punctuation
+|                                                                                                                  ^ punctuation.definition.placeholder.php
+|                                                                                                                  ^^ constant.other.placeholder.php
+|                                                                                                                    ^ - constant.other.placeholder - punctuation
+|                                                                                                                     ^^ constant.other.placeholder.php
+|                                                                                                                       ^ - constant.other.placeholder - punctuation
+|                                                                                                                        ^^ constant.other.placeholder.php
+|                                                                                                                          ^ - constant.other.placeholder - punctuation
+|                                                                                                                           ^ punctuation.definition.placeholder.php
+|                                                                                                                           ^^ constant.other.placeholder.php
+|                                                                                                                             ^ - constant.other.placeholder - punctuation
+|                                                                                                                              ^ punctuation.definition.placeholder.php
+|                                                                                                                              ^^ constant.other.placeholder.php
+|                                                                                                                                ^ - constant.other.placeholder - punctuation
+|                                                                                                                                 ^^ constant.other.placeholder.php
+|                                                                                                                                   ^ - constant
+
+{{"strftime: %a %A %d %e %j %u %w %U %V %W %b %B %h %m %C %g %G %y %Y %H %k %I %l %M %p %P %r %R %S %T %X %z %Z %c %D %F %s %x %n %t"}}
+|            ^ punctuation.definition.placeholder.php
+|            ^^ constant.other.placeholder.php
+|              ^ - constant.other.placeholder - punctuation
+|               ^ punctuation.definition.placeholder.php
+|               ^^ constant.other.placeholder.php
+|                 ^ - constant.other.placeholder - punctuation
+|                  ^ punctuation.definition.placeholder.php
+|                  ^^ constant.other.placeholder.php
+|                    ^ - constant.other.placeholder - punctuation
+|                     ^ punctuation.definition.placeholder.php
+|                     ^^ constant.other.placeholder.php
+|                       ^ - constant.other.placeholder - punctuation
+|                        ^ punctuation.definition.placeholder.php
+|                        ^^ constant.other.placeholder.php
+|                          ^ - constant.other.placeholder - punctuation
+|                           ^ punctuation.definition.placeholder.php
+|                           ^^ constant.other.placeholder.php
+|                             ^ - constant.other.placeholder - punctuation
+|                              ^ punctuation.definition.placeholder.php
+|                              ^^ constant.other.placeholder.php
+|                                ^ - constant.other.placeholder - punctuation
+|                                 ^ punctuation.definition.placeholder.php
+|                                 ^^ constant.other.placeholder.php
+|                                   ^ - constant.other.placeholder - punctuation
+|                                    ^ punctuation.definition.placeholder.php
+|                                    ^^ constant.other.placeholder.php
+|                                      ^ - constant.other.placeholder - punctuation
+|                                       ^ punctuation.definition.placeholder.php
+|                                       ^^ constant.other.placeholder.php
+|                                         ^ - constant.other.placeholder - punctuation
+|                                          ^ punctuation.definition.placeholder.php
+|                                          ^^ constant.other.placeholder.php
+|                                            ^ - constant.other.placeholder - punctuation
+|                                             ^ punctuation.definition.placeholder.php
+|                                             ^^ constant.other.placeholder.php
+|                                               ^ - constant.other.placeholder - punctuation
+|                                                ^ punctuation.definition.placeholder.php
+|                                                ^^ constant.other.placeholder.php
+|                                                  ^ - constant.other.placeholder - punctuation
+|                                                   ^ punctuation.definition.placeholder.php
+|                                                   ^^ constant.other.placeholder.php
+|                                                     ^ - constant.other.placeholder - punctuation
+|                                                      ^ punctuation.definition.placeholder.php
+|                                                      ^^ constant.other.placeholder.php
+|                                                        ^ - constant.other.placeholder - punctuation
+|                                                         ^ punctuation.definition.placeholder.php
+|                                                         ^^ constant.other.placeholder.php
+|                                                           ^ - constant.other.placeholder - punctuation
+|                                                            ^ punctuation.definition.placeholder.php
+|                                                            ^^ constant.other.placeholder.php
+|                                                              ^ - constant.other.placeholder - punctuation
+|                                                               ^^ constant.other.placeholder.php
+|                                                                 ^ - constant.other.placeholder - punctuation
+|                                                                  ^ punctuation.definition.placeholder.php
+|                                                                  ^^ constant.other.placeholder.php
+|                                                                    ^ - constant.other.placeholder - punctuation
+|                                                                     ^ punctuation.definition.placeholder.php
+|                                                                     ^^ constant.other.placeholder.php
+|                                                                       ^ - constant.other.placeholder - punctuation
+|                                                                        ^ punctuation.definition.placeholder.php
+|                                                                        ^^ constant.other.placeholder.php
+|                                                                          ^ - constant.other.placeholder - punctuation
+|                                                                           ^ punctuation.definition.placeholder.php
+|                                                                           ^^ constant.other.placeholder.php
+|                                                                             ^ - constant.other.placeholder - punctuation
+|                                                                              ^ punctuation.definition.placeholder.php
+|                                                                              ^^ constant.other.placeholder.php
+|                                                                                ^ - constant.other.placeholder - punctuation
+|                                                                                 ^ punctuation.definition.placeholder.php
+|                                                                                 ^^ constant.other.placeholder.php
+|                                                                                   ^ - constant.other.placeholder - punctuation
+|                                                                                    ^ punctuation.definition.placeholder.php
+|                                                                                    ^^ constant.other.placeholder.php
+|                                                                                      ^ - constant.other.placeholder - punctuation
+|                                                                                       ^ punctuation.definition.placeholder.php
+|                                                                                       ^^ constant.other.placeholder.php
+|                                                                                         ^ - constant.other.placeholder - punctuation
+|                                                                                          ^ punctuation.definition.placeholder.php
+|                                                                                          ^^ constant.other.placeholder.php
+|                                                                                            ^ - constant.other.placeholder - punctuation
+|                                                                                             ^ punctuation.definition.placeholder.php
+|                                                                                             ^^ constant.other.placeholder.php
+|                                                                                               ^ - constant.other.placeholder - punctuation
+|                                                                                                ^ punctuation.definition.placeholder.php
+|                                                                                                ^^ constant.other.placeholder.php
+|                                                                                                  ^ - constant.other.placeholder - punctuation
+|                                                                                                   ^ punctuation.definition.placeholder.php
+|                                                                                                   ^^ constant.other.placeholder.php
+|                                                                                                     ^ - constant.other.placeholder - punctuation
+|                                                                                                      ^ punctuation.definition.placeholder.php
+|                                                                                                      ^^ constant.other.placeholder.php
+|                                                                                                        ^ - constant.other.placeholder - punctuation
+|                                                                                                         ^ punctuation.definition.placeholder.php
+|                                                                                                         ^^ constant.other.placeholder.php
+|                                                                                                           ^ - constant.other.placeholder - punctuation
+|                                                                                                            ^ punctuation.definition.placeholder.php
+|                                                                                                            ^^ constant.other.placeholder.php
+|                                                                                                              ^ - constant.other.placeholder - punctuation
+|                                                                                                               ^ punctuation.definition.placeholder.php
+|                                                                                                               ^^ constant.other.placeholder.php
+|                                                                                                                 ^ - constant.other.placeholder - punctuation
+|                                                                                                                  ^ punctuation.definition.placeholder.php
+|                                                                                                                  ^^ constant.other.placeholder.php
+|                                                                                                                    ^ - constant.other.placeholder - punctuation
+|                                                                                                                     ^^ constant.other.placeholder.php
+|                                                                                                                       ^ - constant.other.placeholder - punctuation
+|                                                                                                                        ^^ constant.other.placeholder.php
+|                                                                                                                          ^ - constant.other.placeholder - punctuation
+|                                                                                                                           ^ punctuation.definition.placeholder.php
+|                                                                                                                           ^^ constant.other.placeholder.php
+|                                                                                                                             ^ - constant.other.placeholder - punctuation
+|                                                                                                                              ^ punctuation.definition.placeholder.php
+|                                                                                                                              ^^ constant.other.placeholder.php
+|                                                                                                                                ^ - constant.other.placeholder - punctuation
+|                                                                                                                                 ^^ constant.other.placeholder.php
+|                                                                                                                                   ^ - constant

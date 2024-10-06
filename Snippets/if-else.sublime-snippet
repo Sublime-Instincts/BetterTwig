@@ -1,12 +1,12 @@
 <snippet>
 <content><![CDATA[
 {% if $1 %}
-	$2
+${TM_TEMPLATE_INDENT}$2
 {% else %}
-	$3
+${TM_TEMPLATE_INDENT}$0
 {% endif %}
 ]]></content>
 <tabTrigger>elif</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
 <description>Twig if-else</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>

@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% sandbox ${1} %}
-    ${2}
+{% sandbox $1 %}
+${TM_TEMPLATE_INDENT}$0
 {% endsandbox %}
 ]]></content>
 <tabTrigger>sandbox</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
 <description>Twig sandbox</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>

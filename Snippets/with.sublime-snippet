@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% with ${1} %}
-    ${2}
-{% endwith %}${0}
+{% with $1 %}
+${TM_TEMPLATE_INDENT}$0
+{% endwith %}
 ]]></content>
 <tabTrigger>with</tabTrigger>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<scope>meta.template.twig - meta.embedded</scope>
 <description>Twig with</description>
 </snippet>

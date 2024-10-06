@@ -1,4 +1,9 @@
-## SYNTAX TEST reindent "Packages/Twig/Syntaxes/HTML/HTML (Twig).sublime-syntax"
+| SYNTAX TEST reindent "Packages/Twig/Syntaxes/Text/Text (Twig).sublime-syntax"
+
+{% import "template1.html" %}
+{% import "template2.html" %}
+{% from "template3.html" import macro3 %}
+{% from "template4.html" import macro4 %}
 
 {# Tags #}
 
@@ -27,7 +32,31 @@
 {% endfor %}
 
 {% if block("footer") is defined %}
-    {{ "string" }}
+    {% if foo = 1 %}
+        {% if foo = 1 %}
+            foo
+        {% elseif me = 2 %}
+            {% if foo = 1 %}
+                foo
+            {% elseif me = 2 %}
+                bar
+            {% else %}
+                {% if foo = 1 %}
+                    foo
+                {% elseif me = 2 %}
+                    bar
+                {% else %}
+                    baz
+                {% endif %}
+            {% endif %}
+        {% else %}
+            baz
+        {% endif %}
+    {% elseif me = 2 %}
+        bar
+    {% else %}
+        baz
+    {% endif %}
 {% elseif true %}
     {{ "string" }}
 {% else %}
@@ -41,6 +70,12 @@
 {% sandbox %}
     {% include 'user.html' %}
 {% endsandbox %}
+
+{% set content %}
+    {% set foo = "bar" %}
+    {% set baz = "buuz" %}
+    text
+{% endset %}
 
 {% verbatim %}
     <ul>

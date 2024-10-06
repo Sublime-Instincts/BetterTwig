@@ -1,17 +1,10 @@
 [
     {
-        "caption": "Twig: Open documentation",
-        "command": "open_url",
-        "args": {
-            "url": "https://github.com/Sublime-Instincts/BetterTwig/blob/master/README.md"
-        },
-    },
-    {
         "caption": "Preferences: Twig Key Bindings",
         "command": "edit_settings",
         "args": {
-            "base_file": "${packages}/Twig/resources/keymaps/Default.sublime-keymap",
-            "default": "[\n\t${0}\n]\n",
-        },
+            "base_file": "${packages}/Twig/Default.sublime-keymap",
+            "default": "[\n\t${0}\n]\n"
+        }
     }
 ]
