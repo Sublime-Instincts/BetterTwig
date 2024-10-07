@@ -3,6 +3,6 @@
 {% set ${1:variable} = ${2:value} %}
 ]]></content>
 <tabTrigger>set</tabTrigger>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<scope>meta.template.twig - meta.expression.twig - meta.statement.twig</scope>
 <description>Twig set</description>
 </snippet>

@@ -6,5 +6,5 @@
 ]]></content>
 <tabTrigger>sandbox</tabTrigger>
 <description>Twig sandbox</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
+<scope>meta.template.twig - meta.expression.twig - meta.statement.twig</scope>
 </snippet>
