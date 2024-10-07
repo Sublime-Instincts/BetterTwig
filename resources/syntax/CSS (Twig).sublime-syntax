@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: CSS (Twig)
-scope: source.css.twig meta.template.twig
+scope: source.css.twig
 version: 2
 
 extends: Packages/CSS/CSS.sublime-syntax
@@ -15,6 +15,10 @@ contexts:
     - meta_prepend: true
     - include: Twig.sublime-syntax#twig_embedded
     - include: Twig.sublime-syntax#comment
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.twig
 
   string-content:
     - meta_prepend: true

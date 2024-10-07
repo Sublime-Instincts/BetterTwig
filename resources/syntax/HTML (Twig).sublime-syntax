@@ -1,7 +1,7 @@
 %YAML 1.2
 ---
 name: HTML (Twig)
-scope: text.html.twig meta.template.twig
+scope: text.html.twig
 version: 2
 
 extends: Packages/HTML/HTML.sublime-syntax
@@ -17,6 +17,10 @@ contexts:
     - meta_prepend: true
     - include: Twig.sublime-syntax#twig_embedded
     - include: Twig.sublime-syntax#comment
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.twig
 
   tag-attribute-value-content:
     - meta_prepend: true
@@ -35,7 +39,7 @@ contexts:
         3: keyword.declaration.cdata.html
         4: punctuation.definition.tag.begin.html
       pop: 1
-      embed: scope:source.css.twig meta.template.twig
+      embed: scope:source.css.twig
       embed_scope: meta.tag.sgml.cdata.html source.css.embedded.html
       escape: \]\]>
       escape_captures:
@@ -44,7 +48,7 @@ contexts:
       captures:
         1: comment.block.html punctuation.definition.comment.begin.html
       pop: 1
-      embed: scope:source.css.twig meta.template.twig
+      embed: scope:source.css.twig
       embed_scope: source.css.embedded.html
       escape: '{{style_content_end}}'
       escape_captures:
@@ -56,14 +60,14 @@ contexts:
   tag-style-attribute-value:
     - match: \"
       scope: meta.string.html string.quoted.double.html punctuation.definition.string.begin.html
-      embed: scope:source.css.twig meta.template.twig#rule-list-body
+      embed: scope:source.css.twig#rule-list-body
       embed_scope: meta.string.html meta.interpolation.html source.css.embedded.html
       escape: \"
       escape_captures:
         0: meta.string.html string.quoted.double.html punctuation.definition.string.end.html
     - match: \'
       scope: meta.string.html string.quoted.single.html punctuation.definition.string.begin.html
-      embed: scope:source.css.twig meta.template.twig#rule-list-body
+      embed: scope:source.css.twig#rule-list-body
       embed_scope: meta.string.html meta.interpolation.html source.css.embedded.html
       escape: \'
       escape_captures:
@@ -79,7 +83,7 @@ contexts:
         3: keyword.declaration.cdata.html
         4: punctuation.definition.tag.begin.html
       pop: 1
-      embed: scope:source.js.twig meta.template.twig
+      embed: scope:source.js.twig
       embed_scope: meta.tag.sgml.cdata.html source.js.embedded.html
       escape: \]\]>
       escape_captures:
@@ -88,7 +92,7 @@ contexts:
       captures:
         1: comment.block.html punctuation.definition.comment.begin.html
       pop: 1
-      embed: scope:source.js.twig meta.template.twig
+      embed: scope:source.js.twig
       embed_scope: source.js.embedded.html
       escape: '{{script_content_end}}'
       escape_captures:
