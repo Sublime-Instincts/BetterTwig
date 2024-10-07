@@ -33,6 +33,7 @@ contexts:
     - meta_include_prototype: false
     - include: Twig.sublime-syntax#twig_embedded
     - include: Twig.sublime-syntax#comment
+    
   string-content:
     - meta_prepend: true
     - include: Twig.sublime-syntax#twig_embedded
