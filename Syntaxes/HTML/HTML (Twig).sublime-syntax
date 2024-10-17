@@ -15,16 +15,16 @@ contexts:
 
   prototype:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded
-    - include: Twig.sublime-syntax#comment
+    - include: Text (Twig).sublime-syntax#twig_embedded
+    - include: Text (Twig).sublime-syntax#comment
 
   tag-attribute-value-content:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded
+    - include: Text (Twig).sublime-syntax#twig_embedded
 
   strings-common-content:
     - meta_prepend: true
-    - include: Twig.sublime-syntax#twig_embedded
+    - include: Text (Twig).sublime-syntax#twig_embedded
 
   style-css-content:
     - meta_include_prototype: false
