@@ -16,6 +16,24 @@ contexts:
     - include: Twig.sublime-syntax#twig_embedded
     - include: Twig.sublime-syntax#comment
 
+  main:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: Twig.sublime-syntax#twig_embedded
+    - include: Twig.sublime-syntax#comment
+
+  block-end:
+    - meta_append: true
+    - include: Twig.sublime-syntax#twig_embedded
+    - include: Twig.sublime-syntax#comment
+
+  at-rule-block-body:
+    # required until ST4173
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - include: Twig.sublime-syntax#twig_embedded
+    - include: Twig.sublime-syntax#comment
+    
   string-content:
     - meta_prepend: true
     - include: Twig.sublime-syntax#twig_embedded
