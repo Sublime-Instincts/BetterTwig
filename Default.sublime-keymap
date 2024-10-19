@@ -1,22 +1,32 @@
 [
 	// Auto-pair braces also in front of , : ; so starting embeddings in CSS properties and values works well.
 
-	{ "keys": ["{"], "command": "insert_snippet", "args": {"contents": "{$0}"}, "context":
-		[
-			{ "key": "selector", "operator": "equal", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig string" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+	{
+		"keys": ["{"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "{$0}"
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig string" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^(?:[ \t\\)\\]\\},:;]|$)", "match_all": true }
 		]
 	},
 
 	// Auto-pair braces also in front of closing ' and " in strings
 
-	{ "keys": ["{"], "command": "insert_snippet", "args": {"contents": "{$0}"}, "context":
-		[
-			{ "key": "selector", "operator": "equal", "operand": "meta.template.twig - meta.template.twig meta.embedded meta.template.twig string" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
-			{ "key": "selection_empty", "operator": "equal", "operand": true, "match_all": true },
+	{
+		"keys": ["{"],
+		"command": "insert_snippet",
+		"args": {
+			"contents": "{$0}"
+		},
+		"context": [
+			{ "key": "selector", "operand": "meta.template.twig - meta.template.twig meta.embedded meta.template.twig string" },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^(?:[ \t\\)\\]\\}\"',:;]|$)", "match_all": true }
 		]
 	},
@@ -31,8 +41,8 @@
 			"contents": "# ${0} #"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "selector", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		],
@@ -51,8 +61,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.comment.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{#$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^#}", "match_all": true }
 		]
@@ -66,7 +76,7 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.comment.twig" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{#$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^#}", "match_all": true }
 		],
@@ -83,8 +93,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.comment.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{# $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ #}", "match_all": true }
 		]
@@ -100,8 +110,8 @@
 			"contents": "% ${0} %"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "selector", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		],
@@ -120,8 +130,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{%$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^%}", "match_all": true }
 		]
@@ -135,7 +145,7 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.twig" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{%$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^%}", "match_all": true }
 		],
@@ -152,8 +162,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{% $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ %}", "match_all": true }
 		]
@@ -169,8 +179,8 @@
 			"contents": "{ ${0} }"
 		},
 		"context": [
-			{ "key": "selector", "operator": "equal", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "selector", "operand": "meta.template.twig - meta.template.twig meta.embedded - meta.template.twig comment - meta.template.twig string" },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}", "match_all": true }
 		],
@@ -189,8 +199,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.expression.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}}", "match_all": true }
 		]
@@ -204,7 +214,7 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.statement.twig" },
-			{ "key": "setting.auto_match_enabled", "operator": "equal", "operand": true },
+			{ "key": "setting.auto_match_enabled" },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{$", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^}}", "match_all": true }
 		],
@@ -221,8 +231,8 @@
 		},
 		"context": [
 			{ "key": "selector", "operand": "meta.embedded.expression.twig" },
-			{ "key": "setting.auto_match_enabled", "operand": true },
-			{ "key": "selection_empty", "operand": true, "match_all": true },
+			{ "key": "setting.auto_match_enabled" },
+			{ "key": "selection_empty", "match_all": true },
 			{ "key": "preceding_text", "operator": "regex_contains", "operand": "{{ $", "match_all": true },
 			{ "key": "following_text", "operator": "regex_contains", "operand": "^ }}", "match_all": true }
 		]
