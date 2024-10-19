@@ -1,10 +1,10 @@
 [
-    {
-        "caption": "Preferences: Twig Key Bindings",
-        "command": "edit_settings",
-        "args": {
-            "base_file": "${packages}/Twig/Default.sublime-keymap",
-            "default": "[\n\t${0}\n]\n"
-        }
-    }
+	{
+		"caption": "Preferences: Twig Key Bindings",
+		"command": "edit_settings",
+		"args": {
+			"base_file": "${packages}/Twig/Default.sublime-keymap",
+			"default": "[\n\t${0}\n]\n"
+		}
+	}
 ]
