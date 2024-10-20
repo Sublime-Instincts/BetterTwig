@@ -134,7 +134,7 @@ contexts:
   tag-event-attribute-value-double-quoted-body:
     - meta_include_prototype: false
     - meta_scope: meta.string.html
-    - meta_content_scope: meta.interpolation.html source.js.embedded.html
+    - meta_content_scope: source.js.embedded.html
     - match: \"
       scope: string.quoted.double.html punctuation.definition.string.end.html
       pop: 1
@@ -143,7 +143,7 @@ contexts:
   tag-event-attribute-value-single-quoted-body:
     - meta_include_prototype: false
     - meta_scope: meta.string.html
-    - meta_content_scope: meta.interpolation.html source.js.embedded.html
+    - meta_content_scope: source.js.embedded.html
     - match: \'
       scope: string.quoted.single.html punctuation.definition.string.end.html
       pop: 1
@@ -162,7 +162,7 @@ contexts:
   tag-style-attribute-value-double-quoted-body:
     - meta_include_prototype: false
     - meta_scope: meta.string.html
-    - meta_content_scope: meta.interpolation.html source.css.embedded.html
+    - meta_content_scope: source.css.embedded.html
     - match: \"
       scope: string.quoted.double.html punctuation.definition.string.end.html
       pop: 1
@@ -171,7 +171,7 @@ contexts:
   tag-style-attribute-value-single-quoted-body:
     - meta_include_prototype: false
     - meta_scope: meta.string.html
-    - meta_content_scope: meta.interpolation.html source.css.embedded.html
+    - meta_content_scope: source.css.embedded.html
     - match: \'
       scope: string.quoted.single.html punctuation.definition.string.end.html
       pop: 1

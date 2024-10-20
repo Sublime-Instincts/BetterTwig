@@ -2341,15 +2341,15 @@
 {#  ^^^^^^^ entity.other.attribute-name.event.html #}
 {#         ^ punctuation.separator.key-value.html #}
 {#          ^ meta.string.html string.quoted.double.html punctuation.definition.string.begin.html #}
-{#           ^^ meta.string.html meta.interpolation.html source.js.embedded.html variable.other.readwrite.js #}
-{#             ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
-{#               ^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                ^^^^^^^^^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
-{#                          ^^^^^^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig meta.interpolation.twig #}
-{#                                 ^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig punctuation.definition.string.end.twig #}
-{#                                  ^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                                   ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
-{#                                     ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.group.js #}
+{#           ^^ meta.string.html source.js.embedded.html variable.other.readwrite.js #}
+{#             ^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
+{#               ^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                ^^^^^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
+{#                          ^^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig meta.interpolation.twig #}
+{#                                 ^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig punctuation.definition.string.end.twig #}
+{#                                  ^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                                   ^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#                                     ^^ meta.string.html source.js.embedded.html meta.group.js #}
 {#                                       ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html #}
 
     onclick='on{{ 'function-#{name}' }}()'
@@ -2357,13 +2357,13 @@
 {#  ^^^^^^^ entity.other.attribute-name.event.html #}
 {#         ^ punctuation.separator.key-value.html #}
 {#          ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html #}
-{#           ^^ meta.string.html meta.interpolation.html source.js.embedded.html variable.other.readwrite.js #}
-{#             ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
-{#               ^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                ^^^^^^^^^^^^^^^^^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.single.twig #}
-{#                                  ^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                                   ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
-{#                                     ^^ meta.string.html meta.interpolation.html source.js.embedded.html meta.group.js #}
+{#           ^^ meta.string.html source.js.embedded.html variable.other.readwrite.js #}
+{#             ^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
+{#               ^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                ^^^^^^^^^^^^^^^^^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.single.twig #}
+{#                                  ^ meta.string.html source.js.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                                   ^^ meta.string.html source.js.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#                                     ^^ meta.string.html source.js.embedded.html meta.group.js #}
 {#                                       ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html #}
     >
 {#^^^ meta.tag #}
@@ -2377,29 +2377,29 @@
     style='{{ 'color: \'#{value}\'' }}'
 {#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.style.html #}
 {#        ^ meta.string.html string.quoted.single.html punctuation.definition.string.begin.html #}
-{#         ^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
-{#           ^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#            ^^^^^^^^^^^^^^^^^^^^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.single.twig #}
-{#                                 ^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                                  ^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#         ^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
+{#           ^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#            ^^^^^^^^^^^^^^^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.single.twig #}
+{#                                 ^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                                  ^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
 {#                                    ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html #}
 {#                                     ^ - meta.attribute-with-value #}
 
     style="{{ "color: \"#{value}\"" }}"
 {#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.style.html #}
 {#        ^ meta.string.html string.quoted.double.html punctuation.definition.string.begin.html #}
-{#         ^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
-{#           ^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#            ^^^^^^^^^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
+{#         ^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
+{#           ^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#            ^^^^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
 {#                    ^^ constant.character.escape.twig #}
-{#                      ^^^^^^^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig meta.interpolation.twig #}
+{#                      ^^^^^^^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig meta.interpolation.twig #}
 {#                      ^^ punctuation.section.interpolation.begin.twig #}
 {#                        ^^^^^ variable.other.twig #}
 {#                             ^ punctuation.section.interpolation.end.twig #}
-{#                              ^^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
+{#                              ^^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig #}
 {#                              ^^ constant.character.escape.twig #}
-{#                                 ^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
-{#                                  ^^ meta.string.html meta.interpolation.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#                                 ^ meta.string.html source.css.embedded.html meta.embedded.expression.twig source.twig.embedded #}
+{#                                  ^^ meta.string.html source.css.embedded.html meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
 {#                                    ^ meta.string.html string.quoted.double.html punctuation.definition.string.end.html #}
 {#                                     ^ - meta.attribute-with-value #}
 
@@ -2409,7 +2409,7 @@
 {#       ^ punctuation.separator.key-value.html #}
 {#        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.html #}
 {#        ^ string.quoted.double.html punctuation.definition.string.begin.html #}
-{#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.interpolation.html source.css.embedded.html #}
+{#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.css.embedded.html #}
 {#         ^^^^^^^^^^^^^^^^^^^^^ meta.property-name.css support.type.property-name.css #}
 {#               ^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
 {#               ^^ punctuation.section.embedded.begin.twig #}
