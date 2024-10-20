@@ -3,8 +3,8 @@
 <dict>
 	<key>scope</key>
 	<string>
-		source.css.jinja,
-		text.html.jinja source.css.embedded
+		source.css.twig,
+		text.html.twig source.css.embedded
 	</string>
 	<key>settings</key>
 	<dict>

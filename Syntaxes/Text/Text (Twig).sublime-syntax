@@ -746,7 +746,7 @@ contexts:
 
   variable-subscription:
     - match: \[
-      scope: punctuation.section.brackets.begin.jinja
+      scope: punctuation.section.brackets.begin.twig
       push: subscription-body
     - include: immediately-pop
 
