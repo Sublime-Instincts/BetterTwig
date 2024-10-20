@@ -1829,3 +1829,44 @@
 {#                                                                                                                               ^ - constant.other.placeholder - punctuation #}
 {#                                                                                                                                ^^ constant.other.placeholder.php #}
 {#                                                                                                                                  ^ - constant #}
+
+|==============================================================================
+| HTML Tags and Attributes Interpolation
+|==============================================================================
+
+  <my-{{tag}} {{attr}}={{value}}/>
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html  #}
+{#^ meta.tag.other.html punctuation.definition.tag.begin.html  #}
+{# ^^^ entity.name.tag.other.html - meta.interpolation  #}
+{#    ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.twig  #}
+{#    ^^ punctuation.section.embedded.begin.twig  #}
+{#      ^^^ variable.other.twig  #}
+{#         ^^ punctuation.section.embedded.end.twig  #}
+{#            ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html  meta.embedded.expression.twig #}
+{#            ^^ punctuation.section.embedded.begin.twig  #}
+{#              ^^^^ variable.other.twig  #}
+{#                  ^^ punctuation.section.embedded.end.twig  #}
+{#                    ^ meta.attribute-with-value.html punctuation.separator.key-value.html  #}
+{#                     ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.twig  #}
+{#                     ^^ punctuation.section.embedded.begin.twig  #}
+{#                       ^^^^^ variable.other.twig  #}
+{#                            ^^ punctuation.section.embedded.end.twig  #}
+{#                              ^^ punctuation.definition.tag.end.html  #}
+
+  <{{tag}} {{attr}}={{value}}/>
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag.other.html  #}
+{#^ meta.tag.other.html punctuation.definition.tag.begin.html  #}
+{# ^^^^^^^ entity.name.tag.other.html meta.embedded.expression.twig  #}
+{# ^^ punctuation.section.embedded.begin.twig  #}
+{#   ^^^ variable.other.twig  #}
+{#      ^^ punctuation.section.embedded.end.twig  #}
+{#         ^^^^^^^^ meta.attribute-with-value.html entity.other.attribute-name.html meta.embedded.expression.twig  #}
+{#         ^^ punctuation.section.embedded.begin.twig  #}
+{#           ^^^^ variable.other.twig  #}
+{#               ^^ punctuation.section.embedded.end.twig  #}
+{#                 ^ meta.attribute-with-value.html punctuation.separator.key-value.html  #}
+{#                  ^^^^^^^^^ meta.attribute-with-value.html meta.string.html meta.embedded.expression.twig  #}
+{#                  ^^ punctuation.section.embedded.begin.twig  #}
+{#                    ^^^^^ variable.other.twig  #}
+{#                         ^^ punctuation.section.embedded.end.twig  #}
+{#                           ^^ punctuation.definition.tag.end.html  #}
