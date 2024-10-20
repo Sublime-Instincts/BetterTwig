@@ -1870,3 +1870,172 @@
 {#                    ^^^^^ variable.other.twig  #}
 {#                         ^^ punctuation.section.embedded.end.twig  #}
 {#                           ^^ punctuation.definition.tag.end.html  #}
+
+|==============================================================================
+| JavaScript Script Tags
+|==============================================================================
+
+<script type="text/javascript">
+    function foo () {
+{#  ^^^^^^^^^^^^^ meta.function.js #}
+{#  ^^^^^^^^ keyword.declaration.function.js #}
+{#           ^^^ entity.name.function.js #}
+{#               ^^ meta.function.parameters.js #}
+{#               ^ punctuation.section.group.begin.js #}
+{#                ^ punctuation.section.group.end.js #}
+{#                 ^^ meta.function.js #}
+{#                  ^ meta.block.js punctuation.section.block.begin.js #}
+
+        {% if true %}
+{#      ^^^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#      ^^ punctuation.section.embedded.begin.twig #}
+{#         ^^ keyword.control.conditional.if.twig #}
+{#            ^^^^ constant.language.boolean.true.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+
+        let val = {{ default }}
+{#    ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.js meta.block.js #}
+{#      ^^^ keyword.declaration.js #}
+{#          ^^^ meta.binding.name.js variable.other.readwrite.js #}
+{#              ^ keyword.operator.assignment.js #}
+{#                ^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#                ^^ punctuation.section.embedded.begin.twig #}
+{#                  ^^^^^^^^^ source.twig.embedded #}
+{#                   ^^^^^^^ meta.path.twig variable.other.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+
+        {% else %}
+{#      ^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#      ^^ punctuation.section.embedded.begin.twig #}
+{#         ^^^^ keyword.control.conditional.else.twig #}
+{#              ^^ punctuation.section.embedded.end.twig #}
+
+        {% endif %}
+{#      ^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#      ^^ punctuation.section.embedded.begin.twig #}
+{#         ^^^^^ keyword.control.conditional.endif.twig #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+
+    }
+{#  ^ meta.function.js meta.block.js punctuation.section.block.end.js #}
+</script>
+
+|==============================================================================
+| JSON Script Tags
+|==============================================================================
+
+<script type="application/json">
+    {
+      {% if true %}
+{#    ^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#    ^^ punctuation.section.embedded.begin.twig #}
+{#       ^^ keyword.control.conditional.if.twig #}
+{#          ^^^^ constant.language.boolean.true.twig #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+
+      {% else %}
+{#    ^^^^^^^^^^ meta.embedded.statement.twig #}
+{#    ^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^^ keyword.control.conditional.else.twig #}
+{#            ^^ punctuation.section.embedded.end.twig #}
+
+      {% endif %}
+{#    ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#    ^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^^^ keyword.control.conditional.endif.twig #}
+{#             ^^ punctuation.section.embedded.end.twig #}
+
+        "{{key}}": "{{value}}",
+{#      ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.begin.json #}
+{#       ^^^^^^^ meta.mapping.key.json meta.embedded.expression.twig #}
+{#       ^^ punctuation.section.embedded.begin.twig #}
+{#         ^^^ variable.other.twig #}
+{#            ^^ punctuation.section.embedded.end.twig #}
+{#              ^ meta.mapping.key.json string.quoted.double.json punctuation.definition.string.end.json #}
+{#               ^^ meta.mapping.json #}
+{#                 ^ meta.mapping.value.json meta.string.json string.quoted.double.json punctuation.definition.string.begin.json #}
+{#                  ^^^^^^^^^ meta.mapping.value.json meta.string.json - string #}
+{#                  ^^ meta.embedded.expression.twig punctuation.section.embedded.begin.twig #}
+{#                    ^^^^^ meta.embedded.expression.twig variable.other.twig #}
+{#                         ^^ meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#                           ^ string.quoted.double.json punctuation.definition.string.end.json #}
+{#                            ^ punctuation.separator.sequence.json #}
+
+        "key": [{{value}}, "{{value}}-string"],
+{#             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.mapping.value.json meta.sequence.json #}
+{#              ^^^^^^^^^ meta.embedded.expression.twig #}
+{#              ^^ punctuation.section.embedded.begin.twig #}
+{#                ^^^^^ variable.other.twig #}
+{#                     ^^ punctuation.section.embedded.end.twig #}
+{#                       ^ punctuation.separator.sequence.json #}
+{#                         ^ string.quoted.double.json punctuation.definition.string.begin.json #}
+{#                          ^^^^^^^^^ meta.string.json meta.embedded.expression.twig - string #}
+{#                                   ^^^^^^^^ meta.string.json string.quoted.double.json #}
+{#                                          ^ punctuation.definition.string.end.json #}
+    }
+</script>
+
+|==============================================================================
+| CSS Style Tags
+|==============================================================================
+
+<style>
+    div {
+{#  ^^^^ meta.selector.css #}
+{#      ^^ meta.property-list.css meta.block.css #}
+{#  ^^^ entity.name.tag.html.css #}
+{#      ^ punctuation.section.block.begin.css #}
+
+       {% block style %}{% endblock %}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#     ^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^^^^^^^^^^^ source.twig.embedded #}
+{#        ^^^^^ keyword.declaration.block.twig #}
+{#              ^^^^^ entity.name.block.twig #}
+{#                    ^^ punctuation.section.embedded.end.twig #}
+{#                      ^^ punctuation.section.embedded.begin.twig #}
+{#                        ^^^^^^^^^^ source.twig.embedded #}
+{#                         ^^^^^^^^ keyword.declaration.block.end.twig #}
+{#                                  ^^ punctuation.section.embedded.end.twig #}
+
+       color: {{ blue|escape }} {# a comment #};
+{#     ^^^^^ meta.property-name.css support.type.property-name.css #}
+{#          ^ punctuation.separator.key-value.css #}
+{#           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.property-value.css #}
+{#            ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#            ^^ punctuation.section.embedded.begin.twig #}
+{#              ^^^^^^^^^^^^^ source.twig.embedded #}
+{#               ^^^^ variable.other.twig #}
+{#                   ^^^^^^^^ meta.filter.twig #}
+{#                   ^ keyword.operator.pipe.twig #}
+{#                    ^^^^^^ meta.function-call.identifier.twig support.function.filter.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+{#                              ^^^^^^^^^^^^^^^ meta.embedded.comment.twig comment.block.twig #}
+{#                              ^^ punctuation.definition.comment.begin.twig #}
+{#                                           ^^ punctuation.definition.comment.end.twig #}
+{#                                             ^ punctuation.terminator.rule.css #}
+
+       font-size: 24px;
+{#     ^^^^^^^^^ meta.property-name.css #}
+
+    }
+{#^^^ meta.property-list.css meta.block.css #}
+{#  ^ punctuation.section.block.end.css #}
+
+    {{ tag }}[{{ kind }}={{ value }}] { {{ prop }}: {{ value }} }
+{#  ^^^^^^^^^ meta.selector.css meta.embedded.expression.twig - meta.attribute-selector #}
+{#           ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded #}
+{#            ^^^^^^^^^^ meta.selector.css meta.attribute-selector.css meta.brackets.css entity.other.attribute-name.css meta.embedded.expression.twig #}
+{#                      ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded - entity #}
+{#                       ^^^^^^^^^^^ meta.selector.css meta.attribute-selector.css meta.brackets.css meta.string.css string.unquoted.css meta.embedded.expression.twig #}
+{#                                  ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded #}
+{#                                   ^ meta.selector.css - meta.attribute-selector #}
+{#                                    ^^ meta.template.twig meta.property-list.css meta.block.css - mete.embedded #}
+{#                                      ^^^^^^^^^^ meta.property-list.css meta.block.css meta.property-name.css support.type.property-name.css meta.embedded.expression.twig #}
+{#                                                ^ meta.property-list.css meta.block.css - meta.property-name - meta.property-value #}
+{#                                                 ^ meta.property-list.css meta.block.css meta.property-value.css - meta.embedded #}
+{#                                                  ^^^^^^^^^^^ meta.property-list.css meta.block.css meta.property-value.css meta.embedded.expression.twig #}
+{#                                                             ^ meta.property-list.css meta.block.css meta.property-value.css - meta.embedded #}
+{#                                                              ^ meta.property-list.css meta.block.css - meta.property-value #}
+{#                                                               ^ - meta.property-list - meta.block - meta.embedded #}
+</style>
