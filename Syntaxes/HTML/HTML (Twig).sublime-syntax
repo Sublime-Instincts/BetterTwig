@@ -121,6 +121,13 @@ contexts:
         3: source.css.embedded.html
         4: comment.block.html punctuation.definition.comment.end.html
 
+  tag-attributes:
+    # Include twig statement tags to prevent them being scoped meta.attribute-with-value
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax#twig-comment-tags
+    - include: Text (Twig).sublime-syntax#twig-verbatim-tags
+    - include: Text (Twig).sublime-syntax#twig-statement-tags
+
   tag-event-attribute-value:
     - meta_include_prototype: false
     - match: \"

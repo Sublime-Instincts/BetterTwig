@@ -2332,6 +2332,84 @@
 </style>
 
 |==============================================================================
+| Tag Attributes
+|==============================================================================
+
+<div
+    {% if condition %}
+{#^^^^^^^^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value #}
+{#  ^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^ keyword.control.conditional.if.twig #}
+{#        ^^^^^^^^^ meta.path.twig variable.other.twig #}
+{#                  ^^ punctuation.section.embedded.end.twig #}
+    attr="value"
+{#  ^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#  ^^^^ entity.other.attribute-name.html #}
+{#      ^ punctuation.separator.key-value.html #}
+{#       ^^^^^^^ meta.string.html string.quoted.double.html #}
+{#       ^ punctuation.definition.string.begin.html #}
+{#             ^ punctuation.definition.string.end.html #}
+
+    {{ attr }}={{ value }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#  ^^^^^^^^^^ entity.other.attribute-name.html meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^ source.twig.embedded #}
+{#     ^^^^ variable.other.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+{#            ^ punctuation.separator.key-value.html #}
+{#             ^^^^^^^^^^^ meta.string.html meta.embedded.expression.twig #}
+{#             ^^ punctuation.section.embedded.begin.twig #}
+{#               ^^^^^^^ source.twig.embedded #}
+{#                ^^^^^ variable.other.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+
+    attr-{{ name }}="foo {{ bar ~ "baz #{buuz}!" }}"
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#  ^^^^^ entity.other.attribute-name.html - meta.embedded #}
+{#       ^^^^^^^^^^ entity.other.attribute-name.html meta.embedded.expression.twig #}
+{#                  ^^^^^ meta.string.html string.quoted.double.html #}
+{#                       ^^ meta.string.html meta.embedded.expression.twig - source.twig #}
+{#                         ^^^^^^^ meta.string.html meta.embedded.expression.twig source.twig.embedded - meta.string meta.string #}
+{#                                ^^^^^ meta.string.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig - meta.interpolation #}
+{#                                     ^^^^^^^ meta.string.html meta.embedded.expression.twig source.twig.embedded meta.string.twig meta.interpolation.twig #}
+{#                                            ^^ meta.string.html meta.embedded.expression.twig source.twig.embedded meta.string.twig string.quoted.double.twig - meta.interpolation #}
+{#                                              ^ meta.string.html meta.embedded.expression.twig source.twig.embedded - meta.string meta.string #}
+{#                                               ^^ meta.string.html meta.embedded.expression.twig - source.twig - meta.string meta.string #}
+{#                                                 ^ meta.string.html string.quoted.double.html - meta.embedded #}
+{#                                                  ^ - meta.attribute-with-value #}
+{#       ^^ punctuation.section.embedded.begin.twig #}
+{#         ^^^^^^ source.twig.embedded #}
+{#          ^^^^ variable.other.twig #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+{#                 ^ punctuation.separator.key-value.html #}
+{#                  ^ punctuation.definition.string.begin.html #}
+{#                       ^^ punctuation.section.embedded.begin.twig #}
+{#                          ^^^ variable.other.twig #}
+{#                              ^ keyword.operator.concatenation.twig #}
+{#                                ^ punctuation.definition.string.begin.twig #}
+{#                                     ^^ punctuation.section.interpolation.begin.twig #}
+{#                                       ^^^^ variable.other.twig #}
+{#                                           ^ punctuation.section.interpolation.end.twig #}
+{#                                            ^^ string.quoted.double.twig #}
+{#                                             ^ punctuation.definition.string.end.twig #}
+{#                                               ^^ punctuation.section.embedded.end.twig #}
+{#                                                 ^ punctuation.definition.string.end.html #}
+
+    {% endif %}
+{#^^^^^^^^^^^^^^ meta.tag - meta.attribute-with-value #}
+{#  ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^ source.twig.embedded #}
+{#     ^^^^^ keyword.control.conditional.endif.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+    >
+{#^^^ meta.tag - meta.attribute-with-value #}
+{#  ^ punctuation.definition.tag.end.html #}
+
+|==============================================================================
 | Inline Events
 |==============================================================================
 
@@ -2366,7 +2444,7 @@
 {#                                     ^^ meta.string.html source.js.embedded.html meta.group.js #}
 {#                                       ^ meta.string.html string.quoted.single.html punctuation.definition.string.end.html #}
     >
-{#^^^ meta.tag #}
+{#^^^ meta.tag - meta.attribute-with-value #}
 {#  ^ punctuation.definition.tag.end.html #}
 
 |==============================================================================
@@ -2437,5 +2515,5 @@
 {#                                              ^^ punctuation.section.embedded.end.twig #}
 {#                                                ^ string.quoted.double.html punctuation.definition.string.end.html #}
     >
-{#^^^ meta.tag #}
+{#^^^ meta.tag - meta.attribute-with-value #}
 {#  ^ punctuation.definition.tag.end.html #}
