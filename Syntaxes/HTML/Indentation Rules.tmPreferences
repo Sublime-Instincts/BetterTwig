@@ -31,7 +31,7 @@
 			  ^ \s* \{\%[-~]? \s*
 			  (?:
 			  # block end tags
-			    end (?: apply | autoescape | block | cache | embed | for | if | macro | sandbox | set | verbatim | with )
+			    end (?: apply | autoescape | block | cache | embed | for | guard | if | macro | sandbox | set | verbatim | with )
 			  # intermediate block branches
 			  | else | elseif
 			  )\b .*?
@@ -75,7 +75,7 @@
 			  (?:
 			    (?:
 			    # block begin tags
-			      apply | autoescape | block | cache | embed | for | if | macro | sandbox | verbatim | with
+			      apply | autoescape | block | cache | embed | for | guard | if | macro | sandbox | verbatim | with
 			    # intermediate block branches
 			    | else | elseif
 			    )\b .*?
