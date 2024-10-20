@@ -308,7 +308,7 @@ contexts:
 ###[ TWIG OTHER STATEMENTS ]###################################################
 
   other-statement:
-    # other statements
+    # apply statement
     - match: apply\b
       scope: keyword.other.twig
       set:
@@ -316,6 +316,15 @@ contexts:
         - function-arguments
         - filter-name
     - match: endapply\b
+      scope: keyword.other.twig
+      pop: 1
+    # guard statement
+    - match: guard\b
+      scope: keyword.other.twig
+      set:
+        - guard-meta
+        - guard-type
+    - match: endguard\b
       scope: keyword.other.twig
       pop: 1
     # block tags
@@ -326,6 +335,24 @@ contexts:
     - match: (?:deprecated|do|extends|flush)\b
       scope: keyword.other.twig
       pop: 1
+
+  guard-meta:
+    - meta_scope: meta.statement.guard.twig
+    - include: block-pop
+
+  guard-type:
+    - match: filter\b
+      scope: storage.type.filter.twig
+      set:
+        - filter-meta
+        - filter-name
+    - match: function\b
+      scope: storage.type.function.twig
+      set: function-name
+    - match: test\b
+      scope: storage.type.test.twig
+      set: test-expression
+    - include: else-pop
 
 ###[ TWIG FILTERS ]############################################################
 
@@ -356,14 +383,21 @@ contexts:
 ###[ TWIG FUNCTION CALLS ]#####################################################
 
   functions:
+    - match: (?={{identifiers}}\()
+      push:
+        - function-arguments
+        - function-name
+
+  function-name:
     # builtin functions
-    - match: '{{builtin_functions}}(?=\()'
+    - match: '{{builtin_functions}}'
       scope: meta.function-call.identifier.twig support.function.twig
-      push: function-arguments
+      pop: 1
     # custom functions
-    - match: \w+(?=\()
+    - match: '{{identifiers}}'
       scope: meta.function-call.identifier.twig variable.function.twig
-      push: function-arguments
+      pop: 1
+    - include: else-pop
 
   function-arguments:
     - match: \(

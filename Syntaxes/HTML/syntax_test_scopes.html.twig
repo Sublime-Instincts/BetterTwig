@@ -1279,6 +1279,54 @@
 {#                                                         ^^ punctuation.section.embedded.end.twig #}
 
 |==============================================================================
+| Guard
+| https://twig.symfony.com/doc/3.x/tags/guard.html
+|==============================================================================
+
+{% guard function importmap %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^^^^^^^ storage.type.function.twig #}
+{#                ^^^^^^^^^ meta.function-call.identifier.twig variable.function.twig #}
+{#                          ^^ punctuation.section.embedded.end.twig #}
+
+    {{ importmap('app') }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^^^^^^^^ meta.function-call.identifier.twig variable.function.twig #}
+{#              ^^^^^^^ meta.function-call.arguments.twig #}
+{#              ^ punctuation.section.arguments.begin.twig #}
+{#               ^^^^^ meta.string.twig string.quoted.single.twig #}
+{#               ^ punctuation.definition.string.begin.twig #}
+{#                   ^ punctuation.definition.string.end.twig #}
+{#                    ^ punctuation.section.arguments.end.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+
+{% guard filter callable %}
+{#^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                       ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^^^^^ storage.type.filter.twig #}
+{#              ^^^^^^^^ meta.function-call.identifier.twig variable.function.filter.twig #}
+{#                       ^^ punctuation.section.embedded.end.twig #}
+
+{% guard test callable %}
+{#^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                     ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^^^ storage.type.test.twig #}
+{#            ^^^^^^^^ meta.function-call.identifier.twig variable.function.test.twig #}
+{#                     ^^ punctuation.section.embedded.end.twig #}
+
+{% endguard %}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^ keyword.other.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
 | If
 | https://twig.symfony.com/doc/3.x/tags/if.html
 |==============================================================================
