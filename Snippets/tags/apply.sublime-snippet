@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% apply ${1:filter} %}]]></content>
+	<tabTrigger>apply</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig apply tag</description>
+</snippet>

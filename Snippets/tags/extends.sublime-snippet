@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% extends "${0:template}" %}]]></content>
+	<tabTrigger>extends</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig extends tag</description>
+</snippet>

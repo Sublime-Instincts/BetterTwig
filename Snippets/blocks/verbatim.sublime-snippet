@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% apply $1 %}
+{% verbatim %}
 ${TM_TEMPLATE_INDENT}$0
-{% endapply %}
+{% endverbatim %}
 ]]></content>
-<tabTrigger>apply</tabTrigger>
+<tabTrigger>bverbatim</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig apply</description>
+<description>Twig verbatim block</description>
 </snippet>

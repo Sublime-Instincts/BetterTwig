@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% verbatim %}
+{% macro ${1:function_name}() %}
 ${TM_TEMPLATE_INDENT}$0
-{% endverbatim %}
+{% endmacro %}
 ]]></content>
-<tabTrigger>verbatim</tabTrigger>
+<tabTrigger>bmacro</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig verbatim</description>
+<description>Twig macro block</description>
 </snippet>

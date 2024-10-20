@@ -1,7 +1,5 @@
 <snippet>
-<content><![CDATA[
-{% set ${1:variable} = ${2:value} %}
-]]></content>
+<content><![CDATA[{% set ${1:variable} = ${2:value} %}]]></content>
 <tabTrigger>set</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
 <description>Twig set</description>

@@ -1,10 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% embed ${1:template_name} %}
+{% apply ${1:filter} %}
 ${TM_TEMPLATE_INDENT}$0
-{% endembed %}
+{% endapply %}
 ]]></content>
-<tabTrigger>embed</tabTrigger>
+<tabTrigger>bapply</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig embed</description>
+<description>Twig apply block</description>
 </snippet>

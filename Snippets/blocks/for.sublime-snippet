@@ -4,7 +4,7 @@
 ${TM_TEMPLATE_INDENT}$0
 {% endfor %}
 ]]></content>
-<tabTrigger>for</tabTrigger>
+<tabTrigger>bfor</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig for</description>
+<description>Twig for block</description>
 </snippet>

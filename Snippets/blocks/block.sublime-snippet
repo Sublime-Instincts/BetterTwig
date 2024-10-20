@@ -1,9 +1,10 @@
 <snippet>
 <content><![CDATA[
-{% elseif $1 %}
+{% block ${1:block_name} %}
 ${TM_TEMPLATE_INDENT}$0
+{% endblock %}
 ]]></content>
-<tabTrigger>elseif</tabTrigger>
+<tabTrigger>bblock</tabTrigger>
 <scope>meta.template.twig - meta.embedded</scope>
-<description>Twig elseif</description>
+<description>Twig block block</description>
 </snippet>

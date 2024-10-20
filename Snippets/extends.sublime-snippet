@@ -1,8 +1,0 @@
-<snippet>
-<content><![CDATA[
-{% extends $1 %}
-]]></content>
-<tabTrigger>extends</tabTrigger>
-<scope>meta.template.twig - meta.embedded</scope>
-<description>Twig extends</description>
-</snippet>
