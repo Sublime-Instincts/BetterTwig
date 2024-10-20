@@ -7,10 +7,19 @@ hidden: true
 extends: JavaScript (Twig).sublime-syntax
 
 contexts:
-  prototype:
+  main:
+    - include: expressions
+
+  field-name:
     - meta_prepend: true
     - match: (?=')
       pop: 1
 
-  main:
-    - include: expressions
+  method-name:
+    - meta_prepend: true
+    - match: (?=')
+      pop: 1
+
+  literal-single-quoted-string:
+    - match: (?=')
+      pop: 1

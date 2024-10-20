@@ -7,10 +7,20 @@ hidden: true
 extends: CSS (Twig).sublime-syntax
 
 contexts:
-  prototype:
+  main:
+    - include: rule-list-body
+
+  quoted-strings:
     - meta_prepend: true
     - match: (?=")
       pop: 1
 
-  main:
-    - include: rule-list-body
+  quoted-string:
+    - meta_prepend: true
+    - match: (?=")
+      pop: 1
+
+  quoted-urls:
+    - meta_prepend: true
+    - match: (?=")
+      pop: 1
