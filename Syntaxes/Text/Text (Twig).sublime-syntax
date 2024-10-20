@@ -318,7 +318,12 @@ contexts:
     - match: endapply\b
       scope: keyword.other.twig
       pop: 1
-    - match: (?:end)?(?:autoescape|cache|deprecated|do|embed|extends|flush|sandbox|with)\b
+    # block tags
+    - match: (?:end)?(?:autoescape|cache|embed|sandbox|with)\b
+      scope: keyword.other.twig
+      pop: 1
+    # line tags without end-tag
+    - match: (?:deprecated|do|extends|flush)\b
       scope: keyword.other.twig
       pop: 1
 

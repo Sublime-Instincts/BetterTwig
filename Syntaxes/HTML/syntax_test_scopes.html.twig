@@ -963,6 +963,209 @@
 {# outputs '<li>\nno spaces    </li>' #}
 
 |==============================================================================
+| Autoescape
+| https://twig.symfony.com/doc/3.x/tags/autoescape.html
+|==============================================================================
+
+{% autoescape 'js' %}
+{#^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                 ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^ keyword.other.twig #}
+{#            ^^^^ meta.string.twig string.quoted.single.twig #}
+{#            ^ punctuation.definition.string.begin.twig #}
+{#               ^ punctuation.definition.string.end.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+
+{% endautoescape %}
+{#^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#               ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^^^^ keyword.other.twig #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Block
+| https://twig.symfony.com/doc/3.x/tags/block.html
+|==============================================================================
+
+{% block title page_title|title %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                              ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.declaration.block.twig #}
+{#       ^^^^^ entity.name.block.twig #}
+{#             ^^^^^^^^^^ meta.path.twig variable.other.twig #}
+{#                       ^^^^^^^ meta.filter.twig #}
+{#                       ^ keyword.operator.pipe.twig #}
+{#                        ^^^^^ meta.function-call.identifier.twig support.function.filter.twig #}
+{#                              ^^ punctuation.section.embedded.end.twig #}
+
+{% endblock %}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^ keyword.declaration.block.end.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Cache
+| https://twig.symfony.com/doc/3.x/tags/cache.html
+|==============================================================================
+
+{% cache "cache key" ttl(300) %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                            ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#       ^ punctuation.definition.string.begin.twig #}
+{#                 ^ punctuation.definition.string.end.twig #}
+{#                   ^^^ meta.function-call.identifier.twig variable.function.twig #}
+{#                      ^^^^^ meta.function-call.arguments.twig #}
+{#                      ^ punctuation.section.arguments.begin.twig #}
+{#                       ^^^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#                          ^ punctuation.section.arguments.end.twig #}
+{#                            ^^ punctuation.section.embedded.end.twig #}
+
+    Cached for 300 seconds
+
+{% endcache %}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^ keyword.other.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Deprecated
+| https://twig.symfony.com/doc/3.x/tags/deprecated.html
+|==============================================================================
+
+{% deprecated 'Deprecation message' %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                                  ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^ keyword.other.twig #}
+{#            ^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#            ^ punctuation.definition.string.begin.twig #}
+{#                                ^ punctuation.definition.string.end.twig #}
+{#                                  ^^ punctuation.section.embedded.end.twig #}
+
+{% enddeprecated %}
+{#^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#               ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^^^^ - keyword #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Do
+| https://twig.symfony.com/doc/3.x/tags/do.html
+|==============================================================================
+
+{% do 1 + 2 %}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^ keyword.other.twig #}
+{#    ^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#      ^ keyword.operator.arithmetic.twig #}
+{#        ^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+{% enddo %}
+{#^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#       ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ - keyword #}
+{#       ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Embed
+| https://twig.symfony.com/doc/3.x/tags/embed.html
+|==============================================================================
+
+{% embed "teasers_skeleton.twig" %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                               ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#       ^ punctuation.definition.string.begin.twig #}
+{#                             ^ punctuation.definition.string.end.twig #}
+{#                               ^^ punctuation.section.embedded.end.twig #}
+
+{% endembed %}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^ keyword.other.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Extends
+| https://twig.symfony.com/doc/3.x/tags/extends.html
+|==============================================================================
+
+{# https://twig.symfony.com/doc/3.x/tags/extends.html#dynamic-inheritance #}
+{% extends ['layout.html', 'base_layout.html'] %}
+{#^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded - meta.sequence #}
+{#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded meta.sequence.array.twig #}
+{#                                            ^ meta.embedded.statement.twig source.twig.embedded - meta.sequence #}
+{#                                             ^^  meta.embedded.statement.twig - source #}
+{# ^^^^^^^ keyword.other.twig #}
+{#         ^ punctuation.section.sequence.begin.twig #}
+{#          ^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#          ^ punctuation.definition.string.begin.twig #}
+{#                      ^ punctuation.definition.string.end.twig #}
+{#                       ^ punctuation.separator.sequence.twig #}
+{#                         ^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#                         ^ punctuation.definition.string.begin.twig #}
+{#                                          ^ punctuation.definition.string.end.twig #}
+{#                                           ^ punctuation.section.sequence.end.twig #}
+{#                                             ^^ punctuation.section.embedded.end.twig #}
+
+{# https://twig.symfony.com/doc/3.x/tags/extends.html#conditional-inheritance #}
+{% extends standalone ? "minimum.html" : "base.html" %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                                                   ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^ keyword.other.twig #}
+{#         ^^^^^^^^^^ meta.path.twig variable.other.twig #}
+{#                    ^ keyword.operator.ternary.twig #}
+{#                      ^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#                      ^ punctuation.definition.string.begin.twig #}
+{#                                   ^ punctuation.definition.string.end.twig #}
+{#                                     ^ keyword.operator.ternary.twig #}
+{#                                       ^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#                                       ^ punctuation.definition.string.begin.twig #}
+{#                                                 ^ punctuation.definition.string.end.twig #}
+{#                                                   ^^ punctuation.section.embedded.end.twig #}
+
+{# https://github.com/Sublime-Instincts/BetterTwig/issues/12 #}
+{% extends "/_skeleton.html" %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                           ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^ keyword.other.twig #}
+{#         ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#         ^ punctuation.definition.string.begin.twig #}
+{#                         ^ punctuation.definition.string.end.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+
+{% endextends %}
+{#^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#            ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^ - keyword #}
+{#            ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Flush
+| https://twig.symfony.com/doc/3.x/tags/flush.html
+|==============================================================================
+
+{% flush %}
+{# <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig #}
+{#^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#       ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.other.twig #}
+{#       ^^ punctuation.section.embedded.end.twig #}
+
+{% endflush %}
+{# <- meta.embedded.statement.twig punctuation.section.embedded.begin.twig #}
+{#^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#          ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^ - keyword #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
 | For loops
 | https://twig.symfony.com/doc/3.x/tags/for.html
 |==============================================================================
@@ -1003,7 +1206,7 @@
 {#                           ^^ punctuation.section.embedded.end.twig #}
         <li>{{ key }}</li>
     {% endfor %}
-{#^^^^^^^^^^^^^^ meta.template.twig #}
+{#^^^^^^^^^^^^^^ #}
 {#  ^^^^^^^^^^^^ meta.embedded.statement.twig #}
 {#  ^^ punctuation.section.embedded.begin.twig #}
 {#     ^^^^^^ keyword.control.loop.for.end.twig #}
@@ -1054,115 +1257,15 @@
 </ul>
 
 |==============================================================================
-| Macros
-| https://twig.symfony.com/doc/3.x/tags/macro.html#macro
-|==============================================================================
-
-{% macro input(name, value, type = "text", size = 20) %}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
-{# ^^^^^ meta.function.twig keyword.declaration.macro.twig #}
-{#      ^^^^^^ meta.function.identifier.twig #}
-{#       ^^^^^ entity.name.function.macro.twig #}
-{#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters.twig #}
-{#            ^ punctuation.section.parameters.begin.twig #}
-{#             ^^^^ meta.path.twig variable.other.twig #}
-{#                 ^ punctuation.separator.sequence.twig #}
-{#                   ^^^^^ meta.path.twig variable.other.twig #}
-{#                        ^ punctuation.separator.sequence.twig #}
-{#                          ^^^^ variable.parameter.twig #}
-{#                               ^ keyword.operator.assignment.twig #}
-{#                                 ^^^^^^ meta.string.twig string.quoted.double.twig #}
-{#                                 ^ punctuation.definition.string.begin.twig #}
-{#                                      ^ punctuation.definition.string.end.twig #}
-{#                                       ^ punctuation.separator.sequence.twig #}
-{#                                         ^^^^ variable.parameter.twig #}
-{#                                              ^ keyword.operator.assignment.twig #}
-{#                                                ^^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
-{#                                                  ^ punctuation.section.parameters.end.twig #}
-{#                                                    ^^ punctuation.section.embedded.end.twig #}
-
-    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}"/>
-{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag #}
-{#  ^ punctuation.definition.tag.begin.html #}
-{#   ^^^^^ entity.name.tag.inline.form.html #}
-{#         ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
-{#                           ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
-{#                                             ^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
-{#                                                                   ^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
-{#         ^^^^ entity.other.attribute-name.html #}
-{#             ^ punctuation.separator.key-value.html #}
-{#              ^^^^^^^^^^^^ meta.string.html #}
-{#              ^ string.quoted.double.html punctuation.definition.string.begin.html #}
-{#               ^^^^^^^^^^ meta.embedded.expression.twig #}
-{#               ^^ punctuation.section.embedded.begin.twig #}
-{#                 ^^^^^^ source.twig.embedded #}
-{#                  ^^^^ meta.path.twig variable.other.twig #}
-{#                       ^^ punctuation.section.embedded.end.twig #}
-{#                         ^ string.quoted.double.html punctuation.definition.string.end.html #}
-{#                           ^^^^ entity.other.attribute-name.html #}
-{#                               ^ punctuation.separator.key-value.html #}
-{#                                ^^^^^^^^^^^^ meta.string.html #}
-{#                                ^ string.quoted.double.html punctuation.definition.string.begin.html #}
-{#                                 ^^^^^^^^^^ meta.embedded.expression.twig #}
-{#                                 ^^ punctuation.section.embedded.begin.twig #}
-{#                                   ^^^^^^ source.twig.embedded #}
-{#                                    ^^^^ meta.path.twig variable.other.twig #}
-{#                                         ^^ punctuation.section.embedded.end.twig #}
-{#                                           ^ string.quoted.double.html punctuation.definition.string.end.html #}
-{#                                             ^^^^^ entity.other.attribute-name.html #}
-{#                                                  ^ punctuation.separator.key-value.html #}
-{#                                                   ^^^^^^^^^^^^^^^ meta.string.html #}
-{#                                                   ^ string.quoted.double.html punctuation.definition.string.begin.html #}
-{#                                                    ^^^^^^^^^^^^^ meta.embedded.expression.twig #}
-{#                                                    ^^ punctuation.section.embedded.begin.twig #}
-{#                                                      ^^^^^^^^^ source.twig.embedded #}
-{#                                                       ^^^^^ meta.path.twig variable.other.twig #}
-{#                                                            ^^^ meta.filter.twig #}
-{#                                                            ^ keyword.operator.pipe.twig #}
-{#                                                             ^ meta.function-call.identifier.twig variable.function.filter.twig #}
-{#                                                               ^^ punctuation.section.embedded.end.twig #}
-{#                                                                 ^ string.quoted.double.html punctuation.definition.string.end.html #}
-{#                                                                   ^^^^ entity.other.attribute-name.html #}
-{#                                                                       ^ punctuation.separator.key-value.html #}
-{#                                                                        ^^^^^^^^^^^^ meta.string.html #}
-{#                                                                        ^ string.quoted.double.html punctuation.definition.string.begin.html #}
-{#                                                                         ^^^^^^^^^^ meta.embedded.expression.twig #}
-{#                                                                         ^^ punctuation.section.embedded.begin.twig #}
-{#                                                                           ^^^^^^ source.twig.embedded #}
-{#                                                                            ^^^^ meta.path.twig variable.other.twig #}
-{#                                                                                 ^^ punctuation.section.embedded.end.twig #}
-{#                                                                                   ^ string.quoted.double.html punctuation.definition.string.end.html #}
-{#                                                                                    ^^ punctuation.definition.tag.end.html #}
-
-{% endmacro input %}
-{#^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
-{#^^^^^^^^^^ source.twig.embedded #}
-{# ^^^^^^^^ keyword.declaration.macro.end.twig #}
-{#          ^^^^^ variable.other.twig #}
-{#                ^^ punctuation.section.embedded.end.twig #}
-
-|==============================================================================
-| Importing Macros
+| From
+| https://twig.symfony.com/doc/3.x/tags/from.html
 | https://twig.symfony.com/doc/3.x/tags/macro.html#importing-macros
 |==============================================================================
 
-{% import "forms.twig" as forms %}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
-{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.import.twig #}
-{# ^^^^^^ keyword.control.import.twig #}
-{#        ^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
-{#        ^ punctuation.definition.string.begin.twig #}
-{#                   ^ punctuation.definition.string.end.twig #}
-{#                     ^^ keyword.operator.assignment.as.twig #}
-{#                        ^^^^^ meta.path.twig variable.other.twig #}
-{#                              ^^ punctuation.section.embedded.end.twig #}
-
 {% from 'forms.html' import input as input_field, textarea %}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
-{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
-{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.import.twig #}
+{#^ meta.embedded.statement.twig source.twig.embedded - meta.import #}
+{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded meta.import.twig #}
+{#                                                         ^^ meta.embedded.statement.twig - source #}
 {# ^^^^ keyword.control.import.from.twig #}
 {#      ^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
 {#      ^ punctuation.definition.string.begin.twig #}
@@ -1174,6 +1277,59 @@
 {#                                              ^ punctuation.separator.sequence.twig #}
 {#                                                ^^^^^^^^ meta.path.twig variable.other.twig #}
 {#                                                         ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| If
+| https://twig.symfony.com/doc/3.x/tags/if.html
+|==============================================================================
+
+{% if online == false %}
+{#^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                    ^^ meta.embedded.statement.twig - source #}
+{# ^^ keyword.control.conditional.if.twig #}
+{#    ^^^^^^ meta.path.twig variable.other.twig #}
+{#           ^^ keyword.operator.comparison.twig #}
+{#              ^^^^^ constant.language.boolean.false.twig #}
+{#                    ^^ punctuation.section.embedded.end.twig #}
+
+    <p>Our website is in maintenance mode. Please, come back later.</p>
+
+{% elseif condition %}
+{#^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                  ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^ keyword.control.conditional.elseif.twig #}
+{#        ^^^^^^^^^ meta.path.twig variable.other.twig #}
+{#                  ^^ punctuation.section.embedded.end.twig #}
+
+{% else %}
+{#^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#      ^^ meta.embedded.statement.twig - source #}
+{# ^^^^ keyword.control.conditional.else.twig #}
+{#      ^^ punctuation.section.embedded.end.twig #}
+
+{% endif %}
+{#^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#       ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^ keyword.control.conditional.endif.twig #}
+{#       ^^ punctuation.section.embedded.end.twig #}
+
+|==============================================================================
+| Import
+| https://twig.symfony.com/doc/3.x/tags/import.html
+| https://twig.symfony.com/doc/3.x/tags/macro.html#importing-macros
+|==============================================================================
+
+{% import "forms.twig" as forms %}
+{#^ meta.embedded.statement.twig source.twig.embedded - meta.import #}
+{# ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded meta.import.twig #}
+{#                              ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^ keyword.control.import.twig #}
+{#        ^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#        ^ punctuation.definition.string.begin.twig #}
+{#                   ^ punctuation.definition.string.end.twig #}
+{#                     ^^ keyword.operator.assignment.as.twig #}
+{#                        ^^^^^ meta.path.twig variable.other.twig #}
+{#                              ^^ punctuation.section.embedded.end.twig #}
 
 |==============================================================================
 | Include
@@ -1319,28 +1475,115 @@
 {#                                             ^^ punctuation.section.embedded.end.twig #}
 
 |==============================================================================
-| Extends
-| https://twig.symfony.com/doc/3.x/tags/extends.html
+| Macros
+| https://twig.symfony.com/doc/3.x/tags/macro.html#macro
 |==============================================================================
 
-{# https://twig.symfony.com/doc/3.x/tags/extends.html#block-shortcuts #}
-{% block title page_title|title %}
-{#                       ^^^^^^ meta.filter.twig #}
+{% macro input(name, value, type = "text", size = 20) %}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
+{# ^^^^^ meta.function.twig keyword.declaration.macro.twig #}
+{#      ^^^^^^ meta.function.identifier.twig #}
+{#       ^^^^^ entity.name.function.macro.twig #}
+{#            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.parameters.twig #}
+{#            ^ punctuation.section.parameters.begin.twig #}
+{#             ^^^^ meta.path.twig variable.other.twig #}
+{#                 ^ punctuation.separator.sequence.twig #}
+{#                   ^^^^^ meta.path.twig variable.other.twig #}
+{#                        ^ punctuation.separator.sequence.twig #}
+{#                          ^^^^ variable.parameter.twig #}
+{#                               ^ keyword.operator.assignment.twig #}
+{#                                 ^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#                                 ^ punctuation.definition.string.begin.twig #}
+{#                                      ^ punctuation.definition.string.end.twig #}
+{#                                       ^ punctuation.separator.sequence.twig #}
+{#                                         ^^^^ variable.parameter.twig #}
+{#                                              ^ keyword.operator.assignment.twig #}
+{#                                                ^^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#                                                  ^ punctuation.section.parameters.end.twig #}
+{#                                                    ^^ punctuation.section.embedded.end.twig #}
 
-{# https://twig.symfony.com/doc/3.x/tags/extends.html#dynamic-inheritance #}
-{% extends ['layout.html', 'base_layout.html'] %}
-{#         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+    <input type="{{ type }}" name="{{ name }}" value="{{ value|e }}" size="{{ size }}"/>
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.tag #}
+{#  ^ punctuation.definition.tag.begin.html #}
+{#   ^^^^^ entity.name.tag.inline.form.html #}
+{#         ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#                           ^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#                                             ^^^^^^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#                                                                   ^^^^^^^^^^^^^^^^ meta.attribute-with-value.html #}
+{#         ^^^^ entity.other.attribute-name.html #}
+{#             ^ punctuation.separator.key-value.html #}
+{#              ^^^^^^^^^^^^ meta.string.html #}
+{#              ^ string.quoted.double.html punctuation.definition.string.begin.html #}
+{#               ^^^^^^^^^^ meta.embedded.expression.twig #}
+{#               ^^ punctuation.section.embedded.begin.twig #}
+{#                 ^^^^^^ source.twig.embedded #}
+{#                  ^^^^ meta.path.twig variable.other.twig #}
+{#                       ^^ punctuation.section.embedded.end.twig #}
+{#                         ^ string.quoted.double.html punctuation.definition.string.end.html #}
+{#                           ^^^^ entity.other.attribute-name.html #}
+{#                               ^ punctuation.separator.key-value.html #}
+{#                                ^^^^^^^^^^^^ meta.string.html #}
+{#                                ^ string.quoted.double.html punctuation.definition.string.begin.html #}
+{#                                 ^^^^^^^^^^ meta.embedded.expression.twig #}
+{#                                 ^^ punctuation.section.embedded.begin.twig #}
+{#                                   ^^^^^^ source.twig.embedded #}
+{#                                    ^^^^ meta.path.twig variable.other.twig #}
+{#                                         ^^ punctuation.section.embedded.end.twig #}
+{#                                           ^ string.quoted.double.html punctuation.definition.string.end.html #}
+{#                                             ^^^^^ entity.other.attribute-name.html #}
+{#                                                  ^ punctuation.separator.key-value.html #}
+{#                                                   ^^^^^^^^^^^^^^^ meta.string.html #}
+{#                                                   ^ string.quoted.double.html punctuation.definition.string.begin.html #}
+{#                                                    ^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#                                                    ^^ punctuation.section.embedded.begin.twig #}
+{#                                                      ^^^^^^^^^ source.twig.embedded #}
+{#                                                       ^^^^^ meta.path.twig variable.other.twig #}
+{#                                                            ^^^ meta.filter.twig #}
+{#                                                            ^ keyword.operator.pipe.twig #}
+{#                                                             ^ meta.function-call.identifier.twig variable.function.filter.twig #}
+{#                                                               ^^ punctuation.section.embedded.end.twig #}
+{#                                                                 ^ string.quoted.double.html punctuation.definition.string.end.html #}
+{#                                                                   ^^^^ entity.other.attribute-name.html #}
+{#                                                                       ^ punctuation.separator.key-value.html #}
+{#                                                                        ^^^^^^^^^^^^ meta.string.html #}
+{#                                                                        ^ string.quoted.double.html punctuation.definition.string.begin.html #}
+{#                                                                         ^^^^^^^^^^ meta.embedded.expression.twig #}
+{#                                                                         ^^ punctuation.section.embedded.begin.twig #}
+{#                                                                           ^^^^^^ source.twig.embedded #}
+{#                                                                            ^^^^ meta.path.twig variable.other.twig #}
+{#                                                                                 ^^ punctuation.section.embedded.end.twig #}
+{#                                                                                   ^ string.quoted.double.html punctuation.definition.string.end.html #}
+{#                                                                                    ^^ punctuation.definition.tag.end.html #}
 
-{# https://twig.symfony.com/doc/3.x/tags/extends.html#conditional-inheritance #}
-{% extends standalone ? "minimum.html" : "base.html" %}
-{#                    ^ keyword.operator.ternary.twig #}
-{#                      ^^^^^^^^^^^^^^ meta.string.twig #}
-{#                                     ^ keyword.operator.ternary.twig #}
-{#                                       ^^^^^^^^^^^ meta.string.twig #}
+{% endmacro input %}
+{#^^^^^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#                ^^ meta.embedded.statement.twig - source #}
+{#^^^^^^^^^^ source.twig.embedded #}
+{# ^^^^^^^^ keyword.declaration.macro.end.twig #}
+{#          ^^^^^ variable.other.twig #}
+{#                ^^ punctuation.section.embedded.end.twig #}
 
-{# https://github.com/Sublime-Instincts/BetterTwig/issues/12 #}
-{% extends "/_skeleton.html" %}
-{#         ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+|==============================================================================
+| Sandbox
+| https://twig.symfony.com/doc/3.x/tags/sandbox.html
+|==============================================================================
+
+{% sandbox %}
+{#^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#         ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^ keyword.other.twig #}
+{#         ^^ punctuation.section.embedded.end.twig #}
+
+    {% for i in 1..2 %}
+        {{ i }}
+    {% endfor %}
+
+{% endsandbox %}
+{#^^^^^^^^^^^^ meta.embedded.statement.twig source.twig.embedded #}
+{#            ^^ meta.embedded.statement.twig - source #}
+{# ^^^^^^^^^^ keyword.other.twig #}
+{#            ^^ punctuation.section.embedded.end.twig #}
 
 |==============================================================================
 | Use
@@ -2030,7 +2273,7 @@
 {#                       ^^^^^^^^^^^ meta.selector.css meta.attribute-selector.css meta.brackets.css meta.string.css string.unquoted.css meta.embedded.expression.twig #}
 {#                                  ^ meta.selector.css meta.attribute-selector.css meta.brackets.css - meta.embedded #}
 {#                                   ^ meta.selector.css - meta.attribute-selector #}
-{#                                    ^^ meta.template.twig meta.property-list.css meta.block.css - mete.embedded #}
+{#                                    ^^ meta.property-list.css meta.block.css - mete.embedded #}
 {#                                      ^^^^^^^^^^ meta.property-list.css meta.block.css meta.property-name.css support.type.property-name.css meta.embedded.expression.twig #}
 {#                                                ^ meta.property-list.css meta.block.css - meta.property-name - meta.property-value #}
 {#                                                 ^ meta.property-list.css meta.block.css meta.property-value.css - meta.embedded #}
