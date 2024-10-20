@@ -1,0 +1,16 @@
+%YAML 1.2
+---
+scope: source.css.embedded.string.quoted.single.twig
+version: 2
+hidden: true
+
+extends: CSS (Twig).sublime-syntax
+
+contexts:
+  prototype:
+    - meta_prepend: true
+    - match: (?=')
+      pop: 1
+
+  main:
+    - include: rule-list-body
