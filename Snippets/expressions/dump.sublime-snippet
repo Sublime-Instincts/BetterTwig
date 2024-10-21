@@ -1,0 +1,6 @@
+<snippet>
+<content><![CDATA[{{ dump($1) }}]]></content>
+<tabTrigger>dump</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig dump</description>
+</snippet>

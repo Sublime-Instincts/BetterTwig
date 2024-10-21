@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plist version="1.0">
+<dict>
+	<key>scope</key>
+	<string>text.twig</string>
+	<key>settings</key>
+	<dict>
+		<key>decreaseIndentPattern</key>
+		<string>(?x)
+			# tag begin
+			^ \s* \{\%[-~]? \s*
+			(?:
+			  # block end tags
+			  end (?: apply | autoescape | block | cache | embed | for | guard | if | macro | sandbox | set | verbatim | with )
+			# intermediate block branches
+			| else | elseif
+			)\b .*?
+			# tag end
+			\%\} \s* $
+		</string>
+
+		<key>increaseIndentPattern</key>
+		<string>(?x)
+			# tag begin
+			^\s* \{\%[-~]? \s*
+			(?:
+			  (?:
+			  # block begin tags
+			    apply | autoescape | block | cache | embed | for | guard | if | macro | sandbox | verbatim | with
+			  # intermediate block branches
+			  | else | elseif
+			  )\b .*?
+			# set must not contain assignment to start a block
+			| set\b [^=]*?
+			)
+			# tag end
+			\%\} \s* $
+		</string>
+
+		<key>bracketIndentNextLinePattern</key>
+		<string></string>
+
+		<key>disableIndentNextLinePattern</key>
+		<string></string>
+	</dict>
+</dict>
+</plist>

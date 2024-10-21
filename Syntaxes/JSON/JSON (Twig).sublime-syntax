@@ -1,0 +1,55 @@
+%YAML 1.2
+---
+# http://www.sublimetext.com/docs/syntax.html
+name: JSON (Twig)
+scope: source.json.twig
+version: 2
+
+extends: Packages/JSON/JSON.sublime-syntax
+
+file_extensions:
+  - json.twig
+  - twig.json
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.twig
+
+  string-prototype:
+    # since ST4174
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax#interpolations
+
+  inside-string:
+    # until ST4173
+    # override whole context to apply `meta.string.json`
+    - meta_include_prototype: false
+    - meta_scope: meta.string.json string.quoted.double.json
+    - match: \"
+      scope: punctuation.definition.string.end.json
+      pop: 1
+    - match: \n
+      scope: invalid.illegal.unclosed-string.json
+      pop: 1
+    # string-escape (not avail in ST4174+)
+    - match: |-
+        (?x:                # turn on extended mode
+          \\                # a literal backslash
+          (?:               # ...followed by...
+            ["\\/bfnrt]     # one of these characters
+            |               # ...or...
+            u               # a u
+            [0-9a-fA-F]{4}  # and four hex digits
+          )
+        )
+      scope: constant.character.escape.json
+    - match: \\.
+      scope: invalid.illegal.unrecognized-string-escape.json
+    # finally interpolations
+    - include: Text (Twig).sublime-syntax#interpolations

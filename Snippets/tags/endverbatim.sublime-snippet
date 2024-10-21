@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endverbatim %}]]></content>
+	<tabTrigger>endverbatim</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig endverbatim tag</description>
+</snippet>

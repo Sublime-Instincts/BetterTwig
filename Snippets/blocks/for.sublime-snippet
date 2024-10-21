@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% for ${1:item} in ${2:collection} %}
+${TM_TEMPLATE_INDENT}$0
+{% endfor %}
+]]></content>
+<tabTrigger>bfor</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig for block</description>
+</snippet>

@@ -1,0 +1,103 @@
+{
+	// Only complete names without trailing signature
+
+	"scope": "source.twig meta.function-call.identifier",
+	"completions": [
+		{
+			"trigger": "attribute",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Can be used to access a 'dynamic' attribute of a variable.",
+		},
+		{
+			"trigger": "block",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Can be used to display one block from another template.",
+		},
+		{
+			"trigger": "constant",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the constant value for a given string.",
+		},
+		{
+			"trigger": "cycle",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Cycles on an array of values.",
+		},
+		{
+			"trigger": "date",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Converts an argument to a date to allow date comparison.",
+		},
+		{
+			"trigger": "dump",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Dumps information about a template variable.",
+		},
+		{
+			"trigger": "html_classes",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns a string by conditionally joining class names together.",
+		},
+		{
+			"trigger": "include",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the rendered content of a template.",
+		},
+		{
+			"trigger": "max",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the biggest value of a sequence or a set of values.",
+		},
+		{
+			"trigger": "min",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the smallest value of a sequence or a set of values.",
+		},
+		{
+			"trigger": "parent",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Renders the contents of the parent block.",
+		},
+		{
+			"trigger": "random",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns a random value depending on the supplied parameter type.",
+		},
+		{
+			"trigger": "range",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns a list containing an arithmetic progression of integers.",
+		},
+		{
+			"trigger": "source",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the content of a template without rendering it.",
+		},
+		{
+			"trigger": "country_timezones",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Returns the names of the timezones associated with a given country code.",
+		},
+		{
+			"trigger": "template_from_string",
+			"kind": ["function", "f", "Twig Function"],
+			"annotation": "Twig Function",
+			"details": "Loads a template from a string.",
+		},
+	],
+}

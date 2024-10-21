@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endautoescape %}]]></content>
+	<tabTrigger>endautoescape</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig endautoescape tag</description>
+</snippet>

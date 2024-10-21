@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% if ${1:condition} %}]]></content>
+	<tabTrigger>if</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig if tag</description>
+</snippet>

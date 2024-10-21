@@ -1,0 +1,29 @@
+%YAML 1.2
+---
+name: JavaScript (Twig)
+scope: source.js.twig
+version: 2
+
+extends: Packages/JavaScript/JavaScript.sublime-syntax
+
+file_extensions:
+  - js.twig
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_scope: meta.template.twig
+
+  expressions:
+    # required until ST4178
+    - match: (?=\S)
+      push: [ expression-end, expression-begin ]
+
+  string-content:
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax#interpolations

@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% if $1 %}
+${TM_TEMPLATE_INDENT}$0
+{% endif %}
+]]></content>
+<tabTrigger>bif</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig if block</description>
+</snippet>

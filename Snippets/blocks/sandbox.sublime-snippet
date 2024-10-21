@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% sandbox %}
+${TM_TEMPLATE_INDENT}$0
+{% endsandbox %}
+]]></content>
+<tabTrigger>bsandbox</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig sandbox block</description>
+</snippet>

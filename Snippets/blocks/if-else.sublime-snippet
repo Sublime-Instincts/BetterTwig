@@ -1,0 +1,12 @@
+<snippet>
+<content><![CDATA[
+{% if $1 %}
+${TM_TEMPLATE_INDENT}$2
+{% else %}
+${TM_TEMPLATE_INDENT}$0
+{% endif %}
+]]></content>
+<tabTrigger>bifelse</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig if-else block</description>
+</snippet>
