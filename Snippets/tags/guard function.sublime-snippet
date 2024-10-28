@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% guard function ${1:callable} %}]]></content>
+	<tabTrigger>guardfunction</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig guard tag</description>
+</snippet>

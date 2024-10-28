@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% autoescape $1 %}
+${TM_TEMPLATE_INDENT}$0
+{% endautoescape %}
+]]></content>
+<tabTrigger>bautoescape</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig autoescape block</description>
+</snippet>

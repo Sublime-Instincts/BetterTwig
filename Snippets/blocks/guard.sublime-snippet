@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% guard ${1:type} ${2:callable} %}
+${TM_TEMPLATE_INDENT}$0
+{% endguard %}
+]]></content>
+<tabTrigger>bguard</tabTrigger>
+<scope>meta.template.twig - meta.guardded</scope>
+<description>Twig guard block</description>
+</snippet>

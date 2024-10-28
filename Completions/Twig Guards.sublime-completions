@@ -1,0 +1,23 @@
+{
+	"scope": "source.twig meta.statement.guard",
+	"completions": [
+		{
+			"trigger": "function",
+			"kind": ["type", "f", "Twig Guard"],
+			"annotation": "Twig Filter",
+			"details": "Compile block if function exists.",
+		},
+		{
+			"trigger": "filter",
+			"kind": ["type", "f", "Twig Guard"],
+			"annotation": "Twig Filter",
+			"details": "Compile block if filter exists.",
+		},
+		{
+			"trigger": "test",
+			"kind": ["type", "f", "Twig Guard"],
+			"annotation": "Twig Filter",
+			"details": "Compile block if test exists.",
+		},
+	],
+}

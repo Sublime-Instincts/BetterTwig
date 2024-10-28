@@ -1,0 +1,711 @@
+{# SYNTAX TEST "Packages/Twig/Syntaxes/Text/Text (Twig).sublime-syntax" #}
+
+    {# #}
+{#  ^^^^^ comment.block.twig #}
+{#  ^^ punctuation.definition.comment.begin.twig #}
+{#     ^^ punctuation.definition.comment.end.twig #}
+
+    {%  %}
+{#  ^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#      ^^ punctuation.section.embedded.end.twig #}
+
+    {%-  -%}
+{#  ^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {%~  ~%}
+{#  ^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {# Block Tags #}
+
+    {% apply upper %} {% endapply %}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                    ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+{#                    ^^ punctuation.section.embedded.begin.twig #}
+{#                                ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ keyword.other #}
+{#                       ^^^^^^^^ keyword.other #}
+
+    {% autoescape "html" %} {% endautoescape %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                          ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                       ^^ punctuation.section.embedded.end.twig #}
+{#                          ^^ punctuation.section.embedded.begin.twig #}
+{#                                           ^^ punctuation.section.embedded.end.twig #}
+{#                ^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#     ^^^^^^^^^^ keyword.other.twig #}
+{#                             ^^^^^^^^^^^^^ keyword.other.twig #}
+
+    {% block block_1 %} {% endblock %}
+{#  ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                      ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^^^ keyword.declaration.block.twig #}
+{#           ^^^^^^^ entity.name.block.twig #}
+{#                   ^^ punctuation.section.embedded.end.twig #}
+{#                      ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^^^^^^^ keyword.declaration.block.end.twig #}
+{#                                  ^^ punctuation.section.embedded.end.twig #}
+
+    {% verbatim %} {% endverbatim %}
+{#  ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                 ^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#              ^^ punctuation.section.embedded.end.twig #}
+{#                 ^^ punctuation.section.embedded.begin.twig #}
+{#                                ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^ keyword.control.twig #}
+{#                    ^^^^^^^^^^^ keyword.control.twig #}
+
+    {% with %} {% endwith %}
+{#  ^^^^^^^^^^ meta.embedded.statement.twig #}
+{#             ^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+{#             ^^ punctuation.section.embedded.begin.twig #}
+{#                        ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^ keyword.other.twig #}
+{#                ^^^^^^^ keyword.other.twig #}
+
+    {% sandbox %} {% endsandbox %}
+{#  ^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                ^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#             ^^ punctuation.section.embedded.end.twig #}
+{#                ^^ punctuation.section.embedded.begin.twig #}
+{#                              ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^ keyword.other.twig #}
+{#                   ^^^^^^^^^^ keyword.other.twig #}
+
+    {% macro %} {% endmacro %}
+{#  ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#              ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+{#              ^^ punctuation.section.embedded.begin.twig #}
+{#                          ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ keyword.declaration.macro.twig #}
+{#                 ^^^^^^^^ keyword.declaration.macro.end.twig #}
+
+    {% embed %} {% endembed %}
+{#  ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#              ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+{#              ^^ punctuation.section.embedded.begin.twig #}
+{#                          ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ keyword.other.twig #}
+{#                 ^^^^^^^^ keyword.other.twig #}
+
+    {% for item in items %} {% endfor %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                          ^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                       ^^ punctuation.section.embedded.end.twig #}
+{#                          ^^ punctuation.section.embedded.begin.twig #}
+{#                                    ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ keyword.control.loop.for.twig #}
+{#         ^^^^ variable.other.twig #}
+{#              ^^ keyword.operator.iteration.twig #}
+{#                             ^^^^^^ keyword.control.loop #}
+
+    {% if %} {% else %} {% endif %}
+{#  ^^^^^^^^ meta.embedded.statement.twig #}
+{#          ^ - meta.embedded #}
+{#           ^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                     ^ - meta.embedded #}
+{#                      ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#                                 ^ - meta.embedded #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#        ^^ punctuation.section.embedded.end.twig #}
+{#           ^^ punctuation.section.embedded.begin.twig #}
+{#                   ^^ punctuation.section.embedded.end.twig #}
+{#                      ^^ punctuation.section.embedded.begin.twig #}
+{#                               ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ keyword.control.conditional.if.twig #}
+{#              ^^^^ keyword.control.conditional.else.twig #}
+{#                         ^^^^^ keyword.control.conditional #}
+
+     {% if post.status is constant('Post::PUBLISHED') %}
+{#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                                                    ^^ punctuation.section.embedded.end.twig #}
+{#                                                      ^ - meta.embedded #}
+{#                        ^^^^^^^^ support.function #}
+{#                                ^ punctuation.section.arguments.begin.twig #}
+{#                                 ^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#                                                  ^ punctuation.section.arguments.end.twig #}
+
+     {% if var is defined and foo.method(var) is defined %}
+{#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                ^^^^^^^ support.function.test.twig #}
+{#                                ^^^^^^ variable.function.twig #}
+{#                                               ^^^^^^^ support.function.test.twig #}
+{#                                                       ^^ punctuation.section.embedded.end.twig #}
+{#                                                         ^ - meta.embedded #}
+
+     {% if loop.index is divisible by(3) %}
+{#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                                       ^^ punctuation.section.embedded.end.twig #}
+{#                       ^^^^^^^^^^^^ support.function.test.twig #}
+
+     {% if foo is empty %}
+{#   ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+{#                ^^^^^ support.function.test.twig #}
+     {% if users is iterable %}
+{#   ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+{#                  ^^^^^^^^ support.function.test.twig #}
+
+     {% if foo.attribute is same as(false) %}
+{#   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#   ^^ punctuation.section.embedded.begin.twig #}
+{#                                         ^^ punctuation.section.embedded.end.twig #}
+{#                          ^^^^^^^ support.function.test.twig #}
+
+    {# Line Tags #}
+
+    {% deprecated "This template is deprecated" %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                              ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^ keyword.other.twig #}
+
+    {% flush %}
+{#  ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ keyword.other.twig #}
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig
+
+    {% set variable = "Hello, World" %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                   ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ keyword.declaration #}
+{#         ^^^^^^^^ variable.other.twig #}
+{#                  ^ keyword.operator.assignment.twig #}
+{#                    ^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+
+    {% set content = include('template.html') %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                            ^^ punctuation.section.embedded.end.twig #}
+{#                   ^^^^^^^ meta.function-call.identifier.twig support.function.twig #}
+{#                          ^^^^^^^^^^^^^^^^^ meta.function-call.arguments.twig #}
+{#                          ^ punctuation.section.arguments.begin.twig #}
+{#                           ^^^^^^^^^^^^^^^ string.quoted.single.twig #}
+{#                                          ^ punctuation.section.arguments.end.twig #}
+
+    {% | %}
+{#  ^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^ keyword.operator.pipe.twig #}
+{#       ^^ punctuation.section.embedded.end.twig #}
+
+    {% function(arg1 = value1, arg2 = value2) %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                            ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^ variable.function.twig #}
+{#              ^^^^ meta.function-call.arguments.twig variable.parameter.twig #}
+{#                   ^ keyword.operator.assignment.twig #}
+{#                           ^ punctuation.separator.sequence.twig #}
+
+
+    {% [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                       ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#                                     ^ punctuation.section.sequence.end.twig #}
+{#        ^ keyword.operator.arithmetic.twig #}
+{#            ^ keyword.operator.arithmetic.twig #}
+{#                ^ keyword.operator.arithmetic.twig #}
+{#                    ^ keyword.operator.arithmetic.twig #}
+{#                        ^^ keyword.operator.arithmetic.twig #}
+{#                             ^ keyword.operator.arithmetic.twig #}
+{#                                 ^^ keyword.operator.arithmetic.twig #}
+
+    {% { + - * / // % } %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+{#       ^ keyword.operator.arithmetic.twig #}
+{#         ^ keyword.operator.arithmetic.twig #}
+{#           ^ keyword.operator.arithmetic.twig #}
+{#             ^ keyword.operator.arithmetic.twig #}
+{#               ^^ keyword.operator.arithmetic.twig #}
+{#                  ^ keyword.operator.arithmetic.twig #}
+
+    {% [ == >= <= != > < ] %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#       ^^ keyword.operator.comparison.twig #}
+{#          ^^ keyword.operator.comparison.twig #}
+{#             ^^ keyword.operator.comparison.twig #}
+{#                ^^ keyword.operator.comparison.twig #}
+{#                   ^ keyword.operator.comparison.twig #}
+{#                     ^ keyword.operator.comparison.twig #}
+
+    {% [null, none, true, false] %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                               ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#                             ^ punctuation.section.sequence.end.twig #}
+{#          ^ punctuation.separator.sequence.twig #}
+{#      ^^^^ constant.language.null.twig #}
+{#            ^^^^ constant.language.null.twig #}
+{#                  ^^^^ constant.language.boolean.true.twig #}
+{#                        ^^^^^ constant.language.boolean.false.twig #}
+
+    {% {null none true false} %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                            ^^ punctuation.section.embedded.end.twig #}
+{#     ^ meta.mapping.twig punctuation.section.mapping.begin.twig #}
+{#      ^^^^^^^^^^^^^^^^^^^^ meta.mapping.key.twig #}
+{#                          ^ meta.mapping.twig  punctuation.section.mapping.end.twig #}
+{#      ^^^^ constant.language.null.twig #}
+{#           ^^^^ constant.language.null.twig #}
+{#                ^^^^ constant.language.boolean.true.twig #}
+{#                     ^^^^^ constant.language.boolean.false.twig #}
+
+    {% (null, none, true, false) %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                               ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#                             ^ punctuation.section.sequence.end.twig #}
+{#          ^ punctuation.separator.sequence.twig #}
+{#      ^^^^ constant.language.null.twig #}
+{#            ^^^^ constant.language.null.twig #}
+{#                  ^^^^ constant.language.boolean.true.twig #}
+{#                        ^^^^^ constant.language.boolean.false.twig #}
+    {% false true none null %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                          ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ constant.language.boolean.false.twig #}
+{#           ^^^^ constant.language.boolean.true.twig #}
+{#                ^^^^ constant.language.null.twig #}
+{#                     ^^^^ constant.language.null.twig #}
+
+
+    {% { == >= <= != > < } %}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ meta.mapping.twig #}
+{#     ^ punctuation.section.mapping.begin.twig #}
+{#       ^^^^^^^^^^^^^^^^ meta.mapping.key.twig #}
+{#                       ^ meta.mapping.twig  punctuation.section.mapping.end.twig #}
+{#       ^^ keyword.operator.comparison.twig #}
+{#          ^^ keyword.operator.comparison.twig #}
+{#             ^^ keyword.operator.comparison.twig #}
+{#                ^^ keyword.operator.comparison.twig #}
+{#                   ^ keyword.operator.comparison.twig #}
+{#                     ^ keyword.operator.comparison.twig #}
+
+    {# Expressions #}
+
+    {#  #}
+
+    {{  }}
+{#  ^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#      ^^ punctuation.section.embedded.end.twig #}
+
+    {{~  ~}}
+{#  ^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {{-  -}}
+{#  ^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {{ + - * / ** // % }}
+{#  ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                     ^^ punctuation.section.embedded.end.twig #}
+{#     ^ keyword.operator.arithmetic.twig #}
+{#       ^ keyword.operator.arithmetic.twig #}
+{#         ^ keyword.operator.arithmetic.twig #}
+{#           ^ keyword.operator.arithmetic.twig #}
+{#             ^^ keyword.operator.arithmetic.twig #}
+{#                ^^ keyword.operator.arithmetic.twig #}
+{#                   ^ keyword.operator.arithmetic.twig #}
+
+    {{ >= <= == != < > }}
+{#  ^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                     ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ keyword.operator.comparison.twig #}
+{#        ^^ keyword.operator.comparison.twig #}
+{#           ^^ keyword.operator.comparison.twig #}
+{#              ^^ keyword.operator.comparison.twig #}
+{#                 ^ keyword.operator.comparison.twig #}
+{#                   ^ keyword.operator.comparison.twig #}
+
+    {{ = ~ ?? ?: .. }}
+{#  ^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                  ^^ punctuation.section.embedded.end.twig #}
+{#     ^ keyword.operator.assignment.twig #}
+{#       ^ keyword.operator.concatenation.twig #}
+{#         ^^ keyword.operator.null-coalescing.twig #}
+{#            ^^ keyword.operator.ternary.twig #}
+{#               ^^ keyword.operator.range.twig #}
+
+    {{ 1234567890 123.456789 123.456e789 }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                       ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#                ^^^^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#                   ^ punctuation.separator.decimal.twig #}
+{#                           ^^^^^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#                              ^ punctuation.separator.decimal.twig #}
+
+    {{ "Hello, World" 'Hello, World' }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                   ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#                    ^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#     ^ punctuation.definition.string.begin.twig #}
+{#                  ^ punctuation.definition.string.end.twig #}
+{#                    ^ punctuation.definition.string.begin.twig #}
+{#                                 ^ punctuation.definition.string.end.twig #}
+
+    {{ [1, 2, 3, 4, 12.34] }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#                       ^ punctuation.section.sequence.end.twig #}
+{#      ^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#                  ^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#       ^ punctuation.separator.sequence.twig #}
+{#                    ^ punctuation.separator.decimal.twig #}
+
+    {{ ["a", 'c'] }}
+{#  ^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^ meta.sequence.array.twig #}
+{#      ^^^ meta.string.twig string.quoted.double.twig #}
+{#           ^^^ meta.string.twig string.quoted.single.twig #}
+
+    {{ [none null true false] }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#      ^^^^ constant.language.null.twig #}
+{#           ^^^^ constant.language.null.twig #}
+{#                ^^^^ constant.language.boolean.true.twig #}
+{#                     ^^^^^ constant.language.boolean.false.twig #}
+{#                          ^ punctuation.section.sequence.end.twig #}
+{#                            ^^ punctuation.section.embedded.end.twig #}
+
+    {{ [1 + 2 - 3 * 4 / 5 // 6 % 7 ** 9] }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                       ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#        ^ keyword.operator.arithmetic.twig #}
+{#            ^ keyword.operator.arithmetic.twig #}
+{#                ^ keyword.operator.arithmetic.twig #}
+{#                    ^ keyword.operator.arithmetic.twig #}
+{#                        ^^ keyword.operator.arithmetic.twig #}
+{#                             ^ keyword.operator.arithmetic.twig #}
+{#                                 ^^ keyword.operator.arithmetic.twig #}
+
+    {{ [ == >= <= != > < ] }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^ meta.sequence.array.twig #}
+{#       ^^ keyword.operator.comparison.twig #}
+{#          ^^ keyword.operator.comparison.twig #}
+{#             ^^ keyword.operator.comparison.twig #}
+{#                ^^ keyword.operator.comparison.twig #}
+{#                   ^ keyword.operator.comparison.twig #}
+{#                     ^ keyword.operator.comparison.twig #}
+
+    {{ { + - * / // % } }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ meta.mapping.twig #}
+{#     ^ punctuation.section.mapping.begin.twig #}
+{#       ^^^^^^^^^^^^^ meta.mapping.key.twig #}
+{#                    ^ meta.mapping.twig  punctuation.section.mapping.end.twig #}
+{#       ^ keyword.operator.arithmetic.twig #}
+{#         ^ keyword.operator.arithmetic.twig #}
+{#           ^ keyword.operator.arithmetic.twig #}
+{#             ^ keyword.operator.arithmetic.twig #}
+{#               ^^ keyword.operator.arithmetic.twig #}
+{#                  ^ keyword.operator.arithmetic.twig #}
+
+    {{ { == >= <= != > < } }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                         ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ meta.mapping.twig #}
+{#     ^ punctuation.section.mapping.begin.twig #}
+{#       ^^^^^^^^^^^^^^^^ meta.mapping.key.twig #}
+{#                       ^ meta.mapping.twig  punctuation.section.mapping.end.twig #}
+{#       ^^ keyword.operator.comparison.twig #}
+{#          ^^ keyword.operator.comparison.twig #}
+{#             ^^ keyword.operator.comparison.twig #}
+{#                ^^ keyword.operator.comparison.twig #}
+{#                   ^ keyword.operator.comparison.twig #}
+{#                     ^ keyword.operator.comparison.twig #}
+
+    {{ { null none false true } }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                              ^^ punctuation.section.embedded.end.twig #}
+{#     ^^ meta.mapping.twig #}
+{#     ^ punctuation.section.mapping.begin.twig #}
+{#       ^^^^^^^^^^^^^^^^^^^^^ meta.mapping.key.twig #}
+{#                            ^ meta.mapping.twig  punctuation.section.mapping.end.twig #}
+{#       ^^^^ constant.language.null.twig #}
+{#            ^^^^ constant.language.null.twig #}
+{#                 ^^^^^ constant.language.boolean.false.twig #}
+{#                       ^^^^ constant.language.boolean.true.twig #}
+
+    {{ (1, 0.5, 'a', "b", none, null, true, false) }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                                 ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.sequence.tuple.twig #}
+{#     ^ punctuation.section.sequence.begin.twig #}
+{#                                               ^ punctuation.section.sequence.end.twig #}
+{#      ^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#         ^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#              ^^^ meta.string.twig string.quoted.single.twig #}
+{#                   ^^^ meta.string.twig  string.quoted.double.twig #}
+{#                        ^^^^ constant.language.null.twig #}
+{#                              ^^^^ constant.language.null.twig #}
+{#                                    ^^^^ constant.language.boolean.true.twig #}
+{#                                          ^^^^^ constant.language.boolean.false.twig #}
+
+    {{ (1 + 2 - 3) }}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^ meta.group.twig #}
+{#     ^ punctuation.section.group.begin.twig #}
+{#               ^ punctuation.section.group.end.twig #}
+
+    {{ { "a": "b", 'c': 'd', "e": 123, "f": 123.456 } }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^ meta.mapping.twig #}
+{#     ^ punctuation.section.mapping.begin.twig #}
+{#       ^^^ meta.mapping.key.twig meta.string.twig string.quoted.double.twig #}
+{#       ^ punctuation.definition.string.begin.twig #}
+{#         ^ punctuation.definition.string.end.twig #}
+{#          ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig #}
+{#           ^^^^ meta.mapping.value.twig #}
+{#            ^^^ meta.string.twig string.quoted.double.twig #}
+{#            ^ punctuation.definition.string.begin.twig #}
+{#              ^ punctuation.definition.string.end.twig #}
+{#               ^^ meta.mapping.twig #}
+{#               ^ punctuation.separator.mapping.pair.twig #}
+{#                 ^^^ meta.mapping.key.twig meta.string.twig string.quoted.single.twig #}
+{#                 ^ punctuation.definition.string.begin.twig #}
+{#                   ^ punctuation.definition.string.end.twig #}
+{#                    ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig #}
+{#                     ^^^^ meta.mapping.value.twig #}
+{#                      ^^^ meta.string.twig string.quoted.single.twig #}
+{#                      ^ punctuation.definition.string.begin.twig #}
+{#                        ^ punctuation.definition.string.end.twig #}
+{#                         ^^ meta.mapping.twig #}
+{#                         ^ punctuation.separator.mapping.pair.twig #}
+{#                           ^^^ meta.mapping.key.twig meta.string.twig string.quoted.double.twig #}
+{#                           ^ punctuation.definition.string.begin.twig #}
+{#                             ^ punctuation.definition.string.end.twig #}
+{#                              ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig #}
+{#                               ^^^^ meta.mapping.value.twig #}
+{#                                ^^^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#                                   ^^ meta.mapping.twig #}
+{#                                   ^ punctuation.separator.mapping.pair.twig #}
+{#                                     ^^^ meta.mapping.key.twig meta.string.twig string.quoted.double.twig #}
+{#                                     ^ punctuation.definition.string.begin.twig #}
+{#                                       ^ punctuation.definition.string.end.twig #}
+{#                                        ^ meta.mapping.twig punctuation.separator.mapping.key-value.twig #}
+{#                                         ^^^^^^^^^ meta.mapping.value.twig #}
+{#                                          ^^^^^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#                                             ^ punctuation.separator.decimal.twig #}
+{#                                                  ^ meta.mapping.twig punctuation.section.mapping.end.twig #}
+{#                                                    ^^ punctuation.section.embedded.end.twig #}
+
+    {{ not is }}
+{#  ^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#            ^^ punctuation.section.embedded.end.twig #}
+
+    {{ and or b-xor b-or b-or }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                            ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ keyword.operator.logical.twig #}
+{#         ^^ keyword.operator.logical.twig #}
+{#            ^^^^^ keyword.operator.bitwise.twig #}
+{#                  ^^^^ keyword.operator.bitwise.twig #}
+{#                       ^^^^ keyword.operator.bitwise.twig #}
+
+    {{ "foo #{bar} baz" }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                      ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ meta.string.twig string.quoted.double.twig #}
+{#          ^^^^^^ meta.string.twig meta.interpolation.twig #}
+{#          ^^ punctuation.section.interpolation.begin.twig #}
+{#            ^^^ variable.other.twig #}
+{#               ^ punctuation.section.interpolation.end.twig #}
+{#                ^^^^^ meta.string.twig string.quoted.double.twig #}
+
+    {{ "foo #{1 + 2.3} baz" }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                          ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^ meta.string.twig string.quoted.double.twig #}
+{#          ^^^^^^^^^^ meta.string.twig meta.interpolation.twig #}
+{#          ^^ punctuation.section.interpolation.begin.twig #}
+{#            ^ meta.number.integer.decimal.twig constant.numeric.value.twig #}
+{#              ^ keyword.operator.arithmetic.twig #}
+{#                ^^^ meta.number.float.decimal.twig constant.numeric.value.twig #}
+{#                 ^ punctuation.separator.decimal.twig #}
+{#                   ^ punctuation.section.interpolation.end.twig #}
+{#                    ^^^^^ meta.string.twig string.quoted.double.twig #}
+
+    {{ foo.bar }}
+{#  ^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#             ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ variable.other.twig #}
+{#        ^ punctuation.accessor.dot.twig #}
+{#         ^^^ variable.other.member.twig #}
+
+    {{ foo ? 'yes' : 'no' }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                        ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ variable.other.twig #}
+{#         ^ keyword.operator.ternary.twig #}
+{#           ^^^^^ meta.string.twig string.quoted.single.twig #}
+{#                 ^ keyword.operator.ternary.twig #}
+{#                   ^^^^ meta.string.twig string.quoted.single.twig #}
+
+    {{ foo ?: 'no' }}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^ variable.other.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+{#         ^^ keyword.operator.ternary.twig #}
+{#            ^^^^ meta.string.twig string.quoted.single.twig #}
+
+    {{ foo ?? 'no' }}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^ variable.other.twig #}
+{#         ^^ keyword.operator.null-coalescing.twig #}
+{#            ^^^^ meta.string.twig string.quoted.single.twig #}
+
+    {{ foo ? 'yes' }}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^ variable.other.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+{#         ^ keyword.operator.ternary.twig #}
+{#           ^^^^^ meta.string.twig string.quoted.single.twig #}
+
+    {{ _self.input('password', '', 'password') }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                             ^^ punctuation.section.embedded.end.twig #}
+{#          ^ punctuation.accessor.dot.twig #}
+{#     ^^^^^ variable.language.twig #}
+
+    {{ "Escapes \' \" {{ {#" }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.double.twig #}
+{#              ^^ constant.character.escape.twig #}
+{#                 ^^ constant.character.escape.twig #}
+
+    {{ 'Escapes \' \" {{ {#' }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                           ^^ punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^^^^^^^^^^^^^ meta.string.twig string.quoted.single.twig #}
+{#              ^^ constant.character.escape.twig #}
+{#                 ^^ constant.character.escape.twig #}
+
+   {{ var is even }}
+{# ^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{# ^^ punctuation.section.embedded.begin.twig #}
+{#                ^^ punctuation.section.embedded.end.twig #}
+{#           ^^^^ support.function.test.twig #}
+
+   {{ var is odd }}
+{# ^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{# ^^ punctuation.section.embedded.begin.twig #}
+{#               ^^ punctuation.section.embedded.end.twig #}
+{#           ^^^ support.function.test.twig #}
+
+
+    {{ attribute(object, method) is defined ? 'Method exists' : 'Method does not exist' }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                                                                                      ^^ meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#     ^^^^^^^^^ support.function #}
+
+
+    {{ 'value'|count }}
+{#  ^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                   ^^ meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#            ^ keyword.operator.pipe.twig #}
+{#             ^^^^^ variable.function.filter.twig #}
+    {{ 'value'|count_filter}}
+{#             ^^^^^^^^^^^^ variable.function.filter.twig #}
+{#                           ^ - meta.embedded.expression.twig #}
+
+    {{ 'value'|default(null) }}
+{#  ^^^^^^^^^^^^^^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#                           ^^ meta.embedded.expression.twig punctuation.section.embedded.end.twig #}
+{#            ^ keyword.operator.pipe.twig #}
+{#             ^^^^^^^ - variable.function.filter.twig #}
+{#             ^^^^^^^ support.function #}
+{#                     ^^^^ meta.function-call.arguments.twig #}

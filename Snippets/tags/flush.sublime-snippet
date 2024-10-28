@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% flush %}]]></content>
+	<tabTrigger>flush</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig flush tag</description>
+</snippet>

@@ -1,0 +1,120 @@
+{# SYNTAX TEST "Packages/Twig/Syntaxes/JavaScript/JavaScript (Twig).sublime-syntax" #}
+
+    {# commet #}
+{#  ^^^^^^^^^^^^ meta.embedded.comment.twig comment.block.twig #}
+{#  ^^ punctuation.definition.comment.begin.twig #}
+{#            ^^ punctuation.definition.comment.end.twig #}
+
+    {%  %}
+{#  ^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^ source.twig.embedded #}
+{#      ^^ punctuation.section.embedded.end.twig #}
+
+    {%-  -%}
+{#  ^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#     ^^ source.twig.embedded #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {%~  ~%}
+{#  ^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^^ punctuation.section.embedded.begin.twig #}
+{#     ^^ source.twig.embedded #}
+{#       ^^^ punctuation.section.embedded.end.twig #}
+
+    {% if expression %}
+{#  ^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^ keyword.control.conditional.if.twig #}
+{#        ^^^^^^^^^^ meta.path.twig variable.other.twig #}
+{#                   ^^ punctuation.section.embedded.end.twig #}
+
+    {% endif %}
+{#  ^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^ source.twig.embedded #}
+{#     ^^^^^ keyword.control.conditional.endif.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+
+    {% set var = "%}" %}
+{#  ^^^^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^^ meta.declaration.twig keyword.declaration.variable.twig #}
+{#        ^^^^^ meta.declaration.identifier.twig #}
+{#         ^^^ variable.other.twig #}
+{#             ^ meta.declaration.twig keyword.operator.assignment.twig #}
+{#              ^^^^^^ meta.declaration.value.twig #}
+{#               ^^^^ meta.string.twig string.quoted.double.twig #}
+{#               ^ punctuation.definition.string.begin.twig #}
+{#                  ^ punctuation.definition.string.end.twig #}
+{#                    ^^ punctuation.section.embedded.end.twig #}
+
+    {% verbatim %}
+{#  ^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^ source.twig.embedded #}
+{#     ^^^^^^^^ keyword.control.twig #}
+{#             ^ source.twig.embedded #}
+{#              ^^ punctuation.section.embedded.end.twig #}
+
+{# <- meta.raw.twig #}
+
+    {% endverbatim %}
+{#  ^^^^^^^^^^^^^^^^^ meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^^^^ source.twig.embedded #}
+{#     ^^^^^^^^^^^ keyword.control.twig #}
+{#                 ^^ punctuation.section.embedded.end.twig #}
+
+    {{ variable }}
+{#  ^^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#    ^^^^^^^^^^ source.twig.embedded #}
+{#     ^^^^^^^^ meta.path.twig variable.other.twig #}
+{#              ^^ punctuation.section.embedded.end.twig #}
+
+function foo () {
+{#^^^^^^^^^^^ meta.function.js #}
+{#^^^^^^ keyword.declaration.function.js #}
+{#       ^^^ entity.name.function.js #}
+{#           ^^ meta.function.parameters.js #}
+{#           ^ punctuation.section.group.begin.js #}
+{#            ^ punctuation.section.group.end.js #}
+{#             ^^ meta.function.js #}
+{#              ^ meta.block.js punctuation.section.block.begin.js #}
+
+    {% if true %}
+{#  ^^^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^ keyword.control.conditional.if.twig #}
+{#        ^^^^ constant.language.boolean.true.twig #}
+{#             ^^ punctuation.section.embedded.end.twig #}
+
+    let val = {{ default }}
+{#^^^^^^^^^^^^^^^^^^^^^^^^^ meta.function.js meta.block.js #}
+{#  ^^^ keyword.declaration.js #}
+{#      ^^^ meta.binding.name.js variable.other.readwrite.js #}
+{#          ^ keyword.operator.assignment.js #}
+{#            ^^^^^^^^^^^^^ meta.embedded.expression.twig #}
+{#            ^^ punctuation.section.embedded.begin.twig #}
+{#              ^^^^^^^^^ source.twig.embedded #}
+{#               ^^^^^^^ meta.path.twig variable.other.twig #}
+{#                       ^^ punctuation.section.embedded.end.twig #}
+
+    {% else %}
+{#  ^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^^ keyword.control.conditional.else.twig #}
+{#          ^^ punctuation.section.embedded.end.twig #}
+
+    {% endif %}
+{#  ^^^^^^^^^^^ meta.function.js meta.block.js meta.embedded.statement.twig #}
+{#  ^^ punctuation.section.embedded.begin.twig #}
+{#     ^^^^^ keyword.control.conditional.endif.twig #}
+{#           ^^ punctuation.section.embedded.end.twig #}
+
+}
+{# <- meta.function.js meta.block.js punctuation.section.block.end.js #}

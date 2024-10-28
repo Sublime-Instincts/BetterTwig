@@ -1,0 +1,10 @@
+<snippet>
+<content><![CDATA[
+{% macro ${1:function_name}() %}
+${TM_TEMPLATE_INDENT}$0
+{% endmacro %}
+]]></content>
+<tabTrigger>bmacro</tabTrigger>
+<scope>meta.template.twig - meta.embedded</scope>
+<description>Twig macro block</description>
+</snippet>

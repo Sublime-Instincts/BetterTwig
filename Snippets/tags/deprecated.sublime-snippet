@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% deprecated $1 %}]]></content>
+	<tabTrigger>deprecated</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig deprecated tag</description>
+</snippet>

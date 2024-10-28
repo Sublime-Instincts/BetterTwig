@@ -1,8 +1,0 @@
-<snippet>
-<content><![CDATA[
-{{ dump($1) }}
-]]></content>
-<tabTrigger>dump</tabTrigger>
-<description>Twig dump</description>
-<scope>text.html.twig - meta.expression.twig - meta.statement.twig</scope>
-</snippet>

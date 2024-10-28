@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% cache $1 %}]]></content>
+	<tabTrigger>cache</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig cache tag</description>
+</snippet>

@@ -27,12 +27,14 @@ jobs:
       strategy:
         matrix:
           include:
-            - build: 4142
-              packages: v4142
-            - build: 4170
-              packages: v4170
-            - build: 4173
-              packages: v4173
+            - build: 4152
+              packages: v4152
+            - build: 4169
+              packages: v4169
+            - build: 4180
+              packages: v4180
+            - build: latest
+              packages: master
       steps:
         - uses: actions/checkout@v4
         - uses: SublimeText/syntax-test-action@v2

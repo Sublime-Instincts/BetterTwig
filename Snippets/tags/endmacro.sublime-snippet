@@ -1,0 +1,6 @@
+<snippet>
+	<content><![CDATA[{% endmacro %}]]></content>
+	<tabTrigger>endmacro</tabTrigger>
+	<scope>meta.template.twig - meta.template.twig meta.embedded</scope>
+	<description>Twig endmacro tag</description>
+</snippet>

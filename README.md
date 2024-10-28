@@ -56,28 +56,55 @@ Since a user can have more than one templating language package installed, this 
 
 ### Snippets
 
-This package adds basic snippets for common code blocks. If you want more snippets, then please follow the official documentation on
-[snippets](https://www.sublimetext.com/docs/completions.html#snippets) and create your own. Or use [SnippetMaker](https://packagecontrol.io/packages/SnippetMaker) for convenience.
+Basic snippets for each keyword are provided to create expressions without bothering with `{%  %}`.
 
-- apply
-- autoescape
-- block
-- dump
-- embed
-- extends
-- for
-- if
-- if else
-- include
-- macro
-- sandbox
-- set
-- verbatim
-- with
+|  **Tab Trigger**  | **Twig Tag**
+|-------------------|-----------------------
+| `autoescape`      |  `{% autoescape %}`
+| `endautoescape`   | `{% endautoescape %}`
+|       ...         |          ...
+
+Prefixed with `b` basic snippets for most common control structures are provided.
+
+|  **Tab Trigger**  |         **Twig Code Block**
+|-------------------|--------------------------------------
+| `bautoescape`     | `{% autoescape %}{% endautoescape %}`
+| `bblock`          |      `{% block %}{% endblock %}`
+| `bembed`          |      `{% embed %}{% endembed %}`
+| `bextends`        |           `{% extends %}`
+| `bfor`            |        `{% for %}{% endfor %}`
+| `bif`             |         `{% if %}{% endif %}`
+| `bifelse`         |    `{% if %}{% else %}{% endif %}`
+| `bmacro`          |      `{% macro %}{% endmacro %}`
+| `bsandbox`        |    `{% sandbox %}{% endsandbox %}`
+| `bverbatim`       |   `{% verbatim %}{% endverbatim %}`
+| `bwith`           |       `{% with %}{% endwith %}`
+
+For more, please follow the official documentation on [snippets](https://www.sublimetext.com/docs/completions.html#snippets) to create your own.
+
+Or use [SnippetMaker](https://packagecontrol.io/packages/SnippetMaker) for convenience.
 
 If you want to ignore the snippets that are provided by default, you can use the `ignored_snippets` setting.
 
-`"ignored_snippets": ["Twig/*"]`
+| ignored snippets | values
+|------------------|--------------------------------------
+| all              | `"Twig/Snippets/*"`
+| blocks           | `"Twig/Snippets/blocks"`
+| expressions      | `"Twig/Snippets/expressions"`
+| tags             | `"Twig/Snippets/tags"`
+
+#### Example
+
+To only keep tag snippets...
+
+```json
+{
+    "ignored_snippets": [
+        "Twig/Snippets/blocks",
+        "Twig/Snippets/expressions",
+    ],
+}
+```
 
 ## Reporting issues.
 

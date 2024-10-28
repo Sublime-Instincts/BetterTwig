@@ -1,0 +1,72 @@
+%YAML 1.2
+---
+name: CSS (Twig)
+scope: source.css.twig
+version: 2
+
+extends: Packages/CSS/CSS.sublime-syntax
+
+file_extensions:
+  - css.twig
+
+variables:
+
+  # CSS overrides
+
+  ident_start: (?:{{nmstart}}|{{interpolation_start}})
+
+  # required until ST4173
+  selector_begin: (?={{selector_start}}|{{interpolation_start}})
+  # required until ST4173
+  nested_selector_begin: (?={{nested_selector_start}}|{{interpolation_start}})
+
+  tag_name_begin: (?=[[:alpha:]]|{{interpolation_start}})
+
+  # CSS (Twig) variables
+  #...
+
+  interpolation_start: \{[#%{]
+
+contexts:
+
+  prototype:
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax
+
+  main:
+    - meta_prepend: true
+    - meta_include_prototype: false
+    - meta_scope: meta.template.twig
+    - include: Text (Twig).sublime-syntax#twig-comment-tags
+    - include: Text (Twig).sublime-syntax#twig-verbatim-tags
+    - include: Text (Twig).sublime-syntax#twig-statement-tags
+
+  block-end:
+    - meta_append: true
+    - include: Text (Twig).sublime-syntax#twig-comment-tags
+    - include: Text (Twig).sublime-syntax#twig-verbatim-tags
+    - include: Text (Twig).sublime-syntax#twig-statement-tags
+
+  at-rule-block-body:
+    # required until ST4173
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax#twig-comment-tags
+    - include: Text (Twig).sublime-syntax#twig-verbatim-tags
+    - include: Text (Twig).sublime-syntax#twig-statement-tags
+
+  property-lists:
+    # A `{{` indicates the beginning of a selector or property name context
+    # beginning with a Twig expression rather than a style rule block.
+    # required until ST4184
+    - match: \{(?![{%#])
+      scope: punctuation.section.block.begin.css
+      push: property-list-body
+
+  property-list-body:
+    # required until ST4173
+    - meta_prepend: true
+    - meta_include_prototype: false
+
+  string-content:
+    - meta_prepend: true
+    - include: Text (Twig).sublime-syntax#interpolations
